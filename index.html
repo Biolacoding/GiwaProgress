@@ -114,17 +114,35 @@
         /* ====== HERO SECTION ====== */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.4)),
-                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.4));
+            z-index: -1;
         }
 
         .hero-content {
@@ -628,6 +646,659 @@
         .mt-1 { margin-top: 1rem; }
         .mt-2 { margin-top: 2rem; }
         .mt-3 { margin-top: 3rem; }
+
+        /* ====== ENHANCED ANIMATIONS ====== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ====== ENHANCED HERO SECTION ====== */
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out, float 3s ease-in-out infinite 1s;
+}
+
+.hero-tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.3s both, pulse 2s infinite 1.3s;
+}
+
+.hero-cta {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+/* Scroll indicator animation */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* ====== ENHANCED GALLERY ====== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 1;
+    background: white;
+    cursor: pointer;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.gallery-item.visible {
+    animation: slideInUp 0.6s ease forwards;
+}
+
+/* Staggered animation delay for gallery items */
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item:nth-child(5) { animation-delay: 0.5s; }
+.gallery-item:nth-child(6) { animation-delay: 0.6s; }
+.gallery-item:nth-child(7) { animation-delay: 0.7s; }
+.gallery-item:nth-child(8) { animation-delay: 0.8s; }
+.gallery-item:nth-child(9) { animation-delay: 0.9s; }
+.gallery-item:nth-child(10) { animation-delay: 1s; }
+.gallery-item:nth-child(11) { animation-delay: 1.1s; }
+.gallery-item:nth-child(12) { animation-delay: 1.2s; }
+.gallery-item:nth-child(13) { animation-delay: 1.3s; }
+.gallery-item:nth-child(14) { animation-delay: 1.4s; }
+.gallery-item:nth-child(15) { animation-delay: 1.5s; }
+.gallery-item:nth-child(16) { animation-delay: 1.6s; }
+.gallery-item:nth-child(17) { animation-delay: 1.7s; }
+.gallery-item:nth-child(18) { animation-delay: 1.8s; }
+.gallery-item:nth-child(19) { animation-delay: 1.9s; }
+.gallery-item:nth-child(20) { animation-delay: 2s; }
+.gallery-item:nth-child(21) { animation-delay: 2.1s; }
+.gallery-item:nth-child(22) { animation-delay: 2.2s; }
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: white;
+    padding: 2rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: transform var(--transition-smooth);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+/* ====== ENHANCED BUTTONS ====== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--ocean-blue);
+    text-decoration: none;
+    border-radius: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all var(--transition-smooth);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+.btn:hover {
+    background: var(--ocean-blue);
+    color: white;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(26, 54, 93, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-left: 1rem;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--ocean-blue);
+    border-color: white;
+}
+
+/* ====== ENHANCED NAVIGATION ====== */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transform: translateY(0);
+}
+
+.main-nav.hidden {
+    transform: translateY(-100%);
+}
+
+.main-nav.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--ocean-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger menu animation */
+.mobile-menu-btn {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn.active {
+    transform: rotate(180deg);
+}
+
+/* ====== ENHANCED PROJECT CARDS ====== */
+.project-card {
+    background: var(--gallery-light);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(50px) rotateX(10deg);
+    opacity: 0;
+    transform-origin: center bottom;
+}
+
+.project-card.visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.project-card:hover {
+    transform: translateY(-15px) rotateX(0deg) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.project-image img {
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.15) rotate(1deg);
+}
+
+/* ====== ENHANCED COLLABORATION OPTIONS ====== */
+.collab-option {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: perspective(1000px) rotateY(15deg);
+    transform-origin: center;
+}
+
+.collab-option:hover {
+    border-color: var(--ocean-blue);
+    transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.1);
+}
+
+.collab-icon {
+    font-size: 2.5rem;
+    color: var(--ocean-blue);
+    margin-bottom: 1rem;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+.collab-option:hover .collab-icon {
+    transform: scale(1.2) rotate(10deg);
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ====== ENHANCED SOCIAL LINKS ====== */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ocean-blue);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+}
+
+.social-link:hover {
+    transform: translateY(-5px) scale(1.2);
+    background: var(--charcoal);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ====== ENHANCED FORM INPUTS ====== */
+.form-group {
+    position: relative;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: transparent;
+    z-index: 1;
+}
+
+.form-group label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-group input:focus + label,
+.form-group select:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -0.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ocean-blue);
+    background: white;
+    padding: 0 0.5rem;
+}
+
+/* ====== ENHANCED FOOTER ====== */
+.main-footer {
+    background: var(--charcoal);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-copper), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* ====== ENHANCED MODAL ====== */
+.artwork-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: modalBgFadeIn 0.3s ease;
+}
+
+@keyframes modalBgFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.artwork-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    overflow: hidden;
+    animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center center;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotateY(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+/* ====== TYPING ANIMATION ====== */
+.typing-container {
+    display: inline-block;
+    position: relative;
+}
+
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--ocean-blue);
+    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* ====== PARALLAX EFFECT ====== */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ====== PROGRESS BAR ====== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ocean-blue), var(--accent-copper));
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+/* ====== RESPONSIVE ANIMATIONS ====== */
+@media (max-width: 768px) {
+    .gallery-item {
+        transform: none;
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .collab-option {
+        transform: none;
+    }
+    
+    .collab-option:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* ====== LOADING ANIMATIONS ====== */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
     </style>
 </head>
 <body>
@@ -657,6 +1328,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video/WhatsApp Video 2026-01-24 at 6.09.19 PM.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Progress Giwa</h1>
             <p class="hero-tagline">Visual Artist & Environmental Advocate</p>
@@ -672,7 +1348,7 @@
     <section id="about" class="about-section">
         <div class="container about-container fade-in">
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Progress Giwa - Visual Artist">
+                <img src="img1/icon-logo.jpeg" alt="Progress Giwa - Artist Portrait" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
             </div>
             <div class="about-content">
                 <h2>Artist Statement</h2>
@@ -690,38 +1366,178 @@
     <section id="gallery" class="gallery-section">
         <div class="container">
             <h2 class="section-title">Gallery</h2>
-            <p class="text-center mb-3">A selection of works exploring marine pollution and sustainability through recycled materials</p>
+            <p class="text-center mb-3">A selection of works exploring sustainability through recycled materials</p>
             
             <div class="gallery-grid">
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1476&q=80" alt="Oceanic Memories - Recycled Nylon">
+                    <img src="img1/PXL_20250602_132330541.PORTRAIT.jpg" alt="Artwork 1">
                     <div class="gallery-overlay">
-                        <h4>Oceanic Memories</h4>
-                        <p>2024 | Recycled Nylon</p>
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
                     </div>
                 </div>
                 
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Plastic Tides">
+                    <img src="img1/PXL_20250603_121139451.PORTRAIT.jpg" alt="Artwork 2">
                     <div class="gallery-overlay">
-                        <h4>Plastic Tides</h4>
-                        <p>2023 | Mixed Media</p>
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
                     </div>
                 </div>
                 
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Waste Portrait Series">
+                    <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Artwork 3">
                     <div class="gallery-overlay">
-                        <h4>Waste Portrait Series</h4>
-                        <p>2023 | Recycled Materials</p>
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
                     </div>
                 </div>
                 
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Marine Consciousness">
+                    <img src="img1/PXL_20250603_133319575.PORTRAIT.jpg" alt="Artwork 4">
                     <div class="gallery-overlay">
-                        <h4>Marine Consciousness</h4>
-                        <p>2024 | Installation</p>
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20250605_093312594.PORTRAIT.ORIGINAL.jpg" alt="Artwork 5">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20250829_101835539.PORTRAIT~2.jpg" alt="Artwork 6">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20250829_113122403~2.jpg" alt="Artwork 7">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20250829_113202312~2.jpg" alt="Artwork 8">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114810188.jpg" alt="Artwork 9">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114813535.jpg" alt="Artwork 10">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114834762.jpg" alt="Artwork 11">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_124712843.PORTRAIT.jpg" alt="Artwork 12">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_130802532.PORTRAIT.jpg" alt="Artwork 13">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_130957502.jpg" alt="Artwork 14">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_131001049.PORTRAIT.jpg" alt="Artwork 15">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_151828907.PORTRAIT.jpg" alt="Artwork 16">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg" alt="Artwork 17">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg" alt="Artwork 18">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                    
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg" alt="Artwork 19">
+                    <div class="gallery-overlay">
+                
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg" alt="Artwork 20">
+                    <div class="gallery-overlay">
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg" alt="Artwork 21">
+                    <div class="gallery-overlay">
+                     
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg" alt="Artwork 22">
+                    <div class="gallery-overlay">
+                        
                     </div>
                 </div>
             </div>
@@ -736,7 +1552,7 @@
             <div class="project-grid">
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Recycle Art Tour">
+                        <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Recycle Art Tour">
                     </div>
                     <div class="project-content">
                         <h3>Recycle Art Tour</h3>
@@ -751,7 +1567,7 @@
                 
                 <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Backpack of Hope">
+                        <img src="img1/PXL_20251031_114834762.jpg" alt="Backpack of Hope">
                     </div>
                     <div class="project-content">
                         <h3>Backpack of Hope</h3>
@@ -759,20 +1575,6 @@
                         <div class="sdg-badges">
                             <span class="sdg-badge">SDG 1: No Poverty</span>
                             <span class="sdg-badge">SDG 4: Quality Education</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Marine Cleanup Initiative">
-                    </div>
-                    <div class="project-content">
-                        <h3>Marine Cleanup Initiative</h3>
-                        <p>Community-driven beach cleanups combined with art workshops, turning collected waste into installation art.</p>
-                        <div class="sdg-badges">
-                            <span class="sdg-badge">SDG 14: Life Below Water</span>
-                            <span class="sdg-badge">SDG 17: Partnerships</span>
                         </div>
                     </div>
                 </div>
@@ -787,21 +1589,26 @@
             
             <div class="exhibition-timeline">
                 <div class="exhibition-item fade-in">
-                    <h3>Lagos Art Fair 2024</h3>
-                    <p class="mb-1"><strong>Location:</strong> National Museum, Lagos</p>
-                    <p><strong>Featured Work:</strong> "Plastic Tides" Installation</p>
+                     <p>- Kongi @90: Wole Soyinka in the Lens of an Artist
+  (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
                 </div>
                 
                 <div class="exhibition-item fade-in">
-                    <h3>Art X Lagos 2023</h3>
-                    <p class="mb-1"><strong>Location:</strong> Federal Palace Hotel, Lagos</p>
-                    <p><strong>Featured Work:</strong> "Waste Portrait Series"</p>
+                     <p>- Creative Bloc Carnival
+  (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
                 </div>
                 
                 <div class="exhibition-item fade-in">
-                    <h3>Sustainable Futures Exhibition</h3>
-                    <p class="mb-1"><strong>Location:</strong> British Council, Lagos</p>
-                    <p><strong>Collaboration:</strong> Environmental Art Workshop Series</p>
+                    <p>- Global Entrepreneurship Festival, Art Fair
+  (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
+                </div>
+
+                <div class="exhibition-item fade-in">
+                    <p>Debut solo exhibition, Waste to Luxury ( Business Club, Ikeja) - 20th June, 2025</p>
+                </div>
+
+                <div class="exhibition-item fade-in">
+                    <p>Africa climate stories festival (Alliance Française de Lagos) - 26th June 2025</p>
                 </div>
                 
                 <div class="media-features mt-3">
