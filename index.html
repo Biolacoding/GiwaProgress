@@ -52,20 +52,13 @@
             padding: 0 20px;
         }
 
-        /* ====== SECTIONS STYLING ====== */
+        /* Single Page Navigation */
         .section {
             display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            min-height: 100vh;
-            padding-top: 80px;
         }
 
         .section.active {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* ====== NAVIGATION ====== */
@@ -96,7 +89,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            cursor: pointer;
         }
 
         .nav-menu {
@@ -113,23 +105,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .nav-menu a.active {
-            color: var(--ocean-blue);
-            font-weight: 600;
-        }
-
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--ocean-blue);
         }
 
         .nav-menu a:hover {
@@ -146,7 +121,7 @@
         }
 
         /* ====== HERO SECTION ====== */
-        #home {
+        .hero {
             height: 100vh;
             position: relative;
             display: flex;
@@ -156,7 +131,6 @@
             color: white;
             padding: 0 20px;
             overflow: hidden;
-            padding-top: 0;
         }
 
         .hero-video {
@@ -231,7 +205,7 @@
         }
 
         /* ====== ABOUT SECTION ====== */
-        #about {
+        .about-section {
             padding: 6rem 0;
             background: white;
         }
@@ -266,7 +240,7 @@
         }
 
         /* ====== GALLERY SECTION ====== */
-        #gallery {
+        .gallery-section {
             padding: 6rem 0;
             background: var(--gallery-light);
         }
@@ -327,7 +301,7 @@
         }
 
         /* ====== PROJECTS SECTION ====== */
-        #projects {
+        .projects-section {
             padding: 6rem 0;
             background: white;
         }
@@ -387,7 +361,7 @@
         }
 
         /* ====== EXHIBITIONS SECTION ====== */
-        #exhibitions {
+        .exhibitions-section {
             padding: 6rem 0;
             background: var(--gallery-light);
         }
@@ -416,7 +390,7 @@
         }
 
         /* ====== COLLABORATE SECTION ====== */
-        #collaborate {
+        .collaborate-section {
             padding: 6rem 0;
             background: white;
         }
@@ -448,7 +422,7 @@
         }
 
         /* ====== CONTACT SECTION ====== */
-        #contact {
+        .contact-section {
             padding: 6rem 0;
             background: var(--gallery-light);
         }
@@ -514,11 +488,6 @@
             color: white;
             padding: 3rem 0;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
         }
 
         .footer-links {
@@ -533,7 +502,6 @@
             text-decoration: none;
             opacity: 0.7;
             transition: opacity 0.3s ease;
-            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -607,10 +575,6 @@
             
             .nav-menu a {
                 font-size: 1.1rem;
-            }
-
-            .main-footer {
-                position: relative;
             }
         }
 
@@ -693,666 +657,666 @@
         .mt-3 { margin-top: 3rem; }
 
         /* ====== ENHANCED ANIMATIONS ====== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* ====== ENHANCED HERO SECTION ====== */
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out, float 3s ease-in-out infinite 1s;
-        }
-
-        .hero-tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.3s both, pulse 2s infinite 1.3s;
-        }
-
-        .hero-cta {
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        /* Scroll indicator animation */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-5px) translateX(-50%);
-            }
-        }
-
-        /* ====== ENHANCED GALLERY ====== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            aspect-ratio: 1;
-            background: white;
-            cursor: pointer;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: slideInUp 0.6s ease forwards;
-            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-        }
-
-        .gallery-item.visible {
-            animation: slideInUp 0.6s ease forwards;
-        }
-
-        /* Staggered animation delay for gallery items */
-        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
-        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
-        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
-        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
-        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
-        .gallery-item:nth-child(9) { animation-delay: 0.9s; }
-        .gallery-item:nth-child(10) { animation-delay: 1s; }
-        .gallery-item:nth-child(11) { animation-delay: 1.1s; }
-        .gallery-item:nth-child(12) { animation-delay: 1.2s; }
-        .gallery-item:nth-child(13) { animation-delay: 1.3s; }
-        .gallery-item:nth-child(14) { animation-delay: 1.4s; }
-        .gallery-item:nth-child(15) { animation-delay: 1.5s; }
-        .gallery-item:nth-child(16) { animation-delay: 1.6s; }
-        .gallery-item:nth-child(17) { animation-delay: 1.7s; }
-        .gallery-item:nth-child(18) { animation-delay: 1.8s; }
-        .gallery-item:nth-child(19) { animation-delay: 1.9s; }
-        .gallery-item:nth-child(20) { animation-delay: 2s; }
-        .gallery-item:nth-child(21) { animation-delay: 2.1s; }
-        .gallery-item:nth-child(22) { animation-delay: 2.2s; }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1) rotate(2deg);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: white;
-            padding: 2rem 1rem 1rem;
-            transform: translateY(100%);
-            transition: transform var(--transition-smooth);
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* ====== ENHANCED BUTTONS ====== */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: var(--ocean-blue);
-            text-decoration: none;
-            border-radius: 2px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all var(--transition-smooth);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-            background-repeat: no-repeat;
-            background-position: 50%;
-            transform: scale(10, 10);
-            opacity: 0;
-            transition: transform 0.5s, opacity 1s;
-        }
-
-        .btn:active::after {
-            transform: scale(0, 0);
-            opacity: 0.3;
-            transition: 0s;
-        }
-
-        .btn:hover {
-            background: var(--ocean-blue);
-            color: white;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(26, 54, 93, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: var(--ocean-blue);
-            border-color: white;
-        }
-
-        /* ====== ENHANCED NAVIGATION ====== */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transform: translateY(0);
-        }
-
-        .main-nav.hidden {
-            transform: translateY(-100%);
-        }
-
-        .main-nav.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--ocean-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* Hamburger menu animation */
-        .mobile-menu-btn {
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu-btn.active {
-            transform: rotate(180deg);
-        }
-
-        /* ====== ENHANCED PROJECT CARDS ====== */
-        .project-card {
-            background: var(--gallery-light);
-            border-radius: 2px;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateY(50px) rotateX(10deg);
-            opacity: 0;
-            transform-origin: center bottom;
-        }
-
-        .project-card.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px) rotateX(0deg) scale(1.03);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .project-image img {
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.15) rotate(1deg);
-        }
-
-        /* ====== ENHANCED COLLABORATION OPTIONS ====== */
-        .collab-option {
-            text-align: center;
-            padding: 2rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 2px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: perspective(1000px) rotateY(15deg);
-            transform-origin: center;
-        }
-
-        .collab-option:hover {
-            border-color: var(--ocean-blue);
-            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.1);
-        }
-
-        .collab-icon {
-            font-size: 2.5rem;
-            color: var(--ocean-blue);
-            margin-bottom: 1rem;
-            transition: all 0.5s ease;
-            display: inline-block;
-        }
-
-        .collab-option:hover .collab-icon {
-            transform: scale(1.2) rotate(10deg);
-            animation: float 2s ease-in-out infinite;
-        }
-
-        /* ====== ENHANCED SOCIAL LINKS ====== */
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--ocean-blue);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform: translateY(0);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.2);
-            background: var(--charcoal);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* ====== ENHANCED FORM INPUTS ====== */
-        .form-group {
-            position: relative;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 2px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: transparent;
-            z-index: 1;
-        }
-
-        .form-group label {
-            position: absolute;
-            left: 1rem;
-            top: 1rem;
-            color: rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--ocean-blue);
-            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .form-group input:focus + label,
-        .form-group select:focus + label,
-        .form-group textarea:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group select:not(:placeholder-shown) + label,
-        .form-group textarea:not(:placeholder-shown) + label {
-            top: -0.5rem;
-            left: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--ocean-blue);
-            background: white;
-            padding: 0 0.5rem;
-        }
-
-        /* ====== ENHANCED FOOTER ====== */
-        .main-footer {
-            background: var(--charcoal);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-copper), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-
-        /* ====== ENHANCED MODAL ====== */
-        .artwork-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: modalBgFadeIn 0.3s ease;
-        }
-
-        @keyframes modalBgFadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .artwork-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 2px;
-            overflow: hidden;
-            animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: center center;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) rotateY(10deg);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) rotateY(0deg);
-            }
-        }
-
-        /* ====== TYPING ANIMATION ====== */
-        .typing-container {
-            display: inline-block;
-            position: relative;
-        }
-
-        .typing-text {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid var(--ocean-blue);
-            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
-        }
-
-        /* ====== PARALLAX EFFECT ====== */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* ====== PROGRESS BAR ====== */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--ocean-blue), var(--accent-copper));
-            z-index: 1001;
-            transition: width 0.3s ease;
-        }
-
-        /* ====== RESPONSIVE ANIMATIONS ====== */
-        @media (max-width: 768px) {
-            .gallery-item {
-                transform: none;
-                animation: fadeInUp 0.6s ease forwards;
-            }
-            
-            .collab-option {
-                transform: none;
-            }
-            
-            .collab-option:hover {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* ====== LOADING ANIMATIONS ====== */
-        .loading {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ====== ENHANCED HERO SECTION ====== */
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out, float 3s ease-in-out infinite 1s;
+}
+
+.hero-tagline {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.3s both, pulse 2s infinite 1.3s;
+}
+
+.hero-cta {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+/* Scroll indicator animation */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* ====== ENHANCED GALLERY ====== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 1;
+    background: white;
+    cursor: pointer;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideInUp 0.6s ease forwards;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.gallery-item.visible {
+    animation: slideInUp 0.6s ease forwards;
+}
+
+/* Staggered animation delay for gallery items */
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item:nth-child(5) { animation-delay: 0.5s; }
+.gallery-item:nth-child(6) { animation-delay: 0.6s; }
+.gallery-item:nth-child(7) { animation-delay: 0.7s; }
+.gallery-item:nth-child(8) { animation-delay: 0.8s; }
+.gallery-item:nth-child(9) { animation-delay: 0.9s; }
+.gallery-item:nth-child(10) { animation-delay: 1s; }
+.gallery-item:nth-child(11) { animation-delay: 1.1s; }
+.gallery-item:nth-child(12) { animation-delay: 1.2s; }
+.gallery-item:nth-child(13) { animation-delay: 1.3s; }
+.gallery-item:nth-child(14) { animation-delay: 1.4s; }
+.gallery-item:nth-child(15) { animation-delay: 1.5s; }
+.gallery-item:nth-child(16) { animation-delay: 1.6s; }
+.gallery-item:nth-child(17) { animation-delay: 1.7s; }
+.gallery-item:nth-child(18) { animation-delay: 1.8s; }
+.gallery-item:nth-child(19) { animation-delay: 1.9s; }
+.gallery-item:nth-child(20) { animation-delay: 2s; }
+.gallery-item:nth-child(21) { animation-delay: 2.1s; }
+.gallery-item:nth-child(22) { animation-delay: 2.2s; }
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: white;
+    padding: 2rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: transform var(--transition-smooth);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+/* ====== ENHANCED BUTTONS ====== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--ocean-blue);
+    text-decoration: none;
+    border-radius: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all var(--transition-smooth);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+.btn:hover {
+    background: var(--ocean-blue);
+    color: white;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(26, 54, 93, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    margin-left: 1rem;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--ocean-blue);
+    border-color: white;
+}
+
+/* ====== ENHANCED NAVIGATION ====== */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transform: translateY(0);
+}
+
+.main-nav.hidden {
+    transform: translateY(-100%);
+}
+
+.main-nav.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--charcoal);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--ocean-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Hamburger menu animation */
+.mobile-menu-btn {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn.active {
+    transform: rotate(180deg);
+}
+
+/* ====== ENHANCED PROJECT CARDS ====== */
+.project-card {
+    background: var(--gallery-light);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(50px) rotateX(10deg);
+    opacity: 0;
+    transform-origin: center bottom;
+}
+
+.project-card.visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.project-card:hover {
+    transform: translateY(-15px) rotateX(0deg) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.project-image img {
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.15) rotate(1deg);
+}
+
+/* ====== ENHANCED COLLABORATION OPTIONS ====== */
+.collab-option {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: perspective(1000px) rotateY(15deg);
+    transform-origin: center;
+}
+
+.collab-option:hover {
+    border-color: var(--ocean-blue);
+    transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.1);
+}
+
+.collab-icon {
+    font-size: 2.5rem;
+    color: var(--ocean-blue);
+    margin-bottom: 1rem;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+.collab-option:hover .collab-icon {
+    transform: scale(1.2) rotate(10deg);
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ====== ENHANCED SOCIAL LINKS ====== */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ocean-blue);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+}
+
+.social-link:hover {
+    transform: translateY(-5px) scale(1.2);
+    background: var(--charcoal);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ====== ENHANCED FORM INPUTS ====== */
+.form-group {
+    position: relative;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: transparent;
+    z-index: 1;
+}
+
+.form-group label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-group input:focus + label,
+.form-group select:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -0.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ocean-blue);
+    background: white;
+    padding: 0 0.5rem;
+}
+
+/* ====== ENHANCED FOOTER ====== */
+.main-footer {
+    background: var(--charcoal);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-copper), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* ====== ENHANCED MODAL ====== */
+.artwork-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: modalBgFadeIn 0.3s ease;
+}
+
+@keyframes modalBgFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.artwork-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    overflow: hidden;
+    animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center center;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotateY(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+/* ====== TYPING ANIMATION ====== */
+.typing-container {
+    display: inline-block;
+    position: relative;
+}
+
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--ocean-blue);
+    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* ====== PARALLAX EFFECT ====== */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ====== PROGRESS BAR ====== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ocean-blue), var(--accent-copper));
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+/* ====== RESPONSIVE ANIMATIONS ====== */
+@media (max-width: 768px) {
+    .gallery-item {
+        transform: none;
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .collab-option {
+        transform: none;
+    }
+    
+    .collab-option:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* ====== LOADING ANIMATIONS ====== */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="container nav-container">
-            <a href="#" class="logo" data-section="home">
+            <a href="#" class="logo">
                 <i class="fas fa-palette"></i>
-                Progress Giwa
+                Progress Jesutomiwa Giwa
             </a>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1360,91 +1324,234 @@
             </button>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
-                <li><a href="#" class="nav-link" data-section="about">About</a></li>
-                <li><a href="#" class="nav-link" data-section="gallery">Gallery</a></li>
-                <li><a href="#" class="nav-link" data-section="projects">Projects</a></li>
-                <li><a href="#" class="nav-link" data-section="exhibitions">Exhibitions</a></li>
-                <li><a href="#" class="nav-link" data-section="collaborate">Collaborate</a></li>
-                <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('about')">About</a></li>
+                <li><a href="#" onclick="showSection('gallery')">Gallery</a></li>
+                <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+                <li><a href="#" onclick="showSection('exhibitions')">Exhibitions</a></li>
+                <li><a href="#" onclick="showSection('collaborate')">Collaborate</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sections -->
-    <!-- Home Section -->
-    <section id="home" class="section active">
-        <div class="hero">
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="video/WhatsApp Video 2026-01-24 at 6.09.19 PM.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Progress Giwa</h1>
-                <p class="hero-tagline">Visual Artist & Environmental Advocate</p>
-                <p class="mb-2">Turning waste into witness through contemporary art</p>
-                <div class="hero-cta">
-                    <a href="#" class="btn" data-section="gallery">Explore My Work</a>
-                    <a href="#" class="btn btn-outline" data-section="contact">Commission Art</a>
-                </div>
+    <!-- Hero Section -->
+    <section id="home" class="section hero active">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video/WhatsApp Video 2026-01-24 at 6.09.19 PM.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Progress Jesutomiwa Giwa</h1>
+            <p class="hero-tagline">Visual Artist & Environmental Advocate</p>
+            <p class="mb-2">Turning waste into witness through contemporary art</p>
+            <div class="hero-cta">
+                <a href="#" onclick="showSection('gallery')" class="btn">Explore My Work</a>
+                <a href="#" onclick="showSection('contact')" class="btn btn-outline">Commission Art</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <div class="about-section">
-            <div class="container about-container fade-in">
-                <div class="about-image">
-                    <img src="img1/icon-logo.jpeg" alt="Progress Giwa - Artist Portrait" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-                </div>
-                <div class="about-content">
-                    <h2>Artist Statement</h2>
-                    <p>I am a contemporary visual artist dedicated to exploring environmental sustainability through recycled materials and marine pollution narratives.</p>
-                    <p>My work transforms discarded plastics and waste into powerful artistic statements, creating a dialogue between art, environmental consciousness, and social responsibility.</p>
-                    <div class="mission-statement">
-                        "To create art that not only captivates but also catalyzes change, turning environmental challenges into opportunities for creative expression and community engagement."
-                    </div>
-                    <p>Through my Recycle Art Tour initiative, I've engaged thousands of students and community members, demonstrating that art can be both beautiful and purposeful.</p>
-                </div>
+    <section id="about" class="section about-section">
+        <div class="container about-container fade-in">
+            <div class="about-image">
+                <img src="img1/icon-logo.jpeg" alt="Progress Giwa - Artist Portrait" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
             </div>
+        <div class="about-content">
+            <h2>About Progress Jesutomiwa Giwa</h2>
+            <p>Born in 2000 in Lagos, Progress Jesutomiwa Giwa is a Nigeria born multifaceted artist whose work bridges creativity and environmental advocacy, using art as a tool to promote sustainability and inspire positive change in communities.</p>
+            <p>He began as a student of art, drawn to the power of visual expression. But in 2021 his trajectory took a transformative turn when he joined the Western coast Maritime Academy (WECMA) as a cadet. He did a term paper research on the influx of plastic in the water bodies, this opened his eyes to the urgent issues facing our oceans, particularly the growing crisis of marine pollution. That awakening became the spark that ignited his mission.</p>
+            <p>Since 2023, he has dedicated using his art as a tool for environmental awareness and action, he believes art is a universal language with no barrier.</p>
+            <p>Progress's artistic journey has been marked by remarkable achievements, including exhibiting at Kongi @90, the celebration of Professor Wole Soyinka's 90th birthday, showcasing his work at the Global Entrepreneurship Festival 2024, He held his first solo exhibition, Waste to Luxury (2025), a powerful visual narrative that redefines waste through the lens of luxury and environmental responsibility.</p>
+            <p>He emerged as the winner of the Arts for Change Foundation Competition (2024 edition) and the Grand Winner of the Art Star Competition for environmental awareness organized by TwelveBrassStreet Atlanta, USA (2025). He also won the Lagos Has Talent – Climate Edition(2025), further affirming his voice as an artist with purpose.</p>
+            <p>In recognition of his contributions to environmental sustainability, Progress was appointed as the Youth Ambassador of the Lagos State Ministry of Environment.</p>
+            <p>Beyond creating in the studio, he is the founder of Susty creative hub where he runs initiative like The Recycle Art Tour an artistic initiative, using art as a tool to raise awareness about environmental issues—extending impact far beyond the studio walls in community, schools and organizations.</p>
+            <p>His passion for environmental art and commitment to youth development continue to position him as a leading voice at the intersection of art, sustainability, and social impact.</p>
+            <div class="text-center mt-3">
+                <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Click Here</a>
+            </div>
+        </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="section">
-        <div class="gallery-section">
-            <div class="container">
-                <h2 class="section-title">Gallery</h2>
-                <p class="text-center mb-3">A selection of works exploring sustainability through recycled materials</p>
+    <section id="gallery" class="section gallery-section">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <p class="text-center mb-3">A selection of works exploring sustainability through recycled materials</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg" alt="Artwork 1">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
                 
-                <div class="gallery-grid">
-                    <!-- Gallery items remain the same -->
-                    <div class="gallery-item fade-in">
-                        <img src="img1/PXL_20250602_132330541.PORTRAIT.jpg" alt="Artwork 1">
-                        <div class="gallery-overlay">
-                            <h4>Artwork Collection</h4>
-                            <p>2025 | Mixed Media</p>
-                        </div>
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg" alt="Artwork 2">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
                     </div>
-                    
-                    <div class="gallery-item fade-in">
-                        <img src="img1/PXL_20250603_121139451.PORTRAIT.jpg" alt="Artwork 2">
-                        <div class="gallery-overlay">
-                            <h4>Artwork Collection</h4>
-                            <p>2025 | Mixed Media</p>
-                        </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg" alt="Artwork 3">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
                     </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg" alt="Artwork 4">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg" alt="Artwork 5">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg" alt="Artwork 6">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg" alt="Artwork 7">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg" alt="Artwork 8">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114810188.jpg" alt="Artwork 9">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114813535.jpg" alt="Artwork 10">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_114834762.jpg" alt="Artwork 11">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251031_124712843.PORTRAIT.jpg" alt="Artwork 12">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_130802532.PORTRAIT.jpg" alt="Artwork 13">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_130957502.jpg" alt="Artwork 14">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_131001049.PORTRAIT.jpg" alt="Artwork 15">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/PXL_20251115_151828907.PORTRAIT.jpg" alt="Artwork 16">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        <p>2025 | Mixed Media</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg" alt="Artwork 17">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg" alt="Artwork 18">
+                    <div class="gallery-overlay">
+                        <h4>Artwork Collection</h4>
                     
-                    <!-- ... more gallery items ... -->
-                    
-                    <div class="gallery-item fade-in">
-                        <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg" alt="Artwork 22">
-                        <div class="gallery-overlay">
-                            <h4>Artwork Collection</h4>
-                            <p>2025 | Mixed Media</p>
-                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg" alt="Artwork 19">
+                    <div class="gallery-overlay">
+                
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg" alt="Artwork 20">
+                    <div class="gallery-overlay">
+                        
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg" alt="Artwork 21">
+                    <div class="gallery-overlay">
+                     
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg" alt="Artwork 22">
+                    <div class="gallery-overlay">
+                        
                     </div>
                 </div>
             </div>
@@ -1452,38 +1559,36 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="projects-section">
-            <div class="container">
-                <h2 class="section-title">Projects & Impact</h2>
-                
-                <div class="project-grid">
-                    <div class="project-card fade-in">
-                        <div class="project-image">
-                            <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Recycle Art Tour">
-                        </div>
-                        <div class="project-content">
-                            <h3>Recycle Art Tour</h3>
-                            <p>A nationwide initiative bringing environmental education and art workshops to schools and communities across Nigeria.</p>
-                            <div class="sdg-badges">
-                                <span class="sdg-badge">SDG 4: Quality Education</span>
-                                <span class="sdg-badge">SDG 11: Sustainable Cities</span>
-                                <span class="sdg-badge">SDG 12: Responsible Consumption</span>
-                            </div>
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2 class="section-title">Projects & Impact</h2>
+            
+            <div class="project-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Recycle Art Tour">
+                    </div>
+                    <div class="project-content">
+                        <h3>Recycle Art Tour</h3>
+                        <p>A nationwide initiative bringing environmental education and art workshops to schools and communities across Nigeria.</p>
+                        <div class="sdg-badges">
+                            <span class="sdg-badge">SDG 4: Quality Education</span>
+                            <span class="sdg-badge">SDG 11: Sustainable Cities</span>
+                            <span class="sdg-badge">SDG 12: Responsible Consumption</span>
                         </div>
                     </div>
-                    
-                    <div class="project-card fade-in">
-                        <div class="project-image">
-                            <img src="img1/PXL_20251031_114834762.jpg" alt="Backpack of Hope">
-                        </div>
-                        <div class="project-content">
-                            <h3>Backpack of Hope</h3>
-                            <p>Providing eco-friendly school bags made from recycled materials to underprivileged children while teaching sustainability.</p>
-                            <div class="sdg-badges">
-                                <span class="sdg-badge">SDG 1: No Poverty</span>
-                                <span class="sdg-badge">SDG 4: Quality Education</span>
-                            </div>
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <img src="img1/PXL_20251031_114834762.jpg" alt="Backpack of Hope">
+                    </div>
+                    <div class="project-content">
+                        <h3>Backpack of Hope</h3>
+                        <p>Providing eco-friendly school bags made from recycled materials to underprivileged children while teaching sustainability.</p>
+                        <div class="sdg-badges">
+                            <span class="sdg-badge">SDG 1: No Poverty</span>
+                            <span class="sdg-badge">SDG 4: Quality Education</span>
                         </div>
                     </div>
                 </div>
@@ -1492,136 +1597,139 @@
     </section>
 
     <!-- Exhibitions Section -->
-    <section id="exhibitions" class="section">
-        <div class="exhibitions-section">
-            <div class="container">
-                <h2 class="section-title">Exhibitions & Media</h2>
+    <section id="exhibitions" class="section exhibitions-section">
+        <div class="container">
+            <h2 class="section-title">Exhibitions & Media</h2>
+            
+            <div class="exhibition-timeline">
+                <div class="exhibition-item fade-in">
+                     <p>- Kongi @90: Wole Soyinka in the Lens of an Artist
+  (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
+                </div>
                 
-                <div class="exhibition-timeline">
-                    <div class="exhibition-item fade-in">
-                        <p>- Kongi @90: Wole Soyinka in the Lens of an Artist (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
-                    </div>
-                    
-                    <div class="exhibition-item fade-in">
-                        <p>- Creative Bloc Carnival (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
-                    </div>
-                    
-                    <div class="exhibition-item fade-in">
-                        <p>- Global Entrepreneurship Festival, Art Fair (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
-                    </div>
+                <div class="exhibition-item fade-in">
+                     <p>- Creative Bloc Carnival
+  (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
+                </div>
+                
+                <div class="exhibition-item fade-in">
+                    <p>- Global Entrepreneurship Festival, Art Fair
+  (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
+                </div>
 
-                    <div class="exhibition-item fade-in">
-                        <p>Debut solo exhibition, Waste to Luxury ( Business Club, Ikeja) - 20th June, 2025</p>
-                    </div>
+                <div class="exhibition-item fade-in">
+                    <p>Debut solo exhibition, Waste to Luxury ( Business Club, Ikeja) - 20th June, 2025</p>
+                </div>
 
-                    <div class="exhibition-item fade-in">
-                        <p>Africa climate stories festival (Alliance Française de Lagos) - 26th June 2025</p>
+                <div class="exhibition-item fade-in">
+                    <p>Africa climate stories festival (Alliance Française de Lagos) - 26th June 2025</p>
+                </div>
+                
+                <div class="media-features mt-3">
+                    <h3>Media Features</h3>
+                    <p class="mt-1">• Punch Newspaper Feature: "Before Stardom with Progress Giwa"</p>
+                    <div class="text-center mb-2">
+                        <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
                     </div>
-                    
-                    <div class="media-features mt-3">
-                        <h3>Media Features</h3>
-                        <p class="mt-1">• Punch Newspaper Feature: "Before Stardom with Progress Giwa"</p>
-                        <p>• TVC Interview on Environmental Art</p>
-                        <p>• Lagos State Ministry of Environment Partnership Feature</p>
+                    <p>• TVC Interview on Environmental Art</p>
+                    <div class="text-center mb-2">
+                        <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Watch Interview</a>
                     </div>
+                    <p>• Lagos State Ministry of Environment Partnership Feature</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Collaborate Section -->
-    <section id="collaborate" class="section">
-        <div class="collaborate-section">
-            <div class="container">
-                <h2 class="section-title">Collaborate</h2>
-                <p class="text-center mb-3">Let's create meaningful art and impact together</p>
-                
-                <div class="collab-options">
-                    <div class="collab-option fade-in">
-                        <div class="collab-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3>Commissions</h3>
-                        <p>Custom artworks for private collectors, institutions, and corporate spaces</p>
+    <section id="collaborate" class="section collaborate-section">
+        <div class="container">
+            <h2 class="section-title">Collaborate</h2>
+            <p class="text-center mb-3">Let's create meaningful art and impact together</p>
+            
+            <div class="collab-options">
+                <div class="collab-option fade-in">
+                    <div class="collab-icon">
+                        <i class="fas fa-paint-brush"></i>
                     </div>
-                    
-                    <div class="collab-option fade-in">
-                        <div class="collab-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3>Exhibitions</h3>
-                        <p>Solo or group exhibitions in galleries, museums, and alternative spaces</p>
-                    </div>
-                    
-                    <div class="collab-option fade-in">
-                        <div class="collab-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Workshops</h3>
-                        <p>Environmental art workshops for schools, communities, and organizations</p>
-                    </div>
-                    
-                    <div class="collab-option fade-in">
-                        <div class="collab-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Partnerships</h3>
-                        <p>Collaborations with NGOs, environmental organizations, and brands</p>
-                    </div>
+                    <h3>Commissions</h3>
+                    <p>Custom artworks for private collectors, institutions, and corporate spaces</p>
                 </div>
                 
-                <div class="text-center mt-3">
-                    <a href="#" class="btn" data-section="contact">Start a Collaboration</a>
+                <div class="collab-option fade-in">
+                    <div class="collab-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Exhibitions</h3>
+                    <p>Solo or group exhibitions in galleries, museums, and alternative spaces</p>
                 </div>
+                
+                <div class="collab-option fade-in">
+                    <div class="collab-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Workshops</h3>
+                    <p>Environmental art workshops for schools, communities, and organizations</p>
+                </div>
+                
+                <div class="collab-option fade-in">
+                    <div class="collab-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnerships</h3>
+                    <p>Collaborations with NGOs, environmental organizations, and brands</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="#" onclick="showSection('contact')" class="btn">Start a Collaboration</a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="contact-section">
-            <div class="container contact-container">
-                <h2 class="section-title">Contact</h2>
-                
-                <form class="contact-form fade-in">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <select required>
-                            <option value="">Purpose of Inquiry</option>
-                            <option value="commission">Art Commission</option>
-                            <option value="exhibition">Exhibition Opportunity</option>
-                            <option value="workshop">Workshop Request</option>
-                            <option value="collaboration">Partnership/Collaboration</option>
-                            <option value="press">Media/Press Inquiry</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-                
-                <div class="social-links">
-                    <a href="https://www.instagram.com/progress_giwa" class="social-link" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/progress-giwa" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:hello@progressgiwa.art" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+    <section id="contact" class="section contact-section">
+        <div class="container contact-container">
+            <h2 class="section-title">Contact</h2>
+            
+            <form class="contact-form fade-in">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
                 </div>
+                
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <select required>
+                        <option value="">Purpose of Inquiry</option>
+                        <option value="commission">Art Commission</option>
+                        <option value="exhibition">Exhibition Opportunity</option>
+                        <option value="workshop">Workshop Request</option>
+                        <option value="collaboration">Partnership/Collaboration</option>
+                        <option value="press">Media/Press Inquiry</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            
+            <div class="social-links">
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                    <i class="fas fa-link"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -1629,17 +1737,17 @@
     <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
-            <div class="logo" data-section="home">
+            <div class="logo">
                 <i class="fas fa-palette"></i>
                 Progress Giwa
             </div>
             
             <div class="footer-links">
-                <a href="#" data-section="about">About</a>
-                <a href="#" data-section="gallery">Gallery</a>
-                <a href="#" data-section="projects">Projects</a>
-                <a href="#" data-section="collaborate">Collaborate</a>
-                <a href="#" data-section="contact">Contact</a>
+                <a href="#" onclick="showSection('about')">About</a>
+                <a href="#" onclick="showSection('gallery')">Gallery</a>
+                <a href="#" onclick="showSection('projects')">Projects</a>
+                <a href="#" onclick="showSection('collaborate')">Collaborate</a>
+                <a href="#" onclick="showSection('contact')">Contact</a>
             </div>
             
             <p class="copyright">
@@ -1660,106 +1768,42 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all sections
+        function showSection(sectionId) {
+            // Hide all sections
             const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const logo = document.querySelector('.logo');
-            const footerLinks = document.querySelectorAll('.footer-links a');
-            const heroButtons = document.querySelectorAll('.hero-cta .btn, .text-center .btn');
-            
-            // Function to show a specific section
-            function showSection(sectionId) {
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Show the selected section
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                    
-                    // Update active nav link
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-section') === sectionId) {
-                            link.classList.add('active');
-                        }
-                    });
-                    
-                    // Update URL hash without scrolling
-                    history.pushState(null, null, `#${sectionId}`);
-                    
-                    // Scroll to top of the page
-                    window.scrollTo(0, 0);
-                }
+            sections.forEach(section => section.classList.remove('active'));
+            // Show the selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // Scroll to top for better UX
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            
-            // Set initial state - show only home section
-            showSection('home');
-            
-            // Navigation click handlers
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionId = this.getAttribute('data-section');
-                    showSection(sectionId);
-                    
-                    // Close mobile menu if open
-                    if (navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                });
-            });
-            
-            // Logo click handler
-            logo.addEventListener('click', function(e) {
-                e.preventDefault();
-                showSection('home');
-            });
-            
-            // Footer links click handlers
-            footerLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionId = this.getAttribute('data-section');
-                    showSection(sectionId);
-                });
-            });
-            
-            // Hero button click handlers
-            heroButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.getAttribute('data-section')) {
-                        e.preventDefault();
-                        const sectionId = this.getAttribute('data-section');
-                        showSection(sectionId);
-                    }
-                });
-            });
-            
-            // Handle back/forward browser buttons
-            window.addEventListener('popstate', function() {
-                const hash = window.location.hash.substring(1) || 'home';
-                showSection(hash);
-            });
-            
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
-            
+
             mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
+                mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
+                    ? '<i class="fas fa-times"></i>'
                     : '<i class="fas fa-bars"></i>';
             });
-            
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
             // Scroll Animations
             const fadeElements = document.querySelectorAll('.fade-in');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1770,29 +1814,16 @@
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             });
-            
+
             fadeElements.forEach(element => {
                 observer.observe(element);
             });
-            
-            // Navbar background on scroll
-            const mainNav = document.querySelector('.main-nav');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    mainNav.style.background = 'rgba(255, 255, 255, 0.98)';
-                    mainNav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                } else {
-                    mainNav.style.background = 'rgba(255, 255, 255, 0.95)';
-                    mainNav.style.boxShadow = 'none';
-                }
-            });
-            
+
             // Gallery Modal (simplified version)
             const galleryItems = document.querySelectorAll('.gallery-item');
             const artworkModal = document.getElementById('artworkModal');
             const modalClose = document.getElementById('modalClose');
-            
+
             galleryItems.forEach(item => {
                 item.addEventListener('click', function() {
                     // In a real implementation, you would fetch and display
@@ -1800,21 +1831,21 @@
                     artworkModal.classList.add('active');
                 });
             });
-            
+
             modalClose.addEventListener('click', function() {
                 artworkModal.classList.remove('active');
             });
-            
+
             // Close modal when clicking outside
             artworkModal.addEventListener('click', function(e) {
                 if (e.target === artworkModal) {
                     artworkModal.classList.remove('active');
                 }
             });
-            
+
             // Form Submission (placeholder)
             const contactForm = document.querySelector('.contact-form');
-            
+
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Thank you for your message. Progress Giwa will respond shortly.');
