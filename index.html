@@ -239,10 +239,13 @@
             border-left: 3px solid var(--accent-copper);
         }
 
-        /* ====== GALLERY SECTION ====== */
+        /* ====== GALLERY SLIDESHOW SECTION ====== */
         .gallery-section {
             padding: 6rem 0;
             background: var(--gallery-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .section-title {
@@ -252,52 +255,241 @@
             color: var(--ocean-blue);
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .gallery-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--charcoal);
             margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .gallery-item {
+        /* Slideshow Container */
+        .slideshow-container {
             position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
             overflow: hidden;
-            border-radius: 2px;
-            aspect-ratio: 1;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             background: white;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            height: 70vh;
+            min-height: 600px;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-item img {
+        .slideshow {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
 
-        .gallery-overlay {
+        .slide.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f8f8f8;
+        }
+
+        .slide-content {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
-            padding: 2rem 1rem 1rem;
-            transform: translateY(100%);
+            padding: 30px 40px;
+            transform: translateY(0);
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Slideshow Navigation */
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            background: var(--ocean-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Slideshow Dots */
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+            border-color: var(--ocean-blue);
+        }
+
+        .dot:hover {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Slideshow Controls */
+        .slideshow-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .control-btn {
+            background: var(--ocean-blue);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: #0f2a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.3);
+        }
+
+        .control-btn i {
+            font-size: 1rem;
+        }
+
+        /* Thumbnail Navigation */
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            max-width: 100%;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+            transform: translateY(-3px);
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--ocean-blue);
+            transform: translateY(-3px);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Gallery Info */
+        .gallery-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .gallery-info h3 {
+            color: var(--ocean-blue);
+            margin-bottom: 10px;
         }
 
         /* ====== PROJECTS SECTION ====== */
@@ -537,65 +729,6 @@
             transform: translateY(0);
         }
 
-        /* ====== RESPONSIVE DESIGN ====== */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-            
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                transition: left 0.3s ease;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu a {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .collab-options {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* ====== MODAL FOR ARTWORK DETAILS ====== */
         .artwork-modal {
             display: none;
@@ -657,657 +790,181 @@
         .mt-3 { margin-top: 3rem; }
 
         /* ====== ENHANCED ANIMATIONS ====== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-@keyframes slideInUp {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* ====== ENHANCED HERO SECTION ====== */
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: fadeInUp 1s ease-out, float 3s ease-in-out infinite 1s;
-}
-
-.hero-tagline {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    animation: fadeInUp 1s ease-out 0.3s both, pulse 2s infinite 1.3s;
-}
-
-.hero-cta {
-    animation: fadeInUp 1s ease-out 0.6s both;
-}
-
-/* Scroll indicator animation */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
-    }
-    40% {
-        transform: translateY(-10px) translateX(-50%);
-    }
-    60% {
-        transform: translateY(-5px) translateX(-50%);
-    }
-}
-
-/* ====== ENHANCED GALLERY ====== */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-    aspect-ratio: 1;
-    background: white;
-    cursor: pointer;
-    transform: translateY(50px);
-    opacity: 0;
-    animation: slideInUp 0.6s ease forwards;
-    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-
-.gallery-item.visible {
-    animation: slideInUp 0.6s ease forwards;
-}
-
-/* Staggered animation delay for gallery items */
-.gallery-item:nth-child(1) { animation-delay: 0.1s; }
-.gallery-item:nth-child(2) { animation-delay: 0.2s; }
-.gallery-item:nth-child(3) { animation-delay: 0.3s; }
-.gallery-item:nth-child(4) { animation-delay: 0.4s; }
-.gallery-item:nth-child(5) { animation-delay: 0.5s; }
-.gallery-item:nth-child(6) { animation-delay: 0.6s; }
-.gallery-item:nth-child(7) { animation-delay: 0.7s; }
-.gallery-item:nth-child(8) { animation-delay: 0.8s; }
-.gallery-item:nth-child(9) { animation-delay: 0.9s; }
-.gallery-item:nth-child(10) { animation-delay: 1s; }
-.gallery-item:nth-child(11) { animation-delay: 1.1s; }
-.gallery-item:nth-child(12) { animation-delay: 1.2s; }
-.gallery-item:nth-child(13) { animation-delay: 1.3s; }
-.gallery-item:nth-child(14) { animation-delay: 1.4s; }
-.gallery-item:nth-child(15) { animation-delay: 1.5s; }
-.gallery-item:nth-child(16) { animation-delay: 1.6s; }
-.gallery-item:nth-child(17) { animation-delay: 1.7s; }
-.gallery-item:nth-child(18) { animation-delay: 1.8s; }
-.gallery-item:nth-child(19) { animation-delay: 1.9s; }
-.gallery-item:nth-child(20) { animation-delay: 2s; }
-.gallery-item:nth-child(21) { animation-delay: 2.1s; }
-.gallery-item:nth-child(22) { animation-delay: 2.2s; }
-
-.gallery-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1) rotate(2deg);
-}
-
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    color: white;
-    padding: 2rem 1rem 1rem;
-    transform: translateY(100%);
-    transition: transform var(--transition-smooth);
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-}
-
-/* ====== ENHANCED BUTTONS ====== */
-.btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--ocean-blue);
-    text-decoration: none;
-    border-radius: 2px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all var(--transition-smooth);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-    background-repeat: no-repeat;
-    background-position: 50%;
-    transform: scale(10, 10);
-    opacity: 0;
-    transition: transform 0.5s, opacity 1s;
-}
-
-.btn:active::after {
-    transform: scale(0, 0);
-    opacity: 0.3;
-    transition: 0s;
-}
-
-.btn:hover {
-    background: var(--ocean-blue);
-    color: white;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(26, 54, 93, 0.3);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    margin-left: 1rem;
-}
-
-.btn-outline:hover {
-    background: white;
-    color: var(--ocean-blue);
-    border-color: white;
-}
-
-/* ====== ENHANCED NAVIGATION ====== */
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    transform: translateY(0);
-}
-
-.main-nav.hidden {
-    transform: translateY(-100%);
-}
-
-.main-nav.scrolled {
-    padding: 0.5rem 0;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-}
-
-.nav-menu a {
-    text-decoration: none;
-    color: var(--charcoal);
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--ocean-blue);
-    transition: width 0.3s ease;
-}
-
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-/* Hamburger menu animation */
-.mobile-menu-btn {
-    transition: transform 0.3s ease;
-}
-
-.mobile-menu-btn.active {
-    transform: rotate(180deg);
-}
-
-/* ====== ENHANCED PROJECT CARDS ====== */
-.project-card {
-    background: var(--gallery-light);
-    border-radius: 2px;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateY(50px) rotateX(10deg);
-    opacity: 0;
-    transform-origin: center bottom;
-}
-
-.project-card.visible {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-.project-card:hover {
-    transform: translateY(-15px) rotateX(0deg) scale(1.03);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
-
-.project-image img {
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.project-card:hover .project-image img {
-    transform: scale(1.15) rotate(1deg);
-}
-
-/* ====== ENHANCED COLLABORATION OPTIONS ====== */
-.collab-option {
-    text-align: center;
-    padding: 2rem;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 2px;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: perspective(1000px) rotateY(15deg);
-    transform-origin: center;
-}
-
-.collab-option:hover {
-    border-color: var(--ocean-blue);
-    transform: perspective(1000px) rotateY(0deg) translateY(-10px);
-    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.1);
-}
-
-.collab-icon {
-    font-size: 2.5rem;
-    color: var(--ocean-blue);
-    margin-bottom: 1rem;
-    transition: all 0.5s ease;
-    display: inline-block;
-}
-
-.collab-option:hover .collab-icon {
-    transform: scale(1.2) rotate(10deg);
-    animation: float 2s ease-in-out infinite;
-}
-
-/* ====== ENHANCED SOCIAL LINKS ====== */
-.social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--ocean-blue);
-    color: white;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateY(0);
-}
-
-.social-link:hover {
-    transform: translateY(-5px) scale(1.2);
-    background: var(--charcoal);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-/* ====== ENHANCED FORM INPUTS ====== */
-.form-group {
-    position: relative;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 2px;
-    font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: transparent;
-    z-index: 1;
-}
-
-.form-group label {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    color: rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--ocean-blue);
-    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
-    transform: translateY(-2px);
-}
-
-.form-group input:focus + label,
-.form-group select:focus + label,
-.form-group textarea:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group select:not(:placeholder-shown) + label,
-.form-group textarea:not(:placeholder-shown) + label {
-    top: -0.5rem;
-    left: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--ocean-blue);
-    background: white;
-    padding: 0 0.5rem;
-}
-
-/* ====== ENHANCED FOOTER ====== */
-.main-footer {
-    background: var(--charcoal);
-    color: white;
-    padding: 3rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.main-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-copper), transparent);
-    animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.footer-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: white;
-    transition: width 0.3s ease;
-}
-
-.footer-links a:hover {
-    opacity: 1;
-}
-
-.footer-links a:hover::after {
-    width: 100%;
-}
-
-/* ====== ENHANCED MODAL ====== */
-.artwork-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: modalBgFadeIn 0.3s ease;
-}
-
-@keyframes modalBgFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.artwork-modal.active {
-    display: flex;
-}
-
-.modal-content {
-    max-width: 900px;
-    width: 100%;
-    background: white;
-    border-radius: 2px;
-    overflow: hidden;
-    animation: modalSlideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-origin: center center;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8) rotateY(10deg);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) rotateY(0deg);
-    }
-}
-
-/* ====== TYPING ANIMATION ====== */
-.typing-container {
-    display: inline-block;
-    position: relative;
-}
-
-.typing-text {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--ocean-blue);
-    animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
-}
-
-/* ====== PARALLAX EFFECT ====== */
-.parallax {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* ====== PROGRESS BAR ====== */
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--ocean-blue), var(--accent-copper));
-    z-index: 1001;
-    transition: width 0.3s ease;
-}
-
-/* ====== RESPONSIVE ANIMATIONS ====== */
-@media (max-width: 768px) {
-    .gallery-item {
-        transform: none;
-        animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    .collab-option {
-        transform: none;
-    }
-    
-    .collab-option:hover {
-        transform: translateY(-5px);
-    }
-}
-
-/* ====== LOADING ANIMATIONS ====== */
-.loading {
-    position: relative;
-    overflow: hidden;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-}
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.1rem;
+            }
+            
+            .slideshow-container {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .slideshow-container {
+                height: 40vh;
+                min-height: 300px;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .collab-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1379,181 +1036,54 @@
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <p class="text-center mb-3">A selection of works exploring sustainability through recycled materials</p>
+            <h2 class="section-title">Artwork Gallery</h2>
+            <p class="gallery-subtitle">A visual journey through environmental art created from recycled materials. Explore the intersection of sustainability and creativity.</p>
             
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg" alt="Artwork 1">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
+            <!-- Slideshow Container -->
+            <div class="slideshow-container">
+                <!-- Slides -->
+                <div class="slideshow" id="slideshow">
+                    <!-- Slides will be dynamically inserted here -->
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg" alt="Artwork 2">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
+                <!-- Slide Number -->
+                <div class="slide-number" id="slideNumber">1 / 22</div>
+                
+                <!-- Navigation Buttons -->
+                <div class="slideshow-nav">
+                    <button class="nav-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="nav-btn next-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
                 
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg" alt="Artwork 3">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
+                <!-- Dots Indicator -->
+                <div class="slideshow-dots" id="slideshowDots">
+                    <!-- Dots will be dynamically inserted here -->
                 </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg" alt="Artwork 4">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg" alt="Artwork 5">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg" alt="Artwork 6">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg" alt="Artwork 7">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg" alt="Artwork 8">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251031_114810188.jpg" alt="Artwork 9">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251031_114813535.jpg" alt="Artwork 10">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251031_114834762.jpg" alt="Artwork 11">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251031_124712843.PORTRAIT.jpg" alt="Artwork 12">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251115_130802532.PORTRAIT.jpg" alt="Artwork 13">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251115_130957502.jpg" alt="Artwork 14">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251115_131001049.PORTRAIT.jpg" alt="Artwork 15">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/PXL_20251115_151828907.PORTRAIT.jpg" alt="Artwork 16">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        <p>2025 | Mixed Media</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg" alt="Artwork 17">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                        
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg" alt="Artwork 18">
-                    <div class="gallery-overlay">
-                        <h4>Artwork Collection</h4>
-                    
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg" alt="Artwork 19">
-                    <div class="gallery-overlay">
-                
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg" alt="Artwork 20">
-                    <div class="gallery-overlay">
-                        
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg" alt="Artwork 21">
-                    <div class="gallery-overlay">
-                     
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg" alt="Artwork 22">
-                    <div class="gallery-overlay">
-                        
-                    </div>
-                </div>
+            </div>
+            
+            <!-- Controls -->
+            <div class="slideshow-controls">
+                <button class="control-btn" id="playPauseBtn">
+                    <i class="fas fa-pause"></i> Pause Slideshow
+                </button>
+                <button class="control-btn" onclick="openFullscreen()">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+            </div>
+            
+            <!-- Thumbnail Navigation -->
+            <div class="thumbnail-container" id="thumbnailContainer">
+                <!-- Thumbnails will be dynamically inserted here -->
+            </div>
+            
+            <!-- Gallery Info -->
+            <div class="gallery-info fade-in">
+                <h3>About the Collection</h3>
+                <p>This collection showcases Progress Giwa's environmental art created from recycled materials. Each piece tells a story of sustainability, marine conservation, and the transformative power of creativity in addressing environmental challenges.</p>
             </div>
         </div>
     </section>
@@ -1636,6 +1166,9 @@
                         <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Watch Interview</a>
                     </div>
                     <p>• Lagos State Ministry of Environment Partnership Feature</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Seal_of_Lagos_State.png" 
+     alt="Lagos State Seal" 
+     width="200">
                 </div>
             </div>
         </div>
@@ -1757,16 +1290,6 @@
         </div>
     </footer>
 
-    <!-- Artwork Detail Modal -->
-    <div class="artwork-modal" id="artworkModal">
-        <button class="modal-close" id="modalClose">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="modal-content">
-            <!-- Modal content will be populated by JavaScript -->
-        </div>
-    </div>
-
     <script>
         function showSection(sectionId) {
             // Hide all sections
@@ -1780,6 +1303,126 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
+
+        // Gallery Slideshow Data
+        const galleryData = [
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg",
+                title: "Environmental Consciousness",
+                description: "2025 | Mixed Media | Recycled Plastic & Acrylic"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg",
+                title: "Ocean Memories",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg",
+                title: "Sustainable Visions",
+                description: "2025 | Mixed Media | Recycled Plastic & Paper"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg",
+                title: "Marine Life",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg",
+                title: "Eco-System",
+                description: "2025 | Mixed Media | Recycled Plastic & Wood"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg",
+                title: "Plastic Transformation",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg",
+                title: "Environmental Harmony",
+                description: "2025 | Mixed Media | Recycled Plastic & Metal"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg",
+                title: "Sustainable Future",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/PXL_20251031_114810188.jpg",
+                title: "Waste to Luxury",
+                description: "2025 | Mixed Media | Solo Exhibition Piece"
+            },
+            {
+                src: "img1/PXL_20251031_114813535.jpg",
+                title: "Marine Conservation",
+                description: "2025 | Mixed Media | Recycled Ocean Plastic"
+            },
+            {
+                src: "img1/PXL_20251031_114834762.jpg",
+                title: "Backpack of Hope",
+                description: "2025 | Mixed Media | Recycled Materials Project"
+            },
+            {
+                src: "img1/PXL_20251031_124712843.PORTRAIT.jpg",
+                title: "Environmental Advocacy",
+                description: "2025 | Mixed Media | Recycled Plastic & Textile"
+            },
+            {
+                src: "img1/PXL_20251115_130802532.PORTRAIT.jpg",
+                title: "Sustainable Art",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/PXL_20251115_130957502.jpg",
+                title: "Eco-Creativity",
+                description: "2025 | Mixed Media | Recycled Plastic"
+            },
+            {
+                src: "img1/PXL_20251115_131001049.PORTRAIT.jpg",
+                title: "Environmental Message",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/PXL_20251115_151828907.PORTRAIT.jpg",
+                title: "Art for Change",
+                description: "2025 | Mixed Media | Recycled Plastic & Acrylic"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg",
+                title: "Recycled Beauty",
+                description: "2025 | Mixed Media | Environmental Art"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg",
+                title: "Sustainable Expression",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg",
+                title: "Eco-Art",
+                description: "2025 | Mixed Media | Recycled Plastic"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg",
+                title: "Environmental Storytelling",
+                description: "2025 | Mixed Media | Recycled Materials"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg",
+                title: "Sustainable Vision",
+                description: "2025 | Mixed Media | Recycled Plastic & Wood"
+            },
+            {
+                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg",
+                title: "Art for Sustainability",
+                description: "2025 | Mixed Media | Recycled Materials"
+            }
+        ];
+
+        // Slideshow Variables
+        let currentSlide = 0;
+        let slideshowInterval;
+        let isPlaying = true;
+        const slideDuration = 4000; // 4 seconds per slide
 
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
@@ -1801,6 +1444,18 @@
                 });
             });
 
+            // Initialize Gallery Slideshow
+            initSlideshow();
+
+            // Form Submission (placeholder)
+            const contactForm = document.querySelector('.contact-form');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message. Progress Giwa will respond shortly.');
+                contactForm.reset();
+            });
+
             // Scroll Animations
             const fadeElements = document.querySelectorAll('.fade-in');
 
@@ -1818,40 +1473,153 @@
             fadeElements.forEach(element => {
                 observer.observe(element);
             });
+        });
 
-            // Gallery Modal (simplified version)
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const artworkModal = document.getElementById('artworkModal');
-            const modalClose = document.getElementById('modalClose');
+        // Initialize Slideshow
+        function initSlideshow() {
+            const slideshow = document.getElementById('slideshow');
+            const dotsContainer = document.getElementById('slideshowDots');
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const slideNumber = document.getElementById('slideNumber');
 
-            galleryItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // In a real implementation, you would fetch and display
-                    // detailed artwork information here
-                    artworkModal.classList.add('active');
-                });
+            // Create slides, dots, and thumbnails
+            galleryData.forEach((item, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = `slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <img src="${item.src}" alt="${item.title}" class="slide-image">
+                    <div class="slide-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                slideshow.appendChild(slide);
+
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+
+                // Create thumbnail
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.innerHTML = `<img src="${item.src}" alt="Thumbnail ${index + 1}">`;
+                thumbnail.addEventListener('click', () => goToSlide(index));
+                thumbnailContainer.appendChild(thumbnail);
             });
 
-            modalClose.addEventListener('click', function() {
-                artworkModal.classList.remove('active');
-            });
+            // Event Listeners
+            prevBtn.addEventListener('click', showPrevSlide);
+            nextBtn.addEventListener('click', showNextSlide);
 
-            // Close modal when clicking outside
-            artworkModal.addEventListener('click', function(e) {
-                if (e.target === artworkModal) {
-                    artworkModal.classList.remove('active');
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    pauseSlideshow();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
+                } else {
+                    startSlideshow();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
                 }
             });
 
-            // Form Submission (placeholder)
-            const contactForm = document.querySelector('.contact-form');
-
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message. Progress Giwa will respond shortly.');
-                contactForm.reset();
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (document.getElementById('gallery').classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') showPrevSlide();
+                    if (e.key === 'ArrowRight') showNextSlide();
+                    if (e.key === ' ') {
+                        if (isPlaying) pauseSlideshow();
+                        else startSlideshow();
+                    }
+                }
             });
-        });
+
+            // Start slideshow
+            startSlideshow();
+            updateSlideNumber();
+        }
+
+        // Slideshow Functions
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            // Remove active class from all slides, dots, and thumbnails
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+            // Add active class to current slide, dot, and thumbnail
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            thumbnails[index].classList.add('active');
+
+            currentSlide = index;
+            updateSlideNumber();
+        }
+
+        function showNextSlide() {
+            currentSlide = (currentSlide + 1) % galleryData.length;
+            showSlide(currentSlide);
+        }
+
+        function showPrevSlide() {
+            currentSlide = (currentSlide - 1 + galleryData.length) % galleryData.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        function startSlideshow() {
+            if (slideshowInterval) clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(showNextSlide, slideDuration);
+            isPlaying = true;
+            document.getElementById('playPauseBtn').innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
+        }
+
+        function pauseSlideshow() {
+            clearInterval(slideshowInterval);
+            isPlaying = false;
+            document.getElementById('playPauseBtn').innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
+        }
+
+        function updateSlideNumber() {
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${galleryData.length}`;
+        }
+
+        // Fullscreen function
+        function openFullscreen() {
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            
+            if (slideshowContainer.requestFullscreen) {
+                slideshowContainer.requestFullscreen();
+            } else if (slideshowContainer.webkitRequestFullscreen) {
+                slideshowContainer.webkitRequestFullscreen();
+            } else if (slideshowContainer.msRequestFullscreen) {
+                slideshowContainer.msRequestFullscreen();
+            }
+        }
+
+        // Exit fullscreen when ESC is pressed
+        document.addEventListener('fullscreenchange', exitHandler);
+        document.addEventListener('webkitfullscreenchange', exitHandler);
+        document.addEventListener('mozfullscreenchange', exitHandler);
+        document.addEventListener('MSFullscreenChange', exitHandler);
+
+        function exitHandler() {
+            if (!document.fullscreenElement && !document.webkitIsFullScreen && 
+                !document.mozFullScreen && !document.msFullscreenElement) {
+                // Return to normal view
+            }
+        }
     </script>
 </body>
 </html>
