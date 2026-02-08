@@ -7,6 +7,7 @@
     <meta name="description" content="Contemporary visual artist creating environmental art from recycled materials. Exploring marine pollution and sustainability through art.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ====== DESIGN SYSTEM ====== */
         :root {
@@ -55,10 +56,18 @@
         /* Single Page Navigation */
         .section {
             display: none;
+            min-height: 100vh;
+            padding-top: 80px;
         }
 
         .section.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* ====== NAVIGATION ====== */
@@ -105,6 +114,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.3s ease;
+            padding: 0.5rem 0;
         }
 
         .nav-menu a:hover {
@@ -118,6 +128,7 @@
             font-size: 1.5rem;
             color: var(--ocean-blue);
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* ====== HERO SECTION ====== */
@@ -131,6 +142,7 @@
             color: white;
             padding: 0 20px;
             overflow: hidden;
+            padding-top: 0;
         }
 
         .hero-video {
@@ -156,6 +168,7 @@
 
         .hero-content {
             max-width: 800px;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -188,6 +201,7 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            font-family: 'Inter', sans-serif;
         }
 
         .btn:hover {
@@ -204,17 +218,23 @@
             margin-left: 1rem;
         }
 
+        .btn-outline:hover {
+            background: white;
+            color: var(--ocean-blue);
+        }
+
         /* ====== ABOUT SECTION ====== */
         .about-section {
             padding: 6rem 0;
             background: white;
+            min-height: auto;
         }
 
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
         }
 
         .about-image img {
@@ -282,8 +302,6 @@
             position: relative;
             width: 100%;
             height: 100%;
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .slide {
@@ -335,6 +353,7 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
+            z-index: 10;
         }
 
         /* Slideshow Navigation */
@@ -425,6 +444,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-family: 'Inter', sans-serif;
         }
 
         .control-btn:hover {
@@ -458,6 +478,7 @@
             opacity: 0.6;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            flex-shrink: 0;
         }
 
         .thumbnail:hover {
@@ -496,6 +517,7 @@
         .projects-section {
             padding: 6rem 0;
             background: white;
+            min-height: auto;
         }
 
         .project-grid {
@@ -556,6 +578,7 @@
         .exhibitions-section {
             padding: 6rem 0;
             background: var(--gallery-light);
+            min-height: auto;
         }
 
         .exhibition-timeline {
@@ -585,6 +608,7 @@
         .collaborate-section {
             padding: 6rem 0;
             background: white;
+            min-height: auto;
         }
 
         .collab-options {
@@ -617,6 +641,7 @@
         .contact-section {
             padding: 6rem 0;
             background: var(--gallery-light);
+            min-height: auto;
         }
 
         .contact-container {
@@ -694,6 +719,7 @@
             text-decoration: none;
             opacity: 0.7;
             transition: opacity 0.3s ease;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -729,66 +755,6 @@
             transform: translateY(0);
         }
 
-        /* ====== MODAL FOR ARTWORK DETAILS ====== */
-        .artwork-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .artwork-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 2px;
-            overflow: hidden;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 2001;
-        }
-
-        /* ====== UTILITY CLASSES ====== */
-        .text-center { text-align: center; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .mb-3 { margin-bottom: 3rem; }
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mt-3 { margin-top: 3rem; }
-
         /* ====== ENHANCED ANIMATIONS ====== */
         @keyframes fadeInDown {
             from {
@@ -823,58 +789,103 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* ====== PICTURE SLIDESHOW ====== */
+        .picture-slide {
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #f5f5f5;
+            aspect-ratio: 16/9;
+            min-height: 300px;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        .picture-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 700ms ease-in-out;
         }
 
-        @keyframes slideInUp {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .picture-slide img.is-active {
+            opacity: 1;
         }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
+        /* Dots styling */
+        .picture-slide__dots {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 10;
         }
 
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
+        .picture-slide__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
         }
 
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+        .picture-slide__dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .picture-slide__dot.is-active {
+            background: #ffffff;
+            transform: scale(1.2);
+        }
+
+        /* Navigation arrows */
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-slide {
+            left: 15px;
+        }
+
+        .next-slide {
+            right: 15px;
         }
 
         /* ====== RESPONSIVE DESIGN ====== */
@@ -897,16 +908,17 @@
             
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: 0;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: 100vh;
                 background: white;
                 flex-direction: column;
                 align-items: center;
-                justify-content: flex-start;
+                justify-content: center;
                 padding-top: 2rem;
                 transition: left 0.3s ease;
+                z-index: 999;
             }
             
             .nav-menu.active {
@@ -936,6 +948,37 @@
                 width: 60px;
                 height: 60px;
             }
+            
+            .picture-slide {
+                max-width: 95%;
+                margin: 20px auto;
+                aspect-ratio: 4/3;
+                min-height: 250px;
+            }
+            
+            .slide-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            
+            .prev-slide {
+                left: 10px;
+            }
+            
+            .next-slide {
+                right: 10px;
+            }
+            
+            .picture-slide__dots {
+                bottom: 15px;
+                padding: 6px 10px;
+            }
+            
+            .picture-slide__dot {
+                width: 10px;
+                height: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -964,6 +1007,23 @@
                 width: 50px;
                 height: 50px;
             }
+            
+            .picture-slide {
+                aspect-ratio: 1/1;
+                min-height: 200px;
+            }
+            
+            .hero-cta .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -971,12 +1031,12 @@
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" onclick="showSection('home')">
                 <i class="fas fa-palette"></i>
                 Progress Jesutomiwa Giwa
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
@@ -999,7 +1059,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
+        <div class="container hero-content">
             <h1>Progress Jesutomiwa Giwa</h1>
             <p class="hero-tagline">Visual Artist & Environmental Advocate</p>
             <p class="mb-2">Using Art as a universal language and a tool for environmental action</p>
@@ -1014,22 +1074,22 @@
     <section id="about" class="section about-section">
         <div class="container about-container fade-in">
             <div class="about-image">
-                <img src="img1/progress giwa.jpeg" alt="Progress Giwa - Artist Portrait" style="width: 100%; height: auto; border-radius: 2px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                <img src="img1/progress giwa.jpeg" alt="Progress Giwa - Artist Portrait">
             </div>
-        <div class="about-content">
-            <h2>About Progress Jesutomiwa Giwa</h2>
-            <p>Born in 2000 in Lagos, Progress Jesutomiwa Giwa is a Nigeria born multifaceted artist whose work bridges creativity and environmental advocacy, using art as a tool to promote sustainability and inspire positive change in communities.</p>
-            <p>He began as a student of art, drawn to the power of visual expression. But in 2021 his trajectory took a transformative turn when he joined the Western coast Maritime Academy (WECMA) as a cadet. He did a term paper research on the influx of plastic in the water bodies, this opened his eyes to the urgent issues facing our oceans, particularly the growing crisis of marine pollution. That awakening became the spark that ignited his mission.</p>
-            <p>Since 2023, he has dedicated using his art as a tool for environmental awareness and action, he believes art is a universal language with no barrier.</p>
-            <p>Progress's artistic journey has been marked by remarkable achievements, including exhibiting at Kongi @90, the celebration of Professor Wole Soyinka's 90th birthday, showcasing his work at the Global Entrepreneurship Festival 2024, He held his first solo exhibition, Waste to Luxury (2025), a powerful visual narrative that redefines waste through the lens of luxury and environmental responsibility.</p>
-            <p>He emerged as the winner of the Arts for Change Foundation Competition (2024 edition) and the Grand Winner of the Art Star Competition for environmental awareness organized by TwelveBrassStreet Atlanta, USA (2025). He also won the Lagos Has Talent – Climate Edition(2025), further affirming his voice as an artist with purpose.</p>
-            <p>In recognition of his contributions to environmental sustainability, Progress was appointed as the Youth Ambassador of the Lagos State Ministry of Environment.</p>
-            <p>Beyond creating in the studio, he is the founder of Susty creative hub where he runs initiative like The Recycle Art Tour an artistic initiative, using art as a tool to raise awareness about environmental issues—extending impact far beyond the studio walls in community, schools and organizations.</p>
-            <p>His passion for environmental art and commitment to youth development continue to position him as a leading voice at the intersection of art, sustainability, and social impact.</p>
-            <div class="text-center mt-3">
-                <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Click Here</a>
+            <div class="about-content">
+                <h2>About Progress Jesutomiwa Giwa</h2>
+                <p>Born in 2000 in Lagos, Progress Jesutomiwa Giwa is a Nigeria born multifaceted artist whose work bridges creativity and environmental advocacy, using art as a tool to promote sustainability and inspire positive change in communities.</p>
+                <p>He began as a student of art, drawn to the power of visual expression. But in 2021 his trajectory took a transformative turn when he joined the Western coast Maritime Academy (WECMA) as a cadet. He did a term paper research on the influx of plastic in the water bodies, this opened his eyes to the urgent issues facing our oceans, particularly the growing crisis of marine pollution. That awakening became the spark that ignited his mission.</p>
+                <p>Since 2023, he has dedicated using his art as a tool for environmental awareness and action, he believes art is a universal language with no barrier.</p>
+                <p>Progress's artistic journey has been marked by remarkable achievements, including exhibiting at Kongi @90, the celebration of Professor Wole Soyinka's 90th birthday, showcasing his work at the Global Entrepreneurship Festival 2024, He held his first solo exhibition, Waste to Luxury (2025), a powerful visual narrative that redefines waste through the lens of luxury and environmental responsibility.</p>
+                <p>He emerged as the winner of the Arts for Change Foundation Competition (2024 edition) and the Grand Winner of the Art Star Competition for environmental awareness organized by TwelveBrassStreet Atlanta, USA (2025). He also won the Lagos Has Talent – Climate Edition(2025), further affirming his voice as an artist with purpose.</p>
+                <p>In recognition of his contributions to environmental sustainability, Progress was appointed as the Youth Ambassador of the Lagos State Ministry of Environment.</p>
+                <p>Beyond creating in the studio, he is the founder of Susty creative hub where he runs initiative like The Recycle Art Tour an artistic initiative, using art as a tool to raise awareness about environmental issues—extending impact far beyond the studio walls in community, schools and organizations.</p>
+                <p>His passion for environmental art and commitment to youth development continue to position him as a leading voice at the intersection of art, sustainability, and social impact.</p>
+                <div class="text-center mt-3">
+                    <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Click Here</a>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -1051,10 +1111,10 @@
                 
                 <!-- Navigation Buttons -->
                 <div class="slideshow-nav">
-                    <button class="nav-btn prev-btn" id="prevBtn">
+                    <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous slide">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="nav-btn next-btn" id="nextBtn">
+                    <button class="nav-btn next-btn" id="nextBtn" aria-label="Next slide">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -1133,18 +1193,15 @@
             
             <div class="exhibition-timeline">
                 <div class="exhibition-item fade-in">
-                     <p>- Kongi @90: Wole Soyinka in the Lens of an Artist
-  (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
+                    <p>- Kongi @90: Wole Soyinka in the Lens of an Artist (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
                 </div>
                 
                 <div class="exhibition-item fade-in">
-                     <p>- Creative Bloc Carnival
-  (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
+                    <p>- Creative Bloc Carnival (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
                 </div>
                 
                 <div class="exhibition-item fade-in">
-                    <p>- Global Entrepreneurship Festival, Art Fair
-  (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
+                    <p>- Global Entrepreneurship Festival, Art Fair (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
                 </div>
 
                 <div class="exhibition-item fade-in">
@@ -1167,8 +1224,22 @@
                     </div>
                     <p>• Lagos State Ministry of Environment Partnership Feature</p>
                     <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Seal_of_Lagos_State.png" 
-     alt="Lagos State Seal" 
-     width="200">
+                         alt="Lagos State Seal" 
+                         width="200"
+                         style="display: block; margin: 20px auto;">
+                    
+                    <!-- Picture Slideshow -->
+                    <div class="picture-slide" id="pictureSlide">
+                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.29 PM.jpeg" alt="Slide 1 - Professional Meeting" class="is-active">
+                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM (1).jpeg" alt="Slide 2 - Team Collaboration">
+                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM.jpeg" alt="Slide 3 - Office Environment">
+                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.31 PM.jpeg" alt="Slide 4 - Presentation">
+                        
+                        <button class="slide-nav prev-slide" aria-label="Previous slide">‹</button>
+                        <button class="slide-nav next-slide" aria-label="Next slide">›</button>
+                        
+                        <div class="picture-slide__dots" aria-hidden="true"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1225,7 +1296,7 @@
         <div class="container contact-container">
             <h2 class="section-title">Contact</h2>
             
-            <form class="contact-form fade-in">
+            <form class="contact-form fade-in" id="contactForm">
                 <div class="form-group">
                     <input type="text" placeholder="Your Name" required>
                 </div>
@@ -1254,13 +1325,13 @@
             </form>
             
             <div class="social-links">
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank">
+                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="Linktree">
                     <i class="fas fa-link"></i>
                 </a>
             </div>
@@ -1270,7 +1341,7 @@
     <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
-            <div class="logo">
+            <div class="logo" onclick="showSection('home')" style="cursor: pointer;">
                 <i class="fas fa-palette"></i>
                 Progress Giwa
             </div>
@@ -1291,16 +1362,26 @@
     </footer>
 
     <script>
+        // Main navigation function
         function showSection(sectionId) {
             // Hide all sections
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.remove('active'));
+            
             // Show the selected section
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
                 // Scroll to top for better UX
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         }
 
@@ -1422,7 +1503,7 @@
         let currentSlide = 0;
         let slideshowInterval;
         let isPlaying = true;
-        const slideDuration = 4000; // 4 seconds per slide
+        const slideDuration = 4000;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
@@ -1436,20 +1517,8 @@
                     : '<i class="fas fa-bars"></i>';
             });
 
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-
-            // Initialize Gallery Slideshow
-            initSlideshow();
-
-            // Form Submission (placeholder)
-            const contactForm = document.querySelector('.contact-form');
-
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Thank you for your message. Progress Giwa will respond shortly.');
@@ -1458,7 +1527,6 @@
 
             // Scroll Animations
             const fadeElements = document.querySelectorAll('.fade-in');
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1473,9 +1541,15 @@
             fadeElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // Initialize Gallery Slideshow
+            initSlideshow();
+            
+            // Initialize Picture Slideshow
+            initPictureSlideshow();
         });
 
-        // Initialize Slideshow
+        // Initialize Gallery Slideshow
         function initSlideshow() {
             const slideshow = document.getElementById('slideshow');
             const dotsContainer = document.getElementById('slideshowDots');
@@ -1491,7 +1565,7 @@
                 const slide = document.createElement('div');
                 slide.className = `slide ${index === 0 ? 'active' : ''}`;
                 slide.innerHTML = `
-                    <img src="${item.src}" alt="${item.title}" class="slide-image">
+                    <img src="${item.src}" alt="${item.title}" class="slide-image" loading="lazy">
                     <div class="slide-content">
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
@@ -1508,7 +1582,7 @@
                 // Create thumbnail
                 const thumbnail = document.createElement('div');
                 thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-                thumbnail.innerHTML = `<img src="${item.src}" alt="Thumbnail ${index + 1}">`;
+                thumbnail.innerHTML = `<img src="${item.src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
                 thumbnail.addEventListener('click', () => goToSlide(index));
                 thumbnailContainer.appendChild(thumbnail);
             });
@@ -1529,10 +1603,12 @@
 
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
-                if (document.getElementById('gallery').classList.contains('active')) {
+                const gallerySection = document.getElementById('gallery');
+                if (gallerySection && gallerySection.classList.contains('active')) {
                     if (e.key === 'ArrowLeft') showPrevSlide();
                     if (e.key === 'ArrowRight') showNextSlide();
                     if (e.key === ' ') {
+                        e.preventDefault();
                         if (isPlaying) pauseSlideshow();
                         else startSlideshow();
                     }
@@ -1556,9 +1632,9 @@
             thumbnails.forEach(thumb => thumb.classList.remove('active'));
 
             // Add active class to current slide, dot, and thumbnail
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            thumbnails[index].classList.add('active');
+            if (slides[index]) slides[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
+            if (thumbnails[index]) thumbnails[index].classList.add('active');
 
             currentSlide = index;
             updateSlideNumber();
@@ -1592,7 +1668,10 @@
         }
 
         function updateSlideNumber() {
-            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${galleryData.length}`;
+            const slideNumber = document.getElementById('slideNumber');
+            if (slideNumber) {
+                slideNumber.textContent = `${currentSlide + 1} / ${galleryData.length}`;
+            }
         }
 
         // Fullscreen function
@@ -1619,6 +1698,122 @@
                 !document.mozFullScreen && !document.msFullscreenElement) {
                 // Return to normal view
             }
+        }
+
+        // Initialize Picture Slideshow
+        function initPictureSlideshow() {
+            const pictureSlide = document.getElementById('pictureSlide');
+            if (!pictureSlide) return;
+
+            const slides = Array.from(pictureSlide.querySelectorAll('img'));
+            const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
+            const prevBtn = pictureSlide.querySelector('.prev-slide');
+            const nextBtn = pictureSlide.querySelector('.next-slide');
+            
+            if (!slides.length) return;
+
+            // Create dots for each slide
+            const dots = slides.map(() => {
+                const dot = document.createElement('button');
+                dot.className = 'picture-slide__dot';
+                dot.setAttribute('aria-label', 'Go to slide');
+                dotsWrap.appendChild(dot);
+                return dot;
+            });
+
+            let currentIndex = 0;
+            let slideInterval;
+            const intervalMs = 4000;
+
+            // Function to show specific slide
+            function showPictureSlide(index) {
+                currentIndex = (index + slides.length) % slides.length;
+                
+                // Update slides visibility
+                slides.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === currentIndex);
+                });
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === currentIndex);
+                });
+            }
+
+            // Function to go to next slide
+            function nextPictureSlide() {
+                showPictureSlide(currentIndex + 1);
+            }
+
+            // Function to go to previous slide
+            function prevPictureSlide() {
+                showPictureSlide(currentIndex - 1);
+            }
+
+            // Initialize the picture slideshow
+            function startPictureSlideshow() {
+                // Show first slide
+                showPictureSlide(0);
+                
+                // Start automatic slideshow
+                slideInterval = setInterval(nextPictureSlide, intervalMs);
+                
+                // Pause on hover
+                pictureSlide.addEventListener('mouseenter', () => {
+                    clearInterval(slideInterval);
+                });
+                
+                // Resume when mouse leaves
+                pictureSlide.addEventListener('mouseleave', () => {
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(nextPictureSlide, intervalMs);
+                });
+                
+                // Dot click events
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showPictureSlide(index);
+                        clearInterval(slideInterval);
+                        slideInterval = setInterval(nextPictureSlide, intervalMs);
+                    });
+                });
+                
+                // Navigation button events
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => {
+                        prevPictureSlide();
+                        clearInterval(slideInterval);
+                        slideInterval = setInterval(nextPictureSlide, intervalMs);
+                    });
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        nextPictureSlide();
+                        clearInterval(slideInterval);
+                        slideInterval = setInterval(nextPictureSlide, intervalMs);
+                    });
+                }
+            }
+
+            // Wait for images to load
+            let imagesLoaded = 0;
+            slides.forEach(img => {
+                if (img.complete) {
+                    imagesLoaded++;
+                    if (imagesLoaded === slides.length) startPictureSlideshow();
+                } else {
+                    img.addEventListener('load', () => {
+                        imagesLoaded++;
+                        if (imagesLoaded === slides.length) startPictureSlideshow();
+                    });
+                }
+            });
+
+            // Fallback start
+            setTimeout(() => {
+                if (!slideInterval) startPictureSlideshow();
+            }, 3000);
         }
     </script>
 </body>
