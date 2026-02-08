@@ -130,6 +130,10 @@
             color: var(--ocean-blue);
             cursor: pointer;
             z-index: 1001;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ====== HERO SECTION ====== */
@@ -988,7 +992,7 @@
             }
             
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             .nav-menu {
@@ -1004,6 +1008,7 @@
                 padding-top: 2rem;
                 transition: left 0.3s ease;
                 z-index: 999;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             }
             
             .nav-menu.active {
@@ -1011,8 +1016,15 @@
             }
             
             .nav-menu a {
-                font-size: 1.1rem;
-                padding: 1rem 0;
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            
+            .nav-menu a:last-child {
+                border-bottom: none;
             }
             
             .slideshow-container {
@@ -1693,6 +1705,11 @@
                 if (sectionId === 'gallery' && typeof initGallerySlideshow === 'function') {
                     initGallerySlideshow();
                 }
+                
+                // If exhibitions section is shown, initialize picture slideshow
+                if (sectionId === 'exhibitions') {
+                    initPictureSlideshow();
+                }
             }
             
             // Close mobile menu if open
@@ -1700,7 +1717,9 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         }
 
@@ -1824,18 +1843,39 @@
         let isPlaying = true;
         const slideDuration = 4000;
 
+        // Mobile Menu Toggle - FIXED VERSION
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
-
-            mobileMenuBtn.addEventListener('click', function() {
+            
+            // Toggle mobile menu
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event bubbling
                 navMenu.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
-                    ? '<i class="fas fa-times"></i>'
-                    : '<i class="fas fa-bars"></i>';
+                
+                // Update hamburger icon
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
-
+            
+            // Close mobile menu when clicking a link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = navMenu.contains(event.target);
@@ -1843,8 +1883,15 @@
                 
                 if (!isClickInsideNav && !isClickOnMenuBtn && navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
+            });
+            
+            // Prevent clicks inside nav menu from closing it
+            navMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
 
             // Contact Form Submission
