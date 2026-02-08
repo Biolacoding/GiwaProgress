@@ -53,7 +53,7 @@
             padding: 0 20px;
         }
 
-        /* Single Page Navigation */
+        /* Single Page Navigation - CRITICAL FOR SECTION HIDING */
         .section {
             display: none;
             min-height: 100vh;
@@ -115,6 +115,7 @@
             letter-spacing: 1px;
             transition: color 0.3s ease;
             padding: 0.5rem 0;
+            cursor: pointer;
         }
 
         .nav-menu a:hover {
@@ -259,7 +260,7 @@
             border-left: 3px solid var(--accent-copper);
         }
 
-        /* ====== GALLERY SLIDESHOW SECTION ====== */
+        /* ====== GALLERY SECTION ====== */
         .gallery-section {
             padding: 6rem 0;
             background: var(--gallery-light);
@@ -755,40 +756,6 @@
             transform: translateY(0);
         }
 
-        /* ====== ENHANCED ANIMATIONS ====== */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         /* ====== PICTURE SLIDESHOW ====== */
         .picture-slide {
             width: 100%;
@@ -1052,7 +1019,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - ONLY THIS HAS ACTIVE CLASS INITIALLY -->
     <section id="home" class="section hero active">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="video/WhatsApp Video 2026-01-24 at 6.09.19 PM.mp4" type="video/mp4">
@@ -1070,7 +1037,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section - NO ACTIVE CLASS -->
     <section id="about" class="section about-section">
         <div class="container about-container fade-in">
             <div class="about-image">
@@ -1093,7 +1060,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section - NO ACTIVE CLASS (Hidden until Gallery link clicked) -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <h2 class="section-title">Artwork Gallery</h2>
@@ -1148,7 +1115,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - NO ACTIVE CLASS -->
     <section id="projects" class="section projects-section">
         <div class="container">
             <h2 class="section-title">Projects & Impact</h2>
@@ -1186,7 +1153,7 @@
         </div>
     </section>
 
-    <!-- Exhibitions Section -->
+    <!-- Exhibitions Section - NO ACTIVE CLASS -->
     <section id="exhibitions" class="section exhibitions-section">
         <div class="container">
             <h2 class="section-title">Exhibitions & Media</h2>
@@ -1214,6 +1181,10 @@
                 
                 <div class="media-features mt-3">
                     <h3>Media Features</h3>
+                    <p class="mt-1">• Vanguard News Feature: " Progress Giwa"</p>
+                    <div class="text-center mb-2">
+                        <a href="https://youtu.be/yCHjwD5YoUU?si=Jl2c0HQQN85NyyLC" target="_blank" class="btn">Watch Interview</a>
+                    </div>
                     <p class="mt-1">• Punch Newspaper Feature: "Before Stardom with Progress Giwa"</p>
                     <div class="text-center mb-2">
                         <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
@@ -1222,18 +1193,20 @@
                     <div class="text-center mb-2">
                         <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Watch Interview</a>
                     </div>
-                    <p>• Lagos State Ministry of Environment Partnership Feature</p>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Seal_of_Lagos_State.png" 
+                    <img src="img/Lagos_Seal.svg.png" 
                          alt="Lagos State Seal" 
                          width="200"
                          style="display: block; margin: 20px auto;">
                     
+                    <p>• Lagos State Ministry of Environment Partnership Feature</p>
+
                     <!-- Picture Slideshow -->
                     <div class="picture-slide" id="pictureSlide">
                         <img src="img/WhatsApp Image 2026-02-02 at 2.56.29 PM.jpeg" alt="Slide 1 - Professional Meeting" class="is-active">
                         <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM (1).jpeg" alt="Slide 2 - Team Collaboration">
                         <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM.jpeg" alt="Slide 3 - Office Environment">
                         <img src="img/WhatsApp Image 2026-02-02 at 2.56.31 PM.jpeg" alt="Slide 4 - Presentation">
+                        <img src="img/last.jpg" alt="Slide 5 - Presentation">
                         
                         <button class="slide-nav prev-slide" aria-label="Previous slide">‹</button>
                         <button class="slide-nav next-slide" aria-label="Next slide">›</button>
@@ -1245,7 +1218,7 @@
         </div>
     </section>
 
-    <!-- Collaborate Section -->
+    <!-- Collaborate Section - NO ACTIVE CLASS -->
     <section id="collaborate" class="section collaborate-section">
         <div class="container">
             <h2 class="section-title">Collaborate</h2>
@@ -1291,7 +1264,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - NO ACTIVE CLASS -->
     <section id="contact" class="section contact-section">
         <div class="container contact-container">
             <h2 class="section-title">Contact</h2>
@@ -1362,18 +1335,29 @@
     </footer>
 
     <script>
-        // Main navigation function
+        // Main navigation function - HIDES ALL SECTIONS, SHOWS ONLY SELECTED ONE
         function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
+            console.log('Showing section:', sectionId);
             
-            // Show the selected section
+            // Hide all sections by removing active class
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section by adding active class
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
+                console.log('Now active section:', targetSection.id);
+                
                 // Scroll to top for better UX
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // If gallery section is shown, initialize slideshow
+                if (sectionId === 'gallery' && typeof initGallerySlideshow === 'function') {
+                    initGallerySlideshow();
+                }
             }
             
             // Close mobile menu if open
@@ -1499,7 +1483,7 @@
             }
         ];
 
-        // Slideshow Variables
+        // Gallery Slideshow Variables
         let currentSlide = 0;
         let slideshowInterval;
         let isPlaying = true;
@@ -1542,15 +1526,14 @@
                 observer.observe(element);
             });
 
-            // Initialize Gallery Slideshow
-            initSlideshow();
-            
-            // Initialize Picture Slideshow
+            // Initialize Picture Slideshow (for exhibitions section)
             initPictureSlideshow();
         });
 
-        // Initialize Gallery Slideshow
-        function initSlideshow() {
+        // Initialize Gallery Slideshow - ONLY CALLED WHEN GALLERY SECTION IS ACTIVE
+        function initGallerySlideshow() {
+            console.log('Initializing gallery slideshow');
+            
             const slideshow = document.getElementById('slideshow');
             const dotsContainer = document.getElementById('slideshowDots');
             const thumbnailContainer = document.getElementById('thumbnailContainer');
@@ -1558,6 +1541,11 @@
             const nextBtn = document.getElementById('nextBtn');
             const playPauseBtn = document.getElementById('playPauseBtn');
             const slideNumber = document.getElementById('slideNumber');
+
+            // Clear existing content
+            slideshow.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            thumbnailContainer.innerHTML = '';
 
             // Create slides, dots, and thumbnails
             galleryData.forEach((item, index) => {
@@ -1601,7 +1589,7 @@
                 }
             });
 
-            // Keyboard navigation
+            // Keyboard navigation for gallery section
             document.addEventListener('keydown', (e) => {
                 const gallerySection = document.getElementById('gallery');
                 if (gallerySection && gallerySection.classList.contains('active')) {
@@ -1620,7 +1608,7 @@
             updateSlideNumber();
         }
 
-        // Slideshow Functions
+        // Gallery Slideshow Functions
         function showSlide(index) {
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.dot');
@@ -1658,13 +1646,19 @@
             if (slideshowInterval) clearInterval(slideshowInterval);
             slideshowInterval = setInterval(showNextSlide, slideDuration);
             isPlaying = true;
-            document.getElementById('playPauseBtn').innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            if (playPauseBtn) {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
+            }
         }
 
         function pauseSlideshow() {
             clearInterval(slideshowInterval);
             isPlaying = false;
-            document.getElementById('playPauseBtn').innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            if (playPauseBtn) {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
+            }
         }
 
         function updateSlideNumber() {
@@ -1700,7 +1694,7 @@
             }
         }
 
-        // Initialize Picture Slideshow
+        // Initialize Picture Slideshow (for exhibitions section)
         function initPictureSlideshow() {
             const pictureSlide = document.getElementById('pictureSlide');
             if (!pictureSlide) return;
@@ -1815,7 +1809,14 @@
                 if (!slideInterval) startPictureSlideshow();
             }, 3000);
         }
+
+        // Call initGallerySlideshow when page loads if gallery is active (shouldn't happen but as backup)
+        window.addEventListener('load', function() {
+            const gallerySection = document.getElementById('gallery');
+            if (gallerySection && gallerySection.classList.contains('active')) {
+                initGallerySlideshow();
+            }
+        });
     </script>
 </body>
 </html>
-
