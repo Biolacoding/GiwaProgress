@@ -130,10 +130,6 @@
             color: var(--ocean-blue);
             cursor: pointer;
             z-index: 1001;
-            width: 40px;
-            height: 40px;
-            align-items: center;
-            justify-content: center;
         }
 
         /* ====== HERO SECTION ====== */
@@ -729,6 +725,7 @@
             display: grid;
             gap: 1.5rem;
             margin-top: 3rem;
+            margin-bottom: 3rem;
         }
 
         .form-group input,
@@ -750,29 +747,88 @@
             border-color: var(--ocean-blue);
         }
 
+        .contact-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            padding: 0 1rem;
+        }
+
         .social-links {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: var(--ocean-blue);
             color: white;
             border-radius: 50%;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
         .social-link:hover {
             transform: translateY(-3px);
-            background: var(--charcoal);
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
+        }
+
+        .social-link.whatsapp:hover { background: #25D366; }
+        .social-link.instagram:hover { background: #E4405F; }
+        .social-link.linktree:hover { background: var(--charcoal); }
+        .social-link.email:hover { background: #EA4335; }
+
+        .contact-method-selector {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .method-buttons {
+            display: inline-flex;
+            gap: 1rem;
+            background: var(--gallery-light);
+            padding: 0.5rem;
+            border-radius: 50px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .method-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        
+        .method-btn.active {
+            background: var(--ocean-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+        }
+        
+        .method-btn:hover:not(.active) {
+            background: rgba(26, 54, 93, 0.1);
+        }
+        
+        .method-hint {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
         }
 
         /* ====== FOOTER ====== */
@@ -943,8 +999,16 @@
             margin-bottom: 1rem;
         }
 
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+
         .mt-1 {
             margin-top: 1rem;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
         }
 
         .mt-3 {
@@ -992,7 +1056,7 @@
             }
             
             .mobile-menu-btn {
-                display: flex;
+                display: block;
             }
             
             .nav-menu {
@@ -1008,7 +1072,6 @@
                 padding-top: 2rem;
                 transition: left 0.3s ease;
                 z-index: 999;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             }
             
             .nav-menu.active {
@@ -1016,15 +1079,8 @@
             }
             
             .nav-menu a {
-                font-size: 1.2rem;
-                padding: 1rem 2rem;
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            
-            .nav-menu a:last-child {
-                border-bottom: none;
+                font-size: 1.1rem;
+                padding: 1rem 0;
             }
             
             .slideshow-container {
@@ -1098,6 +1154,16 @@
             
             .btn-outline {
                 margin-left: 0;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
         }
 
@@ -1198,6 +1264,20 @@
             .exhibition-item::before {
                 top: 1.5rem;
             }
+
+            .method-buttons {
+                flex-direction: column;
+                border-radius: 8px;
+                padding: 0.8rem;
+            }
+            
+            .method-btn {
+                justify-content: center;
+            }
+
+            .contact-form {
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1243,6 +1323,16 @@
             .copyright {
                 font-size: 0.75rem;
             }
+
+            .social-links {
+                gap: 0.6rem;
+            }
+            
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
         }
 
         /* Extra small devices (foldable phones) */
@@ -1275,6 +1365,12 @@
             
             .slide-content p {
                 font-size: 0.8rem;
+            }
+
+            .social-link {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1616,43 +1712,69 @@
         <div class="container contact-container">
             <h2 class="section-title">Contact</h2>
             
+            <!-- Contact Method Selector -->
+            <div class="contact-method-selector">
+                <div class="method-buttons">
+                    <button type="button" class="method-btn active" data-method="email" id="emailMethodBtn">
+                        <i class="fas fa-envelope"></i> Email
+                    </button>
+                    <button type="button" class="method-btn" data-method="whatsapp" id="whatsappMethodBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                </div>
+                <p class="method-hint" id="methodHint">Send message via Email to Progress Giwa</p>
+            </div>
+            
+            <!-- Contact Form -->
             <form class="contact-form fade-in" id="contactForm">
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
                 </div>
                 
                 <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
                 </div>
                 
                 <div class="form-group">
-                    <select required>
+                    <select id="purpose" name="purpose" required>
                         <option value="">Purpose of Inquiry</option>
-                        <option value="commission">Art Commission</option>
-                        <option value="exhibition">Exhibition Opportunity</option>
-                        <option value="workshop">Workshop Request</option>
-                        <option value="collaboration">Partnership/Collaboration</option>
-                        <option value="press">Media/Press Inquiry</option>
-                        <option value="other">Other</option>
+                        <option value="Art Commission">Art Commission</option>
+                        <option value="Exhibition Opportunity">Exhibition Opportunity</option>
+                        <option value="Workshop Request">Workshop Request</option>
+                        <option value="Partnership/Collaboration">Partnership/Collaboration</option>
+                        <option value="Media/Press Inquiry">Media/Press Inquiry</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Your detailed message..." required></textarea>
                 </div>
                 
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn" id="submitBtn">
+                    <i class="fas fa-envelope"></i> Send via Email
+                </button>
+                
+                <p class="contact-note">
+                    You'll be redirected to Gmail/WhatsApp to send your message directly to Progress Giwa
+                </p>
             </form>
             
+            <!-- Direct Contact Links -->
             <div class="social-links">
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="Instagram">
+                <a href="https://wa.me/2348123456789?text=Hello%20Progress%20Giwa%2C%20I%20would%20like%20to%20get%20in%20touch%20about%20your%20artwork" 
+                   class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/pjaygiwa/" class="social-link instagram" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://linktr.ee/PJayGiwa" class="social-link" target="_blank" aria-label="Linktree">
+                <a href="https://linktr.ee/PJayGiwa" class="social-link linktree" target="_blank" aria-label="Linktree">
                     <i class="fas fa-link"></i>
+                </a>
+                <a href="mailto:giwaprogresstomiwa@gmail.com?subject=Inquiry%20from%20Website" 
+                   class="social-link email" target="_blank" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
                 </a>
             </div>
         </div>
@@ -1682,7 +1804,7 @@
     </footer>
 
     <script>
-        // Main navigation function - HIDES ALL SECTIONS, SHOWS ONLY SELECTED ONE
+        // Main navigation function
         function showSection(sectionId) {
             console.log('Showing section:', sectionId);
             
@@ -1705,11 +1827,6 @@
                 if (sectionId === 'gallery' && typeof initGallerySlideshow === 'function') {
                     initGallerySlideshow();
                 }
-                
-                // If exhibitions section is shown, initialize picture slideshow
-                if (sectionId === 'exhibitions') {
-                    initPictureSlideshow();
-                }
             }
             
             // Close mobile menu if open
@@ -1717,9 +1834,7 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         }
 
@@ -1843,39 +1958,18 @@
         let isPlaying = true;
         const slideDuration = 4000;
 
-        // Mobile Menu Toggle - FIXED VERSION
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
-            
-            // Toggle mobile menu
-            mobileMenuBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent event bubbling
+
+            mobileMenuBtn.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
-                
-                // Update hamburger icon
-                const icon = mobileMenuBtn.querySelector('i');
-                if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
+                    ? '<i class="fas fa-times"></i>'
+                    : '<i class="fas fa-bars"></i>';
             });
-            
-            // Close mobile menu when clicking a link
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navMenu.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                });
-            });
-            
+
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = navMenu.contains(event.target);
@@ -1883,25 +1977,13 @@
                 
                 if (!isClickInsideNav && !isClickOnMenuBtn && navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             });
+
+            // Contact Form Functionality
+            setupContactForm();
             
-            // Prevent clicks inside nav menu from closing it
-            navMenu.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-
-            // Contact Form Submission
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message. Progress Giwa will respond shortly.');
-                contactForm.reset();
-            });
-
             // Scroll Animations
             const fadeElements = document.querySelectorAll('.fade-in');
             const observer = new IntersectionObserver((entries) => {
@@ -1930,6 +2012,151 @@
                 }
             });
         });
+
+        // Contact Form Setup
+        function setupContactForm() {
+            let selectedMethod = 'email';
+            const emailMethodBtn = document.getElementById('emailMethodBtn');
+            const whatsappMethodBtn = document.getElementById('whatsappMethodBtn');
+            const methodHint = document.getElementById('methodHint');
+            const submitBtn = document.getElementById('submitBtn');
+            const contactForm = document.getElementById('contactForm');
+
+            // Method selection
+            emailMethodBtn.addEventListener('click', function() {
+                selectedMethod = 'email';
+                updateMethodSelection();
+            });
+
+            whatsappMethodBtn.addEventListener('click', function() {
+                selectedMethod = 'whatsapp';
+                updateMethodSelection();
+            });
+
+            function updateMethodSelection() {
+                // Update active button
+                emailMethodBtn.classList.toggle('active', selectedMethod === 'email');
+                whatsappMethodBtn.classList.toggle('active', selectedMethod === 'whatsapp');
+                
+                // Update hint and button text
+                if (selectedMethod === 'email') {
+                    methodHint.textContent = 'Send message via Email to Progress Giwa';
+                    submitBtn.innerHTML = '<i class="fas fa-envelope"></i> Send via Email';
+                } else {
+                    methodHint.textContent = 'Send message via WhatsApp to Progress Giwa';
+                    submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Send via WhatsApp';
+                }
+            }
+
+            // Form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const purpose = document.getElementById('purpose').value;
+                const message = document.getElementById('message').value.trim();
+                
+                // Validation
+                if (!name || !email || !purpose || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+
+                if (selectedMethod === 'email') {
+                    sendViaEmail(name, email, purpose, message);
+                } else {
+                    sendViaWhatsApp(name, email, purpose, message);
+                }
+
+                // Clear form
+                this.reset();
+            });
+        }
+
+        // Send via Email function
+        function sendViaEmail(name, email, purpose, message) {
+            // Progress Giwa's email
+            const yourEmail = "giwaprogresstomiwa@gmail.com";
+            
+            // Create email subject and body
+            const subject = `Website Inquiry: ${purpose} - ${name}`;
+            const body = `
+Dear Progress Giwa,
+
+I am contacting you through your website.
+
+My Details:
+• Name: ${name}
+• Email: ${email}
+• Purpose: ${purpose}
+
+My Message:
+${message}
+
+---
+This message was sent from your website contact form.
+            `.trim();
+            
+            // Encode for URL
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            
+            // Create Gmail compose URL
+            const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=${encodedSubject}&body=${encodedBody}`;
+            
+            // Open Gmail in a new tab
+            const newWindow = window.open(gmailURL, '_blank');
+            
+            if (newWindow) {
+                alert('Opening Gmail to send your message to Progress Giwa...');
+            } else {
+                // If popup blocked, fallback to mailto
+                const mailtoURL = `mailto:${yourEmail}?subject=${encodedSubject}&body=${encodedBody}`;
+                window.location.href = mailtoURL;
+                alert('Please check your email client to send the message to Progress Giwa.');
+            }
+        }
+
+        // Send via WhatsApp function
+        function sendViaWhatsApp(name, email, purpose, message) {
+            // Replace with Progress Giwa's WhatsApp number (with country code, no +)
+            const phoneNumber = "2348123456789"; // Example: replace with actual number
+            
+            const whatsappMessage = `
+*NEW WEBSITE INQUIRY*
+
+*From:* ${name}
+*Email:* ${email}
+*Purpose:* ${purpose}
+
+*Message:*
+${message}
+
+---
+Sent from Progress Giwa Website
+            `.trim();
+            
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in a new tab
+            const newWindow = window.open(whatsappURL, '_blank');
+            
+            if (newWindow) {
+                alert('Opening WhatsApp to send your message...');
+            } else {
+                alert('Please check if WhatsApp is installed on your device.');
+            }
+        }
 
         // Initialize Gallery Slideshow - ONLY CALLED WHEN GALLERY SECTION IS ACTIVE
         function initGallerySlideshow() {
