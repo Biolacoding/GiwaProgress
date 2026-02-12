@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Giwa | Visual Artist & Environmental Advocate</title>
-    <meta name="description" content="Contemporary visual artist creating environmental art from recycled materials. Exploring marine pollution and sustainability through art.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Progress Giwa · visual artist & advocate · single section view</title>
+    <meta name="description" content="Contemporary visual artist creating environmental art from recycled materials. Marine conservation, sustainability.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ====== DESIGN SYSTEM ====== */
+        /* ===== SINGLE SECTION VIEW ===== 
+           ONLY ACTIVE SECTION IS VISIBLE. HOME shows ONLY hero, others show one at a time.
+        */
         :root {
             --ocean-blue: #1a365d;
             --charcoal: #2d3436;
@@ -20,7 +22,6 @@
             --transition-smooth: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* ====== RESET & BASE ====== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -37,6 +38,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
         h1, h2, h3, h4, h5 {
@@ -45,7 +47,6 @@
             line-height: 1.2;
         }
 
-        /* ====== CONTAINER SYSTEM ====== */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -53,24 +54,30 @@
             padding: 0 20px;
         }
 
-        /* Single Page Navigation */
+        /* ===== SECTION VISIBILITY TOGGLE ===== 
+           ONLY .active SECTION IS DISPLAYED, ALL OTHERS HIDDEN.
+           EXCEPTION: HOME active shows hero ONLY.
+        */
         .section {
-            display: none;
-            min-height: 100vh;
-            padding-top: 80px;
+            display: none !important;    /* hidden by default */
+            min-height: auto;
+            opacity: 1;
+            visibility: visible;
         }
 
         .section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
+            display: block !important;   /* only active section visible */
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* hero special – full viewport when active */
+        #home.section.active {
+            display: flex !important;
+            min-height: 100vh;
+            padding-top: 0;
+            padding-bottom: 0;
         }
 
-        /* ====== NAVIGATION ====== */
+        /* Navigation – fixed, with click handlers that show only target section */
         .main-nav {
             position: fixed;
             top: 0;
@@ -98,6 +105,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
         .nav-menu {
@@ -132,9 +140,8 @@
             z-index: 1001;
         }
 
-        /* ====== HERO SECTION ====== */
+        /* ----- HERO ----- */
         .hero {
-            height: 100vh;
             position: relative;
             display: flex;
             align-items: center;
@@ -143,7 +150,6 @@
             color: white;
             padding: 0 20px;
             overflow: hidden;
-            padding-top: 0;
         }
 
         .hero-video {
@@ -157,16 +163,6 @@
             filter: brightness(0.6);
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.4));
-            z-index: -1;
-        }
-
         .hero-content {
             max-width: 800px;
             z-index: 1;
@@ -177,7 +173,6 @@
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
             line-height: 1.1;
         }
 
@@ -185,11 +180,9 @@
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero-cta {
-            animation: fadeInUp 1s ease-out 0.6s both;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
@@ -209,7 +202,6 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
             font-size: clamp(0.9rem, 1.5vw, 1rem);
             white-space: nowrap;
         }
@@ -232,11 +224,10 @@
             color: var(--ocean-blue);
         }
 
-        /* ====== ABOUT SECTION ====== */
+        /* ----- ABOUT ----- */
         .about-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
             background: white;
-            min-height: auto;
+            padding: 80px 0 60px;
         }
 
         .about-container {
@@ -259,27 +250,10 @@
             color: var(--ocean-blue);
         }
 
-        .about-content p {
-            margin-bottom: 1rem;
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-        }
-
-        .mission-statement {
-            font-size: clamp(1.1rem, 1.3vw, 1.2rem);
-            font-style: italic;
-            color: var(--accent-copper);
-            margin: 2rem 0;
-            padding-left: 1rem;
-            border-left: 3px solid var(--accent-copper);
-        }
-
-        /* ====== GALLERY SECTION ====== */
+        /* ----- GALLERY (slideshow) ----- */
         .gallery-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
             background: var(--gallery-light);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            padding: 80px 0 60px;
         }
 
         .section-title {
@@ -292,15 +266,12 @@
         .gallery-subtitle {
             text-align: center;
             font-size: clamp(1rem, 1.1vw, 1.1rem);
-            color: var(--charcoal);
             margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            padding: 0 20px;
         }
 
-        /* Slideshow Container */
         .slideshow-container {
             position: relative;
             max-width: 1200px;
@@ -355,17 +326,6 @@
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
             padding: clamp(15px, 2vw, 30px) clamp(20px, 3vw, 40px);
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .slide-content h3 {
-            font-size: clamp(1.2rem, 1.5vw, 1.5rem);
-            margin-bottom: 0.5rem;
-        }
-
-        .slide-content p {
-            font-size: clamp(0.9rem, 1vw, 1rem);
         }
 
         .slide-number {
@@ -381,7 +341,6 @@
             z-index: 10;
         }
 
-        /* Slideshow Navigation */
         .slideshow-nav {
             position: absolute;
             top: 50%;
@@ -406,16 +365,13 @@
             font-size: clamp(1rem, 1.2vw, 1.2rem);
             color: var(--ocean-blue);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .nav-btn:hover {
             background: var(--ocean-blue);
             color: white;
-            transform: scale(1.1);
         }
 
-        /* Slideshow Dots */
         .slideshow-dots {
             position: absolute;
             bottom: 15px;
@@ -425,7 +381,6 @@
             justify-content: center;
             gap: 10px;
             z-index: 10;
-            padding: 0 10px;
         }
 
         .dot {
@@ -435,21 +390,13 @@
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
         .dot.active {
             background: white;
             transform: scale(1.2);
-            border-color: var(--ocean-blue);
         }
 
-        .dot:hover {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        /* Slideshow Controls */
         .slideshow-controls {
             display: flex;
             justify-content: center;
@@ -471,28 +418,14 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.9rem, 1vw, 1rem);
         }
 
-        .control-btn:hover {
-            background: #0f2a4a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.3);
-        }
-
-        .control-btn i {
-            font-size: clamp(0.9rem, 1vw, 1rem);
-        }
-
-        /* Thumbnail Navigation */
         .thumbnail-container {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-top: 30px;
             flex-wrap: wrap;
-            max-width: 100%;
             overflow-x: auto;
             padding: 10px;
         }
@@ -509,15 +442,9 @@
             flex-shrink: 0;
         }
 
-        .thumbnail:hover {
-            opacity: 0.8;
-            transform: translateY(-3px);
-        }
-
         .thumbnail.active {
             opacity: 1;
             border-color: var(--ocean-blue);
-            transform: translateY(-3px);
         }
 
         .thumbnail img {
@@ -526,31 +453,10 @@
             object-fit: cover;
         }
 
-        /* Gallery Info */
-        .gallery-info {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .gallery-info h3 {
-            color: var(--ocean-blue);
-            margin-bottom: 10px;
-            font-size: clamp(1.3rem, 1.5vw, 1.5rem);
-        }
-
-        .gallery-info p {
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-        }
-
-        /* ====== PROJECTS SECTION ====== */
+        /* ----- PROJECTS ----- */
         .projects-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
             background: white;
-            min-height: auto;
+            padding: 80px 0 60px;
         }
 
         .project-grid {
@@ -564,11 +470,6 @@
             border-radius: 2px;
             overflow: hidden;
             transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .project-image {
@@ -587,19 +488,6 @@
             transform: scale(1.1);
         }
 
-        .project-content {
-            padding: clamp(1.5rem, 2vw, 2rem);
-        }
-
-        .project-content h3 {
-            font-size: clamp(1.3rem, 1.5vw, 1.5rem);
-            margin-bottom: 1rem;
-        }
-
-        .project-content p {
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-        }
-
         .sdg-badges {
             display: flex;
             gap: 0.5rem;
@@ -612,15 +500,14 @@
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: clamp(0.7rem, 0.8vw, 0.75rem);
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
-        /* ====== EXHIBITIONS SECTION ====== */
+        /* ----- EXHIBITIONS ----- */
         .exhibitions-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
             background: var(--gallery-light);
-            min-height: auto;
+            padding: 80px 0 60px;
         }
 
         .exhibition-timeline {
@@ -635,10 +522,6 @@
             position: relative;
         }
 
-        .exhibition-item p {
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-        }
-
         .exhibition-item::before {
             content: '';
             position: absolute;
@@ -650,248 +533,7 @@
             border-radius: 50%;
         }
 
-        .media-features {
-            margin-top: 3rem;
-        }
-
-        .media-features h3 {
-            font-size: clamp(1.5rem, 2vw, 1.8rem);
-            color: var(--ocean-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .media-features p {
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-            margin-bottom: 1rem;
-        }
-
-        /* ====== COLLABORATE SECTION ====== */
-        .collaborate-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
-            background: white;
-            min-height: auto;
-        }
-
-        .collab-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-            gap: clamp(1.5rem, 2vw, 2rem);
-            margin: clamp(2rem, 3vw, 3rem) 0;
-        }
-
-        .collab-option {
-            text-align: center;
-            padding: clamp(1.5rem, 2vw, 2rem);
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .collab-option:hover {
-            border-color: var(--ocean-blue);
-            transform: translateY(-5px);
-        }
-
-        .collab-icon {
-            font-size: clamp(2rem, 2.5vw, 2.5rem);
-            color: var(--ocean-blue);
-            margin-bottom: 1rem;
-        }
-
-        .collab-option h3 {
-            font-size: clamp(1.3rem, 1.5vw, 1.5rem);
-            margin-bottom: 1rem;
-        }
-
-        .collab-option p {
-            font-size: clamp(1rem, 1.1vw, 1.1rem);
-        }
-
-        /* ====== CONTACT SECTION ====== */
-        .contact-section {
-            padding: clamp(3rem, 6vw, 6rem) 0;
-            background: var(--gallery-light);
-            min-height: auto;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 0 20px;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 2px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--ocean-blue);
-        }
-
-        .contact-note {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 1rem;
-            padding: 0 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--ocean-blue);
-            color: white;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
-        }
-
-        .social-link.whatsapp:hover { background: #25D366; }
-        .social-link.instagram:hover { background: #E4405F; }
-        .social-link.linktree:hover { background: var(--charcoal); }
-        .social-link.email:hover { background: #EA4335; }
-
-        .contact-method-selector {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .method-buttons {
-            display: inline-flex;
-            gap: 1rem;
-            background: var(--gallery-light);
-            padding: 0.5rem;
-            border-radius: 50px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .method-btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            background: transparent;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-        
-        .method-btn.active {
-            background: var(--ocean-blue);
-            color: white;
-            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
-        }
-        
-        .method-btn:hover:not(.active) {
-            background: rgba(26, 54, 93, 0.1);
-        }
-        
-        .method-hint {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
-
-        /* ====== FOOTER ====== */
-        .main-footer {
-            background: var(--charcoal);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: clamp(1rem, 2vw, 2rem);
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-            font-size: clamp(0.9rem, 1vw, 1rem);
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            opacity: 0.5;
-            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
-            line-height: 1.5;
-            padding: 0 20px;
-        }
-
-        /* ====== ANIMATIONS ====== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ====== PICTURE SLIDESHOW ====== */
+        /* picture slideshow */
         .picture-slide {
             width: 100%;
             max-width: 600px;
@@ -899,7 +541,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             background: #f5f5f5;
             aspect-ratio: 16/9;
             min-height: 200px;
@@ -921,7 +563,6 @@
             opacity: 1;
         }
 
-        /* Dots styling */
         .picture-slide__dots {
             position: absolute;
             left: 50%;
@@ -931,7 +572,7 @@
             gap: 8px;
             padding: 6px 10px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0,0,0,0.4);
             backdrop-filter: blur(4px);
             z-index: 10;
         }
@@ -940,29 +581,15 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255,255,255,0.5);
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            padding: 0;
         }
-
-        .picture-slide__dot:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.2);
-        }
-
-        .picture-slide__dot.is-active {
-            background: #ffffff;
-            transform: scale(1.2);
-        }
-
-        /* Navigation arrows */
+        .picture-slide__dot.is-active { background: white; transform: scale(1.2); }
         .slide-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             color: white;
             border: none;
             width: 35px;
@@ -970,519 +597,132 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
+        }
+        .prev-slide { left: 10px; }
+        .next-slide { right: 10px; }
+
+        /* COLLABORATE */
+        .collaborate-section {
+            background: white;
+            padding: 80px 0 60px;
+        }
+        .collab-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .collab-option {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 2px;
             transition: all 0.3s ease;
         }
+        .collab-option:hover { border-color: var(--ocean-blue); transform: translateY(-5px); }
+        .collab-icon { font-size: 2.5rem; color: var(--ocean-blue); margin-bottom: 1rem; }
 
-        .slide-nav:hover {
-            background: rgba(0, 0, 0, 0.8);
-            transform: translateY(-50%) scale(1.1);
+        /* CONTACT */
+        .contact-section {
+            background: var(--gallery-light);
+            padding: 80px 0 60px;
         }
-
-        .prev-slide {
-            left: 10px;
+        .contact-container { max-width: 600px; margin: 0 auto; }
+        .contact-form { display: grid; gap: 1.5rem; margin: 3rem 0; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 1rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;
+            font-family: inherit; font-size: 1rem;
         }
-
-        .next-slide {
-            right: 10px;
+        .method-buttons {
+            display: inline-flex; gap: 1rem; background: var(--gallery-light); padding: 0.5rem;
+            border-radius: 50px; margin-bottom: 0.5rem;
         }
-
-        /* ====== TEXT CENTER UTILITY ====== */
-        .text-center {
-            text-align: center;
+        .method-btn {
+            padding: 0.8rem 1.5rem; border: none; background: transparent; border-radius: 50px;
+            cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 600;
         }
-
-        .mb-2 {
-            margin-bottom: 1rem;
+        .method-btn.active { background: var(--ocean-blue); color: white; }
+        .social-links {
+            display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;
         }
-
-        .mb-3 {
-            margin-bottom: 3rem;
+        .social-link {
+            display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px;
+            background: var(--ocean-blue); color: white; border-radius: 50%; text-decoration: none;
+            transition: all 0.3s ease; font-size: 1.2rem;
         }
+        .social-link.whatsapp:hover { background: #25D366; }
+        .social-link.instagram:hover { background: #E4405F; }
+        .social-link.email:hover { background: #EA4335; }
 
-        .mt-1 {
-            margin-top: 1rem;
+        /* FOOTER */
+        .main-footer {
+            background: var(--charcoal); color: white; padding: 3rem 0; text-align: center;
         }
-
-        .mt-2 {
-            margin-top: 2rem;
+        .footer-links {
+            display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;
         }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.7; cursor: pointer; }
+        .copyright { margin-top: 2rem; opacity: 0.5; }
 
-        .mt-3 {
-            margin-top: 3rem;
-        }
-
-        /* ====== ENHANCED RESPONSIVE DESIGN ====== */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 30px;
-            }
-        }
-
+        /* responsive */
         @media (max-width: 992px) {
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .about-image {
-                order: -1;
-            }
-            
-            .slideshow-container {
-                height: 50vh;
-                min-height: 350px;
-            }
-            
-            .hero h1 {
-                font-size: clamp(2.2rem, 4vw, 3rem);
-            }
+            .about-container { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
+            .mobile-menu-btn { display: block; }
             .nav-menu {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100vh;
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding-top: 2rem;
-                transition: left 0.3s ease;
-                z-index: 999;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu a {
-                font-size: 1.1rem;
-                padding: 1rem 0;
-            }
-            
-            .slideshow-container {
-                height: 45vh;
-                min-height: 300px;
-                width: 100%;
-            }
-            
-            .nav-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .slide-content {
-                padding: 15px 20px;
-            }
-            
-            .slide-content h3 {
-                font-size: 1.2rem;
-            }
-            
-            .slide-content p {
-                font-size: 0.9rem;
-            }
-            
-            .thumbnail {
-                width: 55px;
-                height: 55px;
-            }
-            
-            .picture-slide {
-                max-width: 95%;
-                margin: 30px auto;
-                aspect-ratio: 4/3;
-                min-height: 250px;
-            }
-            
-            .slide-nav {
-                width: 30px;
-                height: 30px;
-                font-size: 16px;
-            }
-            
-            .prev-slide {
-                left: 8px;
-            }
-            
-            .next-slide {
-                right: 8px;
-            }
-            
-            .picture-slide__dots {
-                bottom: 12px;
-                padding: 5px 8px;
-            }
-            
-            .picture-slide__dot {
-                width: 8px;
-                height: 8px;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-
-            .social-links {
-                gap: 0.8rem;
-            }
-            
-            .social-link {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero {
-                height: 90vh;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-                line-height: 1.2;
-            }
-            
-            .hero-tagline {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-cta .btn {
-                width: 100%;
-                max-width: 280px;
-                padding: 0.9rem 1.5rem;
-                margin: 5px 0;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .slideshow-container {
-                height: 40vh;
-                min-height: 250px;
-                border-radius: 8px;
-            }
-            
-            .slide {
-                padding: 10px;
-            }
-            
-            .thumbnail {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .slideshow-controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .control-btn {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
-            }
-            
-            .project-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .project-image {
-                height: 180px;
-            }
-            
-            .collab-options {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .picture-slide {
-                aspect-ratio: 1/1;
-                min-height: 200px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-menu {
-                gap: 0.5rem;
-            }
-            
-            .about-content p {
-                font-size: 1rem;
-                line-height: 1.5;
-            }
-            
-            .exhibition-item {
-                padding: 1.5rem 1rem;
-            }
-            
-            .exhibition-item::before {
-                top: 1.5rem;
-            }
-
-            .method-buttons {
-                flex-direction: column;
-                border-radius: 8px;
-                padding: 0.8rem;
-            }
-            
-            .method-btn {
-                justify-content: center;
-            }
-
-            .contact-form {
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 0.8rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            .section {
-                padding-top: 70px;
-            }
-            
-            .main-nav {
-                padding: 0.8rem 0;
-            }
-            
-            .logo {
-                font-size: 1.1rem;
-            }
-            
-            .slideshow-container {
-                height: 35vh;
-                min-height: 220px;
-            }
-            
-            .thumbnail {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .picture-slide {
-                min-height: 180px;
-            }
-            
-            .copyright {
-                font-size: 0.75rem;
-            }
-
-            .social-links {
-                gap: 0.6rem;
-            }
-            
-            .social-link {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-        }
-
-        /* Extra small devices (foldable phones) */
-        @media (max-width: 320px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .btn {
-                padding: 0.7rem 1rem;
-                font-size: 0.8rem;
-            }
-            
-            .slideshow-container {
-                height: 30vh;
-                min-height: 200px;
-            }
-            
-            .slide-content h3 {
-                font-size: 1rem;
-            }
-            
-            .slide-content p {
-                font-size: 0.8rem;
-            }
-
-            .social-link {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Landscape mode adjustments */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                height: auto;
-                min-height: 100vh;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
-            
-            .hero-tagline {
-                font-size: 1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-cta .btn {
-                padding: 0.7rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .slideshow-container {
-                height: 60vh;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .main-nav,
-            .hero-video,
-            .hero-overlay,
-            .slideshow-nav,
-            .slideshow-dots,
-            .slideshow-controls,
-            .thumbnail-container,
-            .picture-slide__dots,
-            .slide-nav {
-                display: none !important;
-            }
-            
-            .section {
-                display: block !important;
-                min-height: auto;
-                padding-top: 0;
-            }
-            
-            .hero {
-                color: var(--charcoal);
-                height: auto;
-            }
-            
-            .btn {
-                display: none;
-            }
-            
-            a {
-                text-decoration: none;
-                color: var(--charcoal);
-            }
+                position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; background: white;
+                flex-direction: column; align-items: center; justify-content: center;
+                transition: left 0.3s ease; z-index: 999;
+            }
+            .nav-menu.active { left: 0; }
+            .hero-cta { flex-direction: column; }
+            .btn { white-space: normal; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- FIXED NAVIGATION (all clicks trigger showOnlySection) -->
     <nav class="main-nav">
         <div class="container nav-container">
-            <a href="#" class="logo" onclick="showSection('home')">
-                <i class="fas fa-palette"></i>
-                Progress Jesutomiwa Giwa
-            </a>
-            
+            <div class="logo" onclick="showOnlySection('home')">
+                <i class="fas fa-palette"></i> Progress Jesutomiwa Giwa
+            </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#" onclick="showSection('home')">Home</a></li>
-                <li><a href="#" onclick="showSection('about')">About</a></li>
-                <li><a href="#" onclick="showSection('gallery')">Gallery</a></li>
-                <li><a href="#" onclick="showSection('projects')">Projects</a></li>
-                <li><a href="#" onclick="showSection('exhibitions')">Exhibitions</a></li>
-                <li><a href="#" onclick="showSection('collaborate')">Collaborate</a></li>
-                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
+                <li><a onclick="showOnlySection('home')">Home</a></li>
+                <li><a onclick="showOnlySection('about')">About</a></li>
+                <li><a onclick="showOnlySection('gallery')">Gallery</a></li>
+                <li><a onclick="showOnlySection('projects')">Projects</a></li>
+                <li><a onclick="showOnlySection('exhibitions')">Exhibitions</a></li>
+                <li><a onclick="showOnlySection('collaborate')">Collaborate</a></li>
+                <li><a onclick="showOnlySection('contact')">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section - ONLY THIS HAS ACTIVE CLASS INITIALLY -->
+    <!-- ========== ALL SECTIONS – ONLY ONE ACTIVE AT A TIME ========== -->
+    <!-- HOME (HERO) - active by default -->
     <section id="home" class="section hero active">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="video/WhatsApp Video 2026-01-24 at 6.09.19 PM.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
-        <div class="hero-overlay"></div>
         <div class="container hero-content">
             <h1>Progress Jesutomiwa Giwa</h1>
             <p class="hero-tagline">Visual Artist & Environmental Advocate</p>
             <p class="mb-2">Using Art as a universal language and a tool for environmental action</p>
             <div class="hero-cta">
-                <a href="#" onclick="showSection('gallery')" class="btn">Explore My Work</a>
-                <a href="#" onclick="showSection('contact')" class="btn btn-outline">Commission Art</a>
+                <a onclick="showOnlySection('gallery')" class="btn">Explore My Work</a>
+                <a onclick="showOnlySection('contact')" class="btn btn-outline">Commission Art</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section - NO ACTIVE CLASS -->
+    <!-- ABOUT -->
     <section id="about" class="section about-section">
-        <div class="container about-container fade-in">
+        <div class="container about-container">
             <div class="about-image">
                 <img src="img1/progress giwa.jpeg" alt="Progress Giwa - Artist Portrait">
             </div>
@@ -1495,7 +735,6 @@
                 <p>He emerged as the winner of the Arts for Change Foundation Competition (2024 edition) and the Grand Winner of the Art Star Competition for environmental awareness organized by TwelveBrassStreet Atlanta, USA (2025). He also won the Lagos Has Talent – Climate Edition(2025), further affirming his voice as an artist with purpose.</p>
                 <p>In recognition of his contributions to environmental sustainability, Progress was appointed as the Youth Ambassador of the Lagos State Ministry of Environment.</p>
                 <p>Beyond creating in the studio, he is the founder of Susty creative hub where he runs initiative like The Recycle Art Tour an artistic initiative, using art as a tool to raise awareness about environmental issues—extending impact far beyond the studio walls in community, schools and organizations.</p>
-                <p>His passion for environmental art and commitment to youth development continue to position him as a leading voice at the intersection of art, sustainability, and social impact.</p>
                 <div class="text-center mt-3">
                     <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Click Here</a>
                 </div>
@@ -1503,89 +742,57 @@
         </div>
     </section>
 
-    <!-- Gallery Section - NO ACTIVE CLASS (Hidden until Gallery link clicked) -->
+    <!-- GALLERY (slideshow) -->
     <section id="gallery" class="section gallery-section">
         <div class="container">
             <h2 class="section-title">Artwork Gallery</h2>
-            <p class="gallery-subtitle">A visual journey through environmental art created from recycled materials. Explore the intersection of sustainability and creativity.</p>
-            
-            <!-- Slideshow Container -->
+            <p class="gallery-subtitle">A visual journey through environmental art created from recycled materials.</p>
             <div class="slideshow-container">
-                <!-- Slides -->
-                <div class="slideshow" id="slideshow">
-                    <!-- Slides will be dynamically inserted here -->
-                </div>
-                
-                <!-- Slide Number -->
+                <div class="slideshow" id="slideshow"></div>
                 <div class="slide-number" id="slideNumber">1 / 22</div>
-                
-                <!-- Navigation Buttons -->
                 <div class="slideshow-nav">
-                    <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous slide">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="nav-btn next-btn" id="nextBtn" aria-label="Next slide">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                    <button class="nav-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
                 </div>
-                
-                <!-- Dots Indicator -->
-                <div class="slideshow-dots" id="slideshowDots">
-                    <!-- Dots will be dynamically inserted here -->
-                </div>
+                <div class="slideshow-dots" id="slideshowDots"></div>
             </div>
-            
-            <!-- Controls -->
             <div class="slideshow-controls">
-                <button class="control-btn" id="playPauseBtn">
-                    <i class="fas fa-pause"></i> Pause Slideshow
-                </button>
-                <button class="control-btn" onclick="openFullscreen()">
-                    <i class="fas fa-expand"></i> Fullscreen
-                </button>
+                <button class="control-btn" id="playPauseBtn"><i class="fas fa-pause"></i> Pause</button>
+                <button class="control-btn" onclick="openFullscreen()"><i class="fas fa-expand"></i> Fullscreen</button>
             </div>
-            
-            <!-- Thumbnail Navigation -->
-            <div class="thumbnail-container" id="thumbnailContainer">
-                <!-- Thumbnails will be dynamically inserted here -->
-            </div>
-            
-            <!-- Gallery Info -->
-            <div class="gallery-info fade-in">
+            <div class="thumbnail-container" id="thumbnailContainer"></div>
+            <div class="gallery-info" style="text-align:center; margin-top:30px; padding:20px; background:white; border-radius:8px;">
                 <h3>About the Collection</h3>
-                <p>This collection showcases Progress Giwa's environmental art created from recycled materials. Each piece tells a story of sustainability, marine conservation, and the transformative power of creativity in addressing environmental challenges.</p>
+                <p>Waste to luxury — each piece tells a story of marine conservation, recycled materials and hope.</p>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section - NO ACTIVE CLASS -->
+    <!-- PROJECTS -->
     <section id="projects" class="section projects-section">
         <div class="container">
             <h2 class="section-title">Projects & Impact</h2>
-            
             <div class="project-grid">
-                <div class="project-card fade-in">
+                <div class="project-card">
                     <div class="project-image">
                         <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Recycle Art Tour">
                     </div>
                     <div class="project-content">
                         <h3>Recycle Art Tour</h3>
-                        <p>A nationwide initiative bringing environmental education and art workshops to schools and communities across Nigeria.</p>
+                        <p>Nationwide initiative bringing environmental education and art workshops.</p>
                         <div class="sdg-badges">
                             <span class="sdg-badge">SDG 4: Quality Education</span>
                             <span class="sdg-badge">SDG 11: Sustainable Cities</span>
-                            <span class="sdg-badge">SDG 12: Responsible Consumption</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="project-card fade-in">
+                <div class="project-card">
                     <div class="project-image">
                         <img src="img1/PXL_20251031_114834762.jpg" alt="Backpack of Hope">
                     </div>
                     <div class="project-content">
                         <h3>Backpack of Hope</h3>
-                        <p>Providing eco-friendly school bags made from recycled materials to underprivileged children while teaching sustainability.</p>
+                        <p>Eco-friendly school bags from recycled materials for underprivileged children.</p>
                         <div class="sdg-badges">
                             <span class="sdg-badge">SDG 1: No Poverty</span>
                             <span class="sdg-badge">SDG 4: Quality Education</span>
@@ -1596,145 +803,87 @@
         </div>
     </section>
 
-    <!-- Exhibitions Section - NO ACTIVE CLASS -->
+    <!-- EXHIBITIONS & MEDIA -->
     <section id="exhibitions" class="section exhibitions-section">
         <div class="container">
             <h2 class="section-title">Exhibitions & Media</h2>
-            
             <div class="exhibition-timeline">
-                <div class="exhibition-item fade-in">
-                    <p>- Kongi @90: Wole Soyinka in the Lens of an Artist (June 12 Cultural Centre, Abeokuta) - 11th - 12th July, 2024</p>
+                <div class="exhibition-item"><p>• Kongi @90: Wole Soyinka in the Lens of an Artist (July 2024)</p></div>
+                <div class="exhibition-item"><p>• Creative Bloc Carnival (Oct 2024)</p></div>
+                <div class="exhibition-item"><p>• Global Entrepreneurship Festival Art Fair (Nov 2024)</p></div>
+                <div class="exhibition-item"><p>• Debut solo: Waste to Luxury (June 2025)</p></div>
+                <div class="exhibition-item"><p>• Africa climate stories festival (June 2025)</p></div>
+            </div>
+            <div class="media-features">
+                <h3 class="text-center">Media Features</h3>
+                <p class="text-center">• Vanguard News Feature   • Punch Newspaper 'Before Stardom'</p>
+                <div class="text-center mb-2">
+                    <a href="https://youtu.be/yCHjwD5YoUU?si=Jl2c0HQQN85NyyLC" target="_blank" class="btn">Watch Interview</a>
+                    <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
                 </div>
-                
-                <div class="exhibition-item fade-in">
-                    <p>- Creative Bloc Carnival (Muri Okunola Park, Ikoyi) - 5th Oct, 2024</p>
+                <!-- Picture slideshow inside exhibitions -->
+                <div class="picture-slide" id="pictureSlide">
+                    <img src="img/WhatsApp Image 2026-02-02 at 2.56.29 PM.jpeg" alt="slide1" class="is-active">
+                    <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM (1).jpeg" alt="slide2">
+                    <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM.jpeg" alt="slide3">
+                    <img src="img/WhatsApp Image 2026-02-02 at 2.56.31 PM.jpeg" alt="slide4">
+                    <img src="img/last.jpg" alt="slide5">
+                    <button class="slide-nav prev-slide">‹</button>
+                    <button class="slide-nav next-slide">›</button>
+                    <div class="picture-slide__dots"></div>
                 </div>
-                
-                <div class="exhibition-item fade-in">
-                    <p>- Global Entrepreneurship Festival, Art Fair (Entrepreneurship Village, Akure) - 22nd - 24th Nov, 2024</p>
-                </div>
-
-                <div class="exhibition-item fade-in">
-                    <p>Debut solo exhibition, Waste to Luxury ( Business Club, Ikeja) - 20th June, 2025</p>
-                </div>
-
-                <div class="exhibition-item fade-in">
-                    <p>Africa climate stories festival (Alliance Française de Lagos) - 26th June 2025</p>
-                </div>
-                
-                <div class="media-features mt-3">
-                    <h3>Media Features</h3>
-                    <p class="mt-1">• Vanguard News Feature: " Progress Giwa"</p>
-                    <div class="text-center mb-2">
-                        <a href="https://youtu.be/yCHjwD5YoUU?si=Jl2c0HQQN85NyyLC" target="_blank" class="btn">Watch Interview</a>
-                    </div>
-                    <p class="mt-1">• Punch Newspaper Feature: "Before Stardom with Progress Giwa"</p>
-                    <div class="text-center mb-2">
-                        <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
-                    </div>
-                    <p>• TVC Interview on Environmental Art</p>
-                    <div class="text-center mb-2">
-                        <a href="https://www.instagram.com/reel/DN3Oqg8WKfw/?igsh=MTYwZmY4cWh1eWkxdA==" target="_blank" class="btn">Watch Interview</a>
-                    </div>
-                    <img src="img/Lagos_Seal.svg.png" 
-                         alt="Lagos State Seal" 
-                         width="200"
-                         style="display: block; margin: 20px auto; max-width: 100%; height: auto;">
-                    
-                    <p>• Lagos State Ministry of Environment Partnership Feature</p>
-
-                    <!-- Picture Slideshow -->
-                    <div class="picture-slide" id="pictureSlide">
-                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.29 PM.jpeg" alt="Slide 1 - Professional Meeting" class="is-active">
-                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM (1).jpeg" alt="Slide 2 - Team Collaboration">
-                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.30 PM.jpeg" alt="Slide 3 - Office Environment">
-                        <img src="img/WhatsApp Image 2026-02-02 at 2.56.31 PM.jpeg" alt="Slide 4 - Presentation">
-                        <img src="img/last.jpg" alt="Slide 5 - Presentation">
-                        
-                        <button class="slide-nav prev-slide" aria-label="Previous slide">‹</button>
-                        <button class="slide-nav next-slide" aria-label="Next slide">›</button>
-                        
-                        <div class="picture-slide__dots" aria-hidden="true"></div>
-                    </div>
-                </div>
+                <p class="text-center mt-2">Lagos State Ministry of Environment – Youth Ambassador</p>
             </div>
         </div>
     </section>
 
-    <!-- Collaborate Section - NO ACTIVE CLASS -->
+    <!-- COLLABORATE -->
     <section id="collaborate" class="section collaborate-section">
         <div class="container">
             <h2 class="section-title">Collaborate</h2>
             <p class="text-center mb-3">Let's create meaningful art and impact together</p>
-            
             <div class="collab-options">
-                <div class="collab-option fade-in">
-                    <div class="collab-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
+                <div class="collab-option">
+                    <div class="collab-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>Commissions</h3>
-                    <p>Custom artworks for private collectors, institutions, and corporate spaces</p>
+                    <p>Custom artworks for collectors, institutions, corporate spaces</p>
                 </div>
-                
-                <div class="collab-option fade-in">
-                    <div class="collab-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
+                <div class="collab-option">
+                    <div class="collab-icon"><i class="fas fa-calendar-alt"></i></div>
                     <h3>Exhibitions</h3>
-                    <p>Solo or group exhibitions in galleries, museums, and alternative spaces</p>
+                    <p>Solo or group exhibitions in galleries, museums</p>
                 </div>
-                
-                <div class="collab-option fade-in">
-                    <div class="collab-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
+                <div class="collab-option">
+                    <div class="collab-icon"><i class="fas fa-users"></i></div>
                     <h3>Workshops</h3>
-                    <p>Environmental art workshops for schools, communities, and organizations</p>
+                    <p>Environmental art workshops for schools, communities</p>
                 </div>
-                
-                <div class="collab-option fade-in">
-                    <div class="collab-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
+                <div class="collab-option">
+                    <div class="collab-icon"><i class="fas fa-handshake"></i></div>
                     <h3>Partnerships</h3>
-                    <p>Collaborations with NGOs, environmental organizations, and brands</p>
+                    <p>NGOs, environmental orgs, sustainable brands</p>
                 </div>
             </div>
-            
             <div class="text-center mt-3">
-                <a href="#" onclick="showSection('contact')" class="btn">Start a Collaboration</a>
+                <a onclick="showOnlySection('contact')" class="btn">Start a Collaboration</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section - NO ACTIVE CLASS -->
+    <!-- CONTACT -->
     <section id="contact" class="section contact-section">
         <div class="container contact-container">
             <h2 class="section-title">Contact</h2>
-            
-            <!-- Contact Method Selector -->
             <div class="contact-method-selector">
                 <div class="method-buttons">
-                    <button type="button" class="method-btn active" data-method="email" id="emailMethodBtn">
-                        <i class="fas fa-envelope"></i> Email
-                    </button>
-                    <button type="button" class="method-btn" data-method="whatsapp" id="whatsappMethodBtn">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </button>
+                    <button type="button" class="method-btn active" data-method="email" id="emailMethodBtn"><i class="fas fa-envelope"></i> Email</button>
+                    <button type="button" class="method-btn" data-method="whatsapp" id="whatsappMethodBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
                 </div>
                 <p class="method-hint" id="methodHint">Send message via Email to Progress Giwa</p>
             </div>
-            
-            <!-- Contact Form -->
-            <form class="contact-form fade-in" id="contactForm">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-                </div>
-                
+            <form class="contact-form" id="contactForm">
+                <div class="form-group"><input type="text" id="name" name="name" placeholder="Your Full Name" required></div>
+                <div class="form-group"><input type="email" id="email" name="email" placeholder="Your Email Address" required></div>
                 <div class="form-group">
                     <select id="purpose" name="purpose" required>
                         <option value="">Purpose of Inquiry</option>
@@ -1746,765 +895,306 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                
-                <div class="form-group">
-                    <textarea id="message" name="message" rows="5" placeholder="Your detailed message..." required></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="submitBtn">
-                    <i class="fas fa-envelope"></i> Send via Email
-                </button>
-                
-                <p class="contact-note">
-                    You'll be redirected to Gmail/WhatsApp to send your message directly to Progress Giwa
-                </p>
+                <div class="form-group"><textarea id="message" name="message" rows="5" placeholder="Your detailed message..." required></textarea></div>
+                <button type="submit" class="btn" id="submitBtn"><i class="fas fa-envelope"></i> Send via Email</button>
+                <p class="contact-note">You'll be redirected to Gmail/WhatsApp to message Progress Giwa directly</p>
             </form>
-            
-            <!-- Direct Contact Links -->
             <div class="social-links">
-                <a href="https://wa.me/2348123456789?text=Hello%20Progress%20Giwa%2C%20I%20would%20like%20to%20get%20in%20touch%20about%20your%20artwork" 
-                   class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://www.instagram.com/pjaygiwa/" class="social-link instagram" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/PJayGiwa" class="social-link linktree" target="_blank" aria-label="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-                <a href="mailto:giwaprogresstomiwa@gmail.com?subject=Inquiry%20from%20Website" 
-                   class="social-link email" target="_blank" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
+                <a href="https://wa.me/2348123456789?text=Hello%20Progress%20Giwa%2C%20I%20would%20like%20to%20get%20in%20touch" class="social-link whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/pjaygiwa/" class="social-link instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linktr.ee/PJayGiwa" class="social-link linktree" target="_blank"><i class="fas fa-link"></i></a>
+                <a href="mailto:giwaprogresstomiwa@gmail.com?subject=Inquiry%20from%20Website" class="social-link email" target="_blank"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER (also has navigation triggers) -->
     <footer class="main-footer">
         <div class="container">
-            <div class="logo" onclick="showSection('home')" style="cursor: pointer;">
-                <i class="fas fa-palette"></i>
-                Progress Giwa
+            <div class="logo" onclick="showOnlySection('home')" style="justify-content:center; margin-bottom:1rem; cursor:pointer;">
+                <i class="fas fa-palette"></i> Progress Giwa
             </div>
-            
             <div class="footer-links">
-                <a href="#" onclick="showSection('about')">About</a>
-                <a href="#" onclick="showSection('gallery')">Gallery</a>
-                <a href="#" onclick="showSection('projects')">Projects</a>
-                <a href="#" onclick="showSection('collaborate')">Collaborate</a>
-                <a href="#" onclick="showSection('contact')">Contact</a>
+                <a onclick="showOnlySection('about')">About</a>
+                <a onclick="showOnlySection('gallery')">Gallery</a>
+                <a onclick="showOnlySection('projects')">Projects</a>
+                <a onclick="showOnlySection('collaborate')">Collaborate</a>
+                <a onclick="showOnlySection('contact')">Contact</a>
             </div>
-            
-            <p class="copyright">
-                &copy; 2024 Progress Giwa. Visual Artist & Environmental Advocate.<br>
-                All artworks and content are protected by copyright.
-            </p>
+            <p class="copyright">&copy; 2024 Progress Giwa. Visual Artist & Environmental Advocate.<br>All artworks and content are protected.</p>
         </div>
     </footer>
 
     <script>
-        // Main navigation function
-        function showSection(sectionId) {
-            console.log('Showing section:', sectionId);
-            
-            // Hide all sections by removing active class
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show the selected section by adding active class
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                console.log('Now active section:', targetSection.id);
-                
-                // Scroll to top for better UX
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // If gallery section is shown, initialize slideshow
-                if (sectionId === 'gallery' && typeof initGallerySlideshow === 'function') {
-                    initGallerySlideshow();
+        // -------------------------------------------------------------
+        //  CORE: ONLY ONE SECTION VISIBLE – HOME ACTIVE = only hero shows
+        //  Clicking "Home" makes ONLY #home visible, all others hidden.
+        //  All interactive elements (slideshows, contact) work within active section.
+        // -------------------------------------------------------------
+        (function() {
+            "use strict";
+
+            // ---------- GLOBAL SECTION CONTROLLER ----------
+            window.showOnlySection = function(sectionId) {
+                // remove 'active' from all sections
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(sec => sec.classList.remove('active'));
+
+                // add 'active' to target section
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    target.classList.add('active');
+                    // small delay to allow slideshow init if gallery becomes active
+                    if (sectionId === 'gallery') {
+                        setTimeout(() => { if (typeof initGallerySlideshow === 'function') initGallerySlideshow(); }, 30);
+                    }
+                    if (sectionId === 'exhibitions') {
+                        setTimeout(() => { if (typeof initPictureSlide === 'function') initPictureSlide(); }, 30);
+                    }
                 }
-            }
-            
-            // Close mobile menu if open
-            const navMenu = document.getElementById('navMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        }
 
-        // Gallery Slideshow Data
-        const galleryData = [
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg",
-                title: "Environmental Consciousness",
-                description: "2025 | Mixed Media | Recycled Plastic & Acrylic"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg",
-                title: "Ocean Memories",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg",
-                title: "Sustainable Visions",
-                description: "2025 | Mixed Media | Recycled Plastic & Paper"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg",
-                title: "Marine Life",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg",
-                title: "Eco-System",
-                description: "2025 | Mixed Media | Recycled Plastic & Wood"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg",
-                title: "Plastic Transformation",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg",
-                title: "Environmental Harmony",
-                description: "2025 | Mixed Media | Recycled Plastic & Metal"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg",
-                title: "Sustainable Future",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/PXL_20251031_114810188.jpg",
-                title: "Waste to Luxury",
-                description: "2025 | Mixed Media | Solo Exhibition Piece"
-            },
-            {
-                src: "img1/PXL_20251031_114813535.jpg",
-                title: "Marine Conservation",
-                description: "2025 | Mixed Media | Recycled Ocean Plastic"
-            },
-            {
-                src: "img1/PXL_20251031_114834762.jpg",
-                title: "Backpack of Hope",
-                description: "2025 | Mixed Media | Recycled Materials Project"
-            },
-            {
-                src: "img1/PXL_20251031_124712843.PORTRAIT.jpg",
-                title: "Environmental Advocacy",
-                description: "2025 | Mixed Media | Recycled Plastic & Textile"
-            },
-            {
-                src: "img1/PXL_20251115_130802532.PORTRAIT.jpg",
-                title: "Sustainable Art",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/PXL_20251115_130957502.jpg",
-                title: "Eco-Creativity",
-                description: "2025 | Mixed Media | Recycled Plastic"
-            },
-            {
-                src: "img1/PXL_20251115_131001049.PORTRAIT.jpg",
-                title: "Environmental Message",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/PXL_20251115_151828907.PORTRAIT.jpg",
-                title: "Art for Change",
-                description: "2025 | Mixed Media | Recycled Plastic & Acrylic"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg",
-                title: "Recycled Beauty",
-                description: "2025 | Mixed Media | Environmental Art"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg",
-                title: "Sustainable Expression",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg",
-                title: "Eco-Art",
-                description: "2025 | Mixed Media | Recycled Plastic"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg",
-                title: "Environmental Storytelling",
-                description: "2025 | Mixed Media | Recycled Materials"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg",
-                title: "Sustainable Vision",
-                description: "2025 | Mixed Media | Recycled Plastic & Wood"
-            },
-            {
-                src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg",
-                title: "Art for Sustainability",
-                description: "2025 | Mixed Media | Recycled Materials"
-            }
-        ];
-
-        // Gallery Slideshow Variables
-        let currentSlide = 0;
-        let slideshowInterval;
-        let isPlaying = true;
-        const slideDuration = 4000;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navMenu = document.getElementById('navMenu');
-
-            mobileMenuBtn.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
-                    ? '<i class="fas fa-times"></i>'
-                    : '<i class="fas fa-bars"></i>';
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideNav = navMenu.contains(event.target);
-                const isClickOnMenuBtn = mobileMenuBtn.contains(event.target);
-                
-                if (!isClickInsideNav && !isClickOnMenuBtn && navMenu.classList.contains('active')) {
+                // close mobile menu if open
+                const navMenu = document.getElementById('navMenu');
+                const mobileBtn = document.getElementById('mobileMenuBtn');
+                if (navMenu && navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    if (mobileBtn) mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 }
-            });
+                // scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
 
-            // Contact Form Functionality
-            setupContactForm();
-            
-            // Scroll Animations
-            const fadeElements = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+            // ---------- MOBILE MENU ----------
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            if (mobileBtn && navMenu) {
+                mobileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                    mobileBtn.innerHTML = navMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+                document.addEventListener('click', function(e) {
+                    if (!navMenu.contains(e.target) && !mobileBtn.contains(e.target) && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Initialize Picture Slideshow (for exhibitions section)
-            initPictureSlideshow();
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                // Reinitialize slideshows on resize
-                if (document.getElementById('gallery').classList.contains('active')) {
-                    initGallerySlideshow();
-                }
-            });
-        });
-
-        // Contact Form Setup
-        function setupContactForm() {
-            let selectedMethod = 'email';
-            const emailMethodBtn = document.getElementById('emailMethodBtn');
-            const whatsappMethodBtn = document.getElementById('whatsappMethodBtn');
-            const methodHint = document.getElementById('methodHint');
-            const submitBtn = document.getElementById('submitBtn');
-            const contactForm = document.getElementById('contactForm');
-
-            // Method selection
-            emailMethodBtn.addEventListener('click', function() {
-                selectedMethod = 'email';
-                updateMethodSelection();
-            });
-
-            whatsappMethodBtn.addEventListener('click', function() {
-                selectedMethod = 'whatsapp';
-                updateMethodSelection();
-            });
-
-            function updateMethodSelection() {
-                // Update active button
-                emailMethodBtn.classList.toggle('active', selectedMethod === 'email');
-                whatsappMethodBtn.classList.toggle('active', selectedMethod === 'whatsapp');
-                
-                // Update hint and button text
-                if (selectedMethod === 'email') {
-                    methodHint.textContent = 'Send message via Email to Progress Giwa';
-                    submitBtn.innerHTML = '<i class="fas fa-envelope"></i> Send via Email';
-                } else {
-                    methodHint.textContent = 'Send message via WhatsApp to Progress Giwa';
-                    submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Send via WhatsApp';
-                }
             }
 
-            // Form submission
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const purpose = document.getElementById('purpose').value;
-                const message = document.getElementById('message').value.trim();
-                
-                // Validation
-                if (!name || !email || !purpose || !message) {
-                    alert('Please fill in all fields');
+            // ---------- GALLERY DATA & SLIDESHOW ----------
+            const galleryData = [
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg", title: "Environmental Consciousness", desc: "2025 | Mixed Media | Recycled Plastic" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg", title: "Ocean Memories", desc: "2025 | Mixed Media" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg", title: "Sustainable Visions", desc: "2025 | Mixed Media" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg", title: "Marine Life", desc: "2025 | Recycled Materials" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg", title: "Eco-System", desc: "2025 | Mixed Media" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg", title: "Plastic Transformation", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg", title: "Environmental Harmony", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg", title: "Sustainable Future", desc: "2025" },
+                { src: "img1/PXL_20251031_114810188.jpg", title: "Waste to Luxury", desc: "2025 Solo Exhibition" },
+                { src: "img1/PXL_20251031_114813535.jpg", title: "Marine Conservation", desc: "2025" },
+                { src: "img1/PXL_20251031_114834762.jpg", title: "Backpack of Hope", desc: "2025" },
+                { src: "img1/PXL_20251031_124712843.PORTRAIT.jpg", title: "Environmental Advocacy", desc: "2025" },
+                { src: "img1/PXL_20251115_130802532.PORTRAIT.jpg", title: "Sustainable Art", desc: "2025" },
+                { src: "img1/PXL_20251115_130957502.jpg", title: "Eco-Creativity", desc: "2025" },
+                { src: "img1/PXL_20251115_131001049.PORTRAIT.jpg", title: "Environmental Message", desc: "2025" },
+                { src: "img1/PXL_20251115_151828907.PORTRAIT.jpg", title: "Art for Change", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg", title: "Recycled Beauty", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg", title: "Sustainable Expression", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg", title: "Eco-Art", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg", title: "Environmental Storytelling", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg", title: "Sustainable Vision", desc: "2025" },
+                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg", title: "Art for Sustainability", desc: "2025" }
+            ];
+
+            let currentSlide = 0;
+            let autoInterval;
+            let isPlaying = true;
+
+            window.initGallerySlideshow = function() {
+                const slidesEl = document.getElementById('slideshow');
+                const dotsEl = document.getElementById('slideshowDots');
+                const thumbEl = document.getElementById('thumbnailContainer');
+                if (!slidesEl) return;
+                // prevent re-building if already built and visible
+                if (slidesEl.children.length === galleryData.length) {
+                    // already built, just ensure active
                     return;
                 }
+                slidesEl.innerHTML = ''; dotsEl.innerHTML = ''; thumbEl.innerHTML = '';
 
-                // Email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address');
-                    return;
-                }
+                galleryData.forEach((item, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = `slide ${idx === 0 ? 'active' : ''}`;
+                    slide.innerHTML = `<img src="${item.src}" alt="${item.title}" class="slide-image" loading="lazy">
+                                       <div class="slide-content"><h3>${item.title}</h3><p>${item.desc}</p></div>`;
+                    slidesEl.appendChild(slide);
 
-                if (selectedMethod === 'email') {
-                    sendViaEmail(name, email, purpose, message);
-                } else {
-                    sendViaWhatsApp(name, email, purpose, message);
-                }
+                    const dot = document.createElement('div');
+                    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+                    dot.addEventListener('click', () => goToSlide(idx));
+                    dotsEl.appendChild(dot);
 
-                // Clear form
-                this.reset();
-            });
-        }
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumbnail ${idx === 0 ? 'active' : ''}`;
+                    thumb.innerHTML = `<img src="${item.src}" alt="thumb" loading="lazy">`;
+                    thumb.addEventListener('click', () => goToSlide(idx));
+                    thumbEl.appendChild(thumb);
+                });
+                document.getElementById('slideNumber').innerText = `1 / ${galleryData.length}`;
+                currentSlide = 0;
+                startAuto();
+            };
 
-        // Send via Email function
-        function sendViaEmail(name, email, purpose, message) {
-            // Progress Giwa's email
-            const yourEmail = "giwaprogresstomiwa@gmail.com";
-            
-            // Create email subject and body
-            const subject = `Website Inquiry: ${purpose} - ${name}`;
-            const body = `
-Dear Progress Giwa,
+            function goToSlide(index) {
+                const slides = document.querySelectorAll('.slide');
+                const dots = document.querySelectorAll('.dot');
+                const thumbs = document.querySelectorAll('.thumbnail');
+                if (!slides.length) return;
+                slides.forEach(s => s.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                thumbs.forEach(t => t.classList.remove('active'));
 
-I am contacting you through your website.
-
-My Details:
-• Name: ${name}
-• Email: ${email}
-• Purpose: ${purpose}
-
-My Message:
-${message}
-
----
-This message was sent from your website contact form.
-            `.trim();
-            
-            // Encode for URL
-            const encodedSubject = encodeURIComponent(subject);
-            const encodedBody = encodeURIComponent(body);
-            
-            // Create Gmail compose URL
-            const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${yourEmail}&su=${encodedSubject}&body=${encodedBody}`;
-            
-            // Open Gmail in a new tab
-            const newWindow = window.open(gmailURL, '_blank');
-            
-            if (newWindow) {
-                alert('Opening Gmail to send your message to Progress Giwa...');
-            } else {
-                // If popup blocked, fallback to mailto
-                const mailtoURL = `mailto:${yourEmail}?subject=${encodedSubject}&body=${encodedBody}`;
-                window.location.href = mailtoURL;
-                alert('Please check your email client to send the message to Progress Giwa.');
+                slides[index]?.classList.add('active');
+                dots[index]?.classList.add('active');
+                thumbs[index]?.classList.add('active');
+                currentSlide = index;
+                document.getElementById('slideNumber').innerText = `${index+1} / ${galleryData.length}`;
             }
-        }
 
-        // Send via WhatsApp function
-        function sendViaWhatsApp(name, email, purpose, message) {
-            // Replace with Progress Giwa's WhatsApp number (with country code, no +)
-            const phoneNumber = "2348123456789"; // Example: replace with actual number
-            
-            const whatsappMessage = `
-*NEW WEBSITE INQUIRY*
+            function nextSlide() { goToSlide((currentSlide + 1) % galleryData.length); }
+            function prevSlide() { goToSlide((currentSlide - 1 + galleryData.length) % galleryData.length); }
 
-*From:* ${name}
-*Email:* ${email}
-*Purpose:* ${purpose}
-
-*Message:*
-${message}
-
----
-Sent from Progress Giwa Website
-            `.trim();
-            
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
-            // Open WhatsApp in a new tab
-            const newWindow = window.open(whatsappURL, '_blank');
-            
-            if (newWindow) {
-                alert('Opening WhatsApp to send your message...');
-            } else {
-                alert('Please check if WhatsApp is installed on your device.');
+            function startAuto() {
+                if (autoInterval) clearInterval(autoInterval);
+                autoInterval = setInterval(nextSlide, 4000);
+                isPlaying = true;
+                const btn = document.getElementById('playPauseBtn');
+                if (btn) btn.innerHTML = '<i class="fas fa-pause"></i> Pause';
             }
-        }
+            function pauseAuto() {
+                clearInterval(autoInterval);
+                isPlaying = false;
+                const btn = document.getElementById('playPauseBtn');
+                if (btn) btn.innerHTML = '<i class="fas fa-play"></i> Play';
+            }
 
-        // Initialize Gallery Slideshow - ONLY CALLED WHEN GALLERY SECTION IS ACTIVE
-        function initGallerySlideshow() {
-            console.log('Initializing gallery slideshow');
-            
-            const slideshow = document.getElementById('slideshow');
-            const dotsContainer = document.getElementById('slideshowDots');
-            const thumbnailContainer = document.getElementById('thumbnailContainer');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const slideNumber = document.getElementById('slideNumber');
+            // gallery event listeners
+            function bindGalleryControls() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const playBtn = document.getElementById('playPauseBtn');
+                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); pauseAuto(); startAuto(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); pauseAuto(); startAuto(); });
+                if (playBtn) playBtn.addEventListener('click', function() { isPlaying ? pauseAuto() : startAuto(); });
+            }
 
-            // Clear existing content
-            slideshow.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            thumbnailContainer.innerHTML = '';
-
-            // Create slides, dots, and thumbnails
-            galleryData.forEach((item, index) => {
-                // Create slide
-                const slide = document.createElement('div');
-                slide.className = `slide ${index === 0 ? 'active' : ''}`;
-                slide.innerHTML = `
-                    <img src="${item.src}" alt="${item.title}" class="slide-image" loading="lazy">
-                    <div class="slide-content">
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
-                    </div>
-                `;
-                slideshow.appendChild(slide);
-
-                // Create dot
-                const dot = document.createElement('div');
-                dot.className = `dot ${index === 0 ? 'active' : ''}`;
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-
-                // Create thumbnail
-                const thumbnail = document.createElement('div');
-                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-                thumbnail.innerHTML = `<img src="${item.src}" alt="Thumbnail ${index + 1}" loading="lazy">`;
-                thumbnail.addEventListener('click', () => goToSlide(index));
-                thumbnailContainer.appendChild(thumbnail);
-            });
-
-            // Event Listeners
-            prevBtn.addEventListener('click', showPrevSlide);
-            nextBtn.addEventListener('click', showNextSlide);
-
-            playPauseBtn.addEventListener('click', function() {
-                if (isPlaying) {
-                    pauseSlideshow();
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
-                } else {
-                    startSlideshow();
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
+            // ---------- PICTURE SLIDESHOW (exhibitions) ----------
+            window.initPictureSlide = function() {
+                const pictureSlide = document.getElementById('pictureSlide');
+                if (!pictureSlide) return;
+                const imgs = Array.from(pictureSlide.querySelectorAll('img'));
+                const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
+                const prev = pictureSlide.querySelector('.prev-slide');
+                const nxt = pictureSlide.querySelector('.next-slide');
+                if (!imgs.length) return;
+                // clear and rebuild dots to avoid duplicates
+                dotsWrap.innerHTML = '';
+                let currentPic = 0;
+                const dots = imgs.map((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'picture-slide__dot';
+                    dotsWrap.appendChild(dot);
+                    return dot;
+                });
+                function showPic(idx) {
+                    idx = (idx + imgs.length) % imgs.length;
+                    imgs.forEach((img, i) => img.classList.toggle('is-active', i === idx));
+                    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
+                    currentPic = idx;
                 }
-            });
+                showPic(0);
+                let picInterval = setInterval(() => showPic(currentPic+1), 4000);
+                const resetInterval = () => { clearInterval(picInterval); picInterval = setInterval(() => showPic(currentPic+1), 4000); };
+                pictureSlide.addEventListener('mouseenter', () => clearInterval(picInterval));
+                pictureSlide.addEventListener('mouseleave', resetInterval);
+                if (prev) prev.addEventListener('click', () => { showPic(currentPic-1); clearInterval(picInterval); resetInterval(); });
+                if (nxt) nxt.addEventListener('click', () => { showPic(currentPic+1); clearInterval(picInterval); resetInterval(); });
+                dots.forEach((dot, i) => dot.addEventListener('click', () => { showPic(i); clearInterval(picInterval); resetInterval(); }));
+            };
 
-            // Touch events for mobile swipe
-            let touchStartX = 0;
-            let touchEndX = 0;
+            // ---------- CONTACT METHOD ----------
+            function initContact() {
+                const emailBtn = document.getElementById('emailMethodBtn');
+                const waBtn = document.getElementById('whatsappMethodBtn');
+                const hint = document.getElementById('methodHint');
+                const submitBtn = document.getElementById('submitBtn');
+                const form = document.getElementById('contactForm');
+                let method = 'email';
 
-            slideshow.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
+                if (emailBtn && waBtn) {
+                    emailBtn.addEventListener('click', () => {
+                        method = 'email';
+                        emailBtn.classList.add('active'); waBtn.classList.remove('active');
+                        hint.innerText = 'Send message via Email to Progress Giwa';
+                        submitBtn.innerHTML = '<i class="fas fa-envelope"></i> Send via Email';
+                    });
+                    waBtn.addEventListener('click', () => {
+                        method = 'whatsapp';
+                        waBtn.classList.add('active'); emailBtn.classList.remove('active');
+                        hint.innerText = 'Send message via WhatsApp to Progress Giwa';
+                        submitBtn.innerHTML = '<i class="fab fa-whatsapp"></i> Send via WhatsApp';
+                    });
+                }
 
-            slideshow.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
+                form?.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name')?.value.trim() || '';
+                    const email = document.getElementById('email')?.value.trim() || '';
+                    const purpose = document.getElementById('purpose')?.value || '';
+                    const message = document.getElementById('message')?.value.trim() || '';
+                    if (!name || !email || !purpose || !message) return alert('Please fill all fields');
 
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
-
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe left - next slide
-                        showNextSlide();
+                    if (method === 'email') {
+                        const to = 'giwaprogresstomiwa@gmail.com';
+                        const subject = `Website Inquiry: ${purpose} - ${name}`;
+                        const body = `Name: ${name}%0AEmail: ${email}%0APurpose: ${purpose}%0AMessage: ${message}`;
+                        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(subject)}&body=${body}`, '_blank');
                     } else {
-                        // Swipe right - previous slide
-                        showPrevSlide();
+                        const phone = '2348123456789';
+                        const text = `*New Inquiry*%0AName: ${name}%0AEmail: ${email}%0APurpose: ${purpose}%0AMessage: ${message}`;
+                        window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
                     }
-                }
+                    form.reset();
+                });
             }
 
-            // Keyboard navigation for gallery section
-            document.addEventListener('keydown', (e) => {
-                const gallerySection = document.getElementById('gallery');
-                if (gallerySection && gallerySection.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') showPrevSlide();
-                    if (e.key === 'ArrowRight') showNextSlide();
-                    if (e.key === ' ') {
-                        e.preventDefault();
-                        if (isPlaying) pauseSlideshow();
-                        else startSlideshow();
-                    }
-                }
+            // fullscreen
+            window.openFullscreen = function() {
+                const el = document.querySelector('.slideshow-container');
+                if (el?.requestFullscreen) el.requestFullscreen();
+                else if (el?.webkitRequestFullscreen) el.webkitRequestFullscreen();
+                else if (el?.msRequestFullscreen) el.msRequestFullscreen();
+            };
+
+            // ---------- LOAD & INIT ----------
+            window.addEventListener('DOMContentLoaded', function() {
+                // home is active by default (hero only)
+                bindGalleryControls();
+                initContact();
+                // pre-init picture slide (but it will init properly when exhibitions becomes active)
+                setTimeout(() => { 
+                    if (document.getElementById('exhibitions').classList.contains('active')) initPictureSlide(); 
+                }, 50);
             });
 
-            // Start slideshow
-            startSlideshow();
-            updateSlideNumber();
-        }
-
-        // Gallery Slideshow Functions
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-
-            // Remove active class from all slides, dots, and thumbnails
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-
-            // Add active class to current slide, dot, and thumbnail
-            if (slides[index]) slides[index].classList.add('active');
-            if (dots[index]) dots[index].classList.add('active');
-            if (thumbnails[index]) thumbnails[index].classList.add('active');
-
-            currentSlide = index;
-            updateSlideNumber();
-        }
-
-        function showNextSlide() {
-            currentSlide = (currentSlide + 1) % galleryData.length;
-            showSlide(currentSlide);
-        }
-
-        function showPrevSlide() {
-            currentSlide = (currentSlide - 1 + galleryData.length) % galleryData.length;
-            showSlide(currentSlide);
-        }
-
-        function goToSlide(index) {
-            showSlide(index);
-        }
-
-        function startSlideshow() {
-            if (slideshowInterval) clearInterval(slideshowInterval);
-            slideshowInterval = setInterval(showNextSlide, slideDuration);
-            isPlaying = true;
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            if (playPauseBtn) {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Slideshow';
+            // if gallery active on load (unlikely), but just in case
+            if (document.getElementById('gallery').classList.contains('active')) {
+                window.initGallerySlideshow();
             }
-        }
-
-        function pauseSlideshow() {
-            clearInterval(slideshowInterval);
-            isPlaying = false;
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            if (playPauseBtn) {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Play Slideshow';
-            }
-        }
-
-        function updateSlideNumber() {
-            const slideNumber = document.getElementById('slideNumber');
-            if (slideNumber) {
-                slideNumber.textContent = `${currentSlide + 1} / ${galleryData.length}`;
-            }
-        }
-
-        // Fullscreen function
-        function openFullscreen() {
-            const slideshowContainer = document.querySelector('.slideshow-container');
-            
-            if (slideshowContainer.requestFullscreen) {
-                slideshowContainer.requestFullscreen();
-            } else if (slideshowContainer.webkitRequestFullscreen) {
-                slideshowContainer.webkitRequestFullscreen();
-            } else if (slideshowContainer.msRequestFullscreen) {
-                slideshowContainer.msRequestFullscreen();
-            }
-        }
-
-        // Exit fullscreen when ESC is pressed
-        document.addEventListener('fullscreenchange', exitHandler);
-        document.addEventListener('webkitfullscreenchange', exitHandler);
-        document.addEventListener('mozfullscreenchange', exitHandler);
-        document.addEventListener('MSFullscreenChange', exitHandler);
-
-        function exitHandler() {
-            if (!document.fullscreenElement && !document.webkitIsFullScreen && 
-                !document.mozFullScreen && !document.msFullscreenElement) {
-                // Return to normal view
-            }
-        }
-
-        // Initialize Picture Slideshow (for exhibitions section)
-        function initPictureSlideshow() {
-            const pictureSlide = document.getElementById('pictureSlide');
-            if (!pictureSlide) return;
-
-            const slides = Array.from(pictureSlide.querySelectorAll('img'));
-            const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
-            const prevBtn = pictureSlide.querySelector('.prev-slide');
-            const nextBtn = pictureSlide.querySelector('.next-slide');
-            
-            if (!slides.length) return;
-
-            // Create dots for each slide
-            const dots = slides.map(() => {
-                const dot = document.createElement('button');
-                dot.className = 'picture-slide__dot';
-                dot.setAttribute('aria-label', 'Go to slide');
-                dotsWrap.appendChild(dot);
-                return dot;
-            });
-
-            let currentIndex = 0;
-            let slideInterval;
-            const intervalMs = 4000;
-
-            // Function to show specific slide
-            function showPictureSlide(index) {
-                currentIndex = (index + slides.length) % slides.length;
-                
-                // Update slides visibility
-                slides.forEach((img, i) => {
-                    img.classList.toggle('is-active', i === currentIndex);
-                });
-                
-                // Update dots
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('is-active', i === currentIndex);
-                });
-            }
-
-            // Function to go to next slide
-            function nextPictureSlide() {
-                showPictureSlide(currentIndex + 1);
-            }
-
-            // Function to go to previous slide
-            function prevPictureSlide() {
-                showPictureSlide(currentIndex - 1);
-            }
-
-            // Initialize the picture slideshow
-            function startPictureSlideshow() {
-                // Show first slide
-                showPictureSlide(0);
-                
-                // Start automatic slideshow
-                slideInterval = setInterval(nextPictureSlide, intervalMs);
-                
-                // Pause on hover
-                pictureSlide.addEventListener('mouseenter', () => {
-                    clearInterval(slideInterval);
-                });
-                
-                // Resume when mouse leaves
-                pictureSlide.addEventListener('mouseleave', () => {
-                    clearInterval(slideInterval);
-                    slideInterval = setInterval(nextPictureSlide, intervalMs);
-                });
-                
-                // Touch events for mobile swipe
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                pictureSlide.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-
-                pictureSlide.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                });
-
-                function handleSwipe() {
-                    const swipeThreshold = 50;
-                    const diff = touchStartX - touchEndX;
-
-                    if (Math.abs(diff) > swipeThreshold) {
-                        if (diff > 0) {
-                            // Swipe left - next slide
-                            nextPictureSlide();
-                            clearInterval(slideInterval);
-                            slideInterval = setInterval(nextPictureSlide, intervalMs);
-                        } else {
-                            // Swipe right - previous slide
-                            prevPictureSlide();
-                            clearInterval(slideInterval);
-                            slideInterval = setInterval(nextPictureSlide, intervalMs);
-                        }
-                    }
-                }
-                
-                // Dot click events
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        showPictureSlide(index);
-                        clearInterval(slideInterval);
-                        slideInterval = setInterval(nextPictureSlide, intervalMs);
-                    });
-                });
-                
-                // Navigation button events
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        prevPictureSlide();
-                        clearInterval(slideInterval);
-                        slideInterval = setInterval(nextPictureSlide, intervalMs);
-                    });
-                }
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        nextPictureSlide();
-                        clearInterval(slideInterval);
-                        slideInterval = setInterval(nextPictureSlide, intervalMs);
-                    });
-                }
-            }
-
-            // Wait for images to load
-            let imagesLoaded = 0;
-            slides.forEach(img => {
-                if (img.complete) {
-                    imagesLoaded++;
-                    if (imagesLoaded === slides.length) startPictureSlideshow();
-                } else {
-                    img.addEventListener('load', () => {
-                        imagesLoaded++;
-                        if (imagesLoaded === slides.length) startPictureSlideshow();
-                    });
-                }
-            });
-
-            // Fallback start
-            setTimeout(() => {
-                if (!slideInterval) startPictureSlideshow();
-            }, 3000);
-        }
-
-        // Call initGallerySlideshow when page loads if gallery is active (shouldn't happen but as backup)
-        window.addEventListener('load', function() {
-            const gallerySection = document.getElementById('gallery');
-            if (gallerySection && gallerySection.classList.contains('active')) {
-                initGallerySlideshow();
-            }
-        });
+        })();
     </script>
 </body>
 </html>
