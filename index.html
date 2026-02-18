@@ -775,7 +775,14 @@
             <div class="project-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="Recycle Art Tour">
+                        <div class="picture-slide" id="projectSlide1">
+                            <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="slide1" class="is-active">
+                            <img src="img1/PXL_20251031_114834762.jpg" alt="slide2">
+                            <img src="img1/PXL_20251031_124712843.PORTRAIT.jpg" alt="slide3">
+                            <button class="slide-nav prev-slide">‹</button>
+                            <button class="slide-nav next-slide">›</button>
+                            <div class="picture-slide__dots"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Recycle Art Tour</h3>
@@ -788,7 +795,14 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="img1/PXL_20251031_114834762.jpg" alt="Backpack of Hope">
+                        <div class="picture-slide" id="projectSlide2">
+                            <img src="img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg" alt="slide1" class="is-active">
+                            <img src="img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg" alt="slide2">
+                            <img src="img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg" alt="slide3">
+                            <button class="slide-nav prev-slide">‹</button>
+                            <button class="slide-nav next-slide">›</button>
+                            <div class="picture-slide__dots"></div>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Backpack of Hope</h3>
@@ -948,7 +962,7 @@
                     if (sectionId === 'gallery') {
                         setTimeout(() => { if (typeof initGallerySlideshow === 'function') initGallerySlideshow(); }, 30);
                     }
-                    if (sectionId === 'exhibitions') {
+                    if (sectionId === 'exhibitions' || sectionId === 'projects') {
                         setTimeout(() => { if (typeof initPictureSlide === 'function') initPictureSlide(); }, 30);
                     }
                 }
@@ -985,15 +999,15 @@
 
             // ---------- GALLERY DATA & SLIDESHOW ----------
             const galleryData = [
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM (1).jpeg", title: "Environmental Consciousness", desc: "2025 | Mixed Media | Recycled Plastic" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.16 PM.jpeg", title: "Ocean Memories", desc: "2025 | Mixed Media" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM (1).jpeg", title: "Sustainable Visions", desc: "2025 | Mixed Media" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.17 PM.jpeg", title: "Marine Life", desc: "2025 | Recycled Materials" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM (1).jpeg", title: "Eco-System", desc: "2025 | Mixed Media" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.18 PM.jpeg", title: "Plastic Transformation", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM (1).jpeg", title: "Environmental Harmony", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-26 at 9.53.19 PM.jpeg", title: "Sustainable Future", desc: "2025" },
-                { src: "img1/PXL_20251031_114810188.jpg", title: "Waste to Luxury", desc: "2025 Solo Exhibition" },
+                { src: "img/20240710_082436 (1).png", title: "Environmental Consciousness", desc: "2025 | Mixed Media | Recycled Plastic" },
+                { src: "img/20250711_164808.png", title: "Ocean Memories", desc: "2025 | Mixed Media" },
+                { src: "img/20250711_165656.png", title: "Sustainable Visions", desc: "2025 | Mixed Media" },
+                { src: "img/20250711_165912.png", title: "Marine Life", desc: "2025 | Recycled Materials" },
+                { src: "img/20250711_170247.png", title: "Eco-System", desc: "2025 | Mixed Media" },
+                { src: "img/20250805_175256.png", title: "Plastic Transformation", desc: "2025" },
+                { src: "img/20260201_163834.png", title: "Environmental Harmony", desc: "2025" },
+                { src: "img/20260201_165945.png", title: "Sustainable Future", desc: "2025" },
+                { src: "img/HEAL THE WORLD(P Jay) .png", title: "Waste to Luxury", desc: "2025 Solo Exhibition" },
                 { src: "img1/PXL_20251031_114813535.jpg", title: "Marine Conservation", desc: "2025" },
                 { src: "img1/PXL_20251031_114834762.jpg", title: "Backpack of Hope", desc: "2025" },
                 { src: "img1/PXL_20251031_124712843.PORTRAIT.jpg", title: "Environmental Advocacy", desc: "2025" },
@@ -1093,36 +1107,45 @@
 
             // ---------- PICTURE SLIDESHOW (exhibitions) ----------
             window.initPictureSlide = function() {
-                const pictureSlide = document.getElementById('pictureSlide');
-                if (!pictureSlide) return;
-                const imgs = Array.from(pictureSlide.querySelectorAll('img'));
-                const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
-                const prev = pictureSlide.querySelector('.prev-slide');
-                const nxt = pictureSlide.querySelector('.next-slide');
-                if (!imgs.length) return;
-                // clear and rebuild dots to avoid duplicates
-                dotsWrap.innerHTML = '';
-                let currentPic = 0;
-                const dots = imgs.map((_, i) => {
-                    const dot = document.createElement('button');
-                    dot.className = 'picture-slide__dot';
-                    dotsWrap.appendChild(dot);
-                    return dot;
+                const pictureSlides = Array.from(document.querySelectorAll('.picture-slide'));
+                if (!pictureSlides.length) return;
+
+                pictureSlides.forEach(pictureSlide => {
+                    const imgs = Array.from(pictureSlide.querySelectorAll('img'));
+                    const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
+                    const prev = pictureSlide.querySelector('.prev-slide');
+                    const nxt = pictureSlide.querySelector('.next-slide');
+                    if (!imgs.length || !dotsWrap) return;
+
+                    // avoid rebuilding if already initialized
+                    if (pictureSlide.dataset.initialized === 'true') return;
+
+                    // clear and rebuild dots to avoid duplicates
+                    dotsWrap.innerHTML = '';
+                    let currentPic = 0;
+                    const dots = imgs.map((_, i) => {
+                        const dot = document.createElement('button');
+                        dot.className = 'picture-slide__dot';
+                        dotsWrap.appendChild(dot);
+                        return dot;
+                    });
+                    function showPic(idx) {
+                        idx = (idx + imgs.length) % imgs.length;
+                        imgs.forEach((img, i) => img.classList.toggle('is-active', i === idx));
+                        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
+                        currentPic = idx;
+                    }
+                    showPic(0);
+                    let picInterval = setInterval(() => showPic(currentPic+1), 4000);
+                    const resetInterval = () => { clearInterval(picInterval); picInterval = setInterval(() => showPic(currentPic+1), 4000); };
+                    pictureSlide.addEventListener('mouseenter', () => clearInterval(picInterval));
+                    pictureSlide.addEventListener('mouseleave', resetInterval);
+                    if (prev) prev.addEventListener('click', () => { showPic(currentPic-1); clearInterval(picInterval); resetInterval(); });
+                    if (nxt) nxt.addEventListener('click', () => { showPic(currentPic+1); clearInterval(picInterval); resetInterval(); });
+                    dots.forEach((dot, i) => dot.addEventListener('click', () => { showPic(i); clearInterval(picInterval); resetInterval(); }));
+
+                    pictureSlide.dataset.initialized = 'true';
                 });
-                function showPic(idx) {
-                    idx = (idx + imgs.length) % imgs.length;
-                    imgs.forEach((img, i) => img.classList.toggle('is-active', i === idx));
-                    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
-                    currentPic = idx;
-                }
-                showPic(0);
-                let picInterval = setInterval(() => showPic(currentPic+1), 4000);
-                const resetInterval = () => { clearInterval(picInterval); picInterval = setInterval(() => showPic(currentPic+1), 4000); };
-                pictureSlide.addEventListener('mouseenter', () => clearInterval(picInterval));
-                pictureSlide.addEventListener('mouseleave', resetInterval);
-                if (prev) prev.addEventListener('click', () => { showPic(currentPic-1); clearInterval(picInterval); resetInterval(); });
-                if (nxt) nxt.addEventListener('click', () => { showPic(currentPic+1); clearInterval(picInterval); resetInterval(); });
-                dots.forEach((dot, i) => dot.addEventListener('click', () => { showPic(i); clearInterval(picInterval); resetInterval(); }));
             };
 
             // ---------- CONTACT METHOD ----------
