@@ -291,22 +291,20 @@
             height: 100%;
         }
 
+        /* slides are static: only the active slide is displayed (no opacity/slide animation) */
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: none;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease;
+            box-sizing: border-box;
+            padding: clamp(15px, 3vw, 40px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: clamp(15px, 3vw, 40px);
         }
 
         .slide.active {
-            opacity: 1;
+            display: flex;
             position: relative;
         }
 
@@ -381,6 +379,60 @@
             justify-content: center;
             gap: 10px;
             z-index: 10;
+        }
+
+        /* Numeric pagination (Previous 1 2 3 Next) */
+        .gallery-pagination {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+            align-items: center;
+        }
+
+        .gallery-page-btn {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--ocean-blue);
+            font-weight: 600;
+        }
+
+        .gallery-page-btn.active {
+            background: var(--ocean-blue);
+            color: white;
+        }
+
+        /* simple gallery grid */
+        /* stack images one by one in a straight vertical line */
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .gallery-item {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         .dot {
@@ -748,19 +800,8 @@
             <h2 class="section-title">Artwork Gallery</h2>
             <p class="gallery-subtitle">A visual journey through environmental art created from recycled materials.</p>
             <div class="slideshow-container">
-                <div class="slideshow" id="slideshow"></div>
-                <div class="slide-number" id="slideNumber">1 / 22</div>
-                <div class="slideshow-nav">
-                    <button class="nav-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="slideshow-dots" id="slideshowDots"></div>
+                <div class="gallery-grid" id="galleryGrid"></div>
             </div>
-            <div class="slideshow-controls">
-                <button class="control-btn" id="playPauseBtn"><i class="fas fa-pause"></i> Pause</button>
-                <button class="control-btn" onclick="openFullscreen()"><i class="fas fa-expand"></i> Fullscreen</button>
-            </div>
-            <div class="thumbnail-container" id="thumbnailContainer"></div>
             <div class="gallery-info" style="text-align:center; margin-top:30px; padding:20px; background:white; border-radius:8px;">
                 <h3>About the Collection</h3>
                 <p>Waste to luxury — each piece tells a story of marine conservation, recycled materials and hope.</p>
@@ -786,10 +827,11 @@
                     </div>
                     <div class="project-content">
                         <h3>Recycle Art Tour</h3>
-                        <p>Nationwide initiative bringing environmental education and art workshops.</p>
+                        <p>Recycle Art Tour is nation wide environmental awareness initiative that uses art to promote sustainability and responsible waste management.</p>
+                        <p>Through exhibitions, workshops, and school/community visits, the project teaches how discarded materials—especially nylon wraps and plastics—can be transformed into valuable artworks.</p>
                         <div class="sdg-badges">
-                            <span class="sdg-badge">SDG 4: Quality Education</span>
-                            <span class="sdg-badge">SDG 11: Sustainable Cities</span>
+                            <span class="sdg-badge">Add SDG 13: climate action </span>
+                            <span class="sdg-badge">Sdg 15: life below water </span>
                         </div>
                     </div>
                 </div>
@@ -806,10 +848,10 @@
                     </div>
                     <div class="project-content">
                         <h3>Backpack of Hope</h3>
-                        <p>Eco-friendly school bags from recycled materials for underprivileged children.</p>
+                        <p>“Backpacks of Hope” is a community-driven initiative by Susty Creative Hub that aims to provide eco-friendly school backpacks,</p>
+                        <p>made from discarded nylon wraps, to underprivileged children. This project is rooted in the principles of sustainability, education, and community impact.</p>
                         <div class="sdg-badges">
-                            <span class="sdg-badge">SDG 1: No Poverty</span>
-                            <span class="sdg-badge">SDG 4: Quality Education</span>
+                            <span class="sdg-badge">SDG 13: Climate Action</span>
                         </div>
                     </div>
                 </div>
@@ -835,6 +877,10 @@
                     <a href="https://youtu.be/yCHjwD5YoUU?si=Jl2c0HQQN85NyyLC" target="_blank" class="btn">Watch Interview</a>
                     <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
                 </div>
+                <p class="text-center">• OFFICE OF SPECIAL  ADVISER ON CLIMATE CHANGE AND CIRCULAR ECONOMY. </p>
+                <p>PROGRESS GIWA: RETHINKING WASTE WITH SUSTAINABLE ART.</p>
+                <a href="https://www.linkedin.com/pulse/progress-giwa-rethinking-waste-sustainable-bu70f?utm_source=share&utm_medium=member_android&utm_campaign=share_via" target="_blank" class="btn">Read Article</a>
+
                 <!-- Picture slideshow inside exhibitions -->
                 <div class="picture-slide" id="pictureSlide">
                     <img src="img/WhatsApp Image 2026-02-02 at 2.56.29 PM.jpeg" alt="slide1" class="is-active">
@@ -960,7 +1006,7 @@
                     target.classList.add('active');
                     // small delay to allow slideshow init if gallery becomes active
                     if (sectionId === 'gallery') {
-                        setTimeout(() => { if (typeof initGallerySlideshow === 'function') initGallerySlideshow(); }, 30);
+                        setTimeout(() => { if (typeof initGalleryGrid === 'function') initGalleryGrid(); }, 30);
                     }
                     if (sectionId === 'exhibitions' || sectionId === 'projects') {
                         setTimeout(() => { if (typeof initPictureSlide === 'function') initPictureSlide(); }, 30);
@@ -1008,19 +1054,6 @@
                 { src: "img/20260201_163834.png", title: "Environmental Harmony", desc: "2025" },
                 { src: "img/20260201_165945.png", title: "Sustainable Future", desc: "2025" },
                 { src: "img/HEAL THE WORLD(P Jay) .png", title: "Waste to Luxury", desc: "2025 Solo Exhibition" },
-                { src: "img1/PXL_20251031_114813535.jpg", title: "Marine Conservation", desc: "2025" },
-                { src: "img1/PXL_20251031_114834762.jpg", title: "Backpack of Hope", desc: "2025" },
-                { src: "img1/PXL_20251031_124712843.PORTRAIT.jpg", title: "Environmental Advocacy", desc: "2025" },
-                { src: "img1/PXL_20251115_130802532.PORTRAIT.jpg", title: "Sustainable Art", desc: "2025" },
-                { src: "img1/PXL_20251115_130957502.jpg", title: "Eco-Creativity", desc: "2025" },
-                { src: "img1/PXL_20251115_131001049.PORTRAIT.jpg", title: "Environmental Message", desc: "2025" },
-                { src: "img1/PXL_20251115_151828907.PORTRAIT.jpg", title: "Art for Change", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.19 PM.jpeg", title: "Recycled Beauty", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM (1).jpeg", title: "Sustainable Expression", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.20 PM.jpeg", title: "Eco-Art", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (1).jpeg", title: "Environmental Storytelling", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM (2).jpeg", title: "Sustainable Vision", desc: "2025" },
-                { src: "img1/WhatsApp Image 2026-01-24 at 6.09.21 PM.jpeg", title: "Art for Sustainability", desc: "2025" }
             ];
 
             let currentSlide = 0;
@@ -1037,7 +1070,9 @@
                     // already built, just ensure active
                     return;
                 }
-                slidesEl.innerHTML = ''; dotsEl.innerHTML = ''; thumbEl.innerHTML = '';
+                slidesEl.innerHTML = '';
+                if (dotsEl) dotsEl.innerHTML = '';
+                if (thumbEl) thumbEl.innerHTML = '';
 
                 galleryData.forEach((item, idx) => {
                     const slide = document.createElement('div');
@@ -1049,7 +1084,7 @@
                     const dot = document.createElement('div');
                     dot.className = `dot ${idx === 0 ? 'active' : ''}`;
                     dot.addEventListener('click', () => goToSlide(idx));
-                    dotsEl.appendChild(dot);
+                    if (dotsEl) dotsEl.appendChild(dot);
 
                     const thumb = document.createElement('div');
                     thumb.className = `thumbnail ${idx === 0 ? 'active' : ''}`;
@@ -1059,7 +1094,10 @@
                 });
                 document.getElementById('slideNumber').innerText = `1 / ${galleryData.length}`;
                 currentSlide = 0;
-                startAuto();
+
+                // Disable automatic sliding; use numeric pagination (Previous 1 2 3 Next)
+                renderPagination();
+                bindGalleryControls();
             };
 
             function goToSlide(index) {
@@ -1100,9 +1138,74 @@
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
                 const playBtn = document.getElementById('playPauseBtn');
-                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); pauseAuto(); startAuto(); });
-                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); pauseAuto(); startAuto(); });
+                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); updatePagination(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); updatePagination(); });
                 if (playBtn) playBtn.addEventListener('click', function() { isPlaying ? pauseAuto() : startAuto(); });
+                // delegate numeric pagination clicks
+                const pagination = document.getElementById('galleryPagination');
+                if (pagination) pagination.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.gallery-page-btn');
+                    if (!btn) return;
+                    const idx = Number(btn.dataset.index);
+                    if (!Number.isNaN(idx)) {
+                        goToSlide(idx);
+                        updatePagination();
+                    }
+                });
+            }
+
+            // Render simple numeric pagination showing up to 3 page buttons
+            function renderPagination() {
+                const wrap = document.getElementById('galleryPagination');
+                if (!wrap) return;
+                wrap.innerHTML = '';
+                const prev = document.createElement('button');
+                prev.className = 'gallery-page-btn';
+                prev.innerText = 'Previous';
+                prev.addEventListener('click', () => { prevSlide(); updatePagination(); });
+                wrap.appendChild(prev);
+
+                const pageCount = Math.min(galleryData.length, 3);
+                for (let i = 0; i < pageCount; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = `gallery-page-btn ${i === 0 ? 'active' : ''}`;
+                    btn.dataset.index = i;
+                    btn.innerText = String(i + 1);
+                    wrap.appendChild(btn);
+                }
+
+                const next = document.createElement('button');
+                next.className = 'gallery-page-btn';
+                next.innerText = 'Next';
+                next.addEventListener('click', () => { nextSlide(); updatePagination(); });
+                wrap.appendChild(next);
+            }
+
+            // ---------- GALLERY GRID (show all images in a grid) ----------
+            window.initGalleryGrid = function() {
+                const grid = document.getElementById('galleryGrid');
+                if (!grid) return;
+                // avoid rebuilding
+                if (grid.children.length === galleryData.length) return;
+                grid.innerHTML = '';
+                galleryData.forEach((item, idx) => {
+                    const cell = document.createElement('div');
+                    cell.className = 'gallery-item';
+                    cell.innerHTML = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+                    grid.appendChild(cell);
+                });
+            };
+
+            function updatePagination() {
+                const wrap = document.getElementById('galleryPagination');
+                if (!wrap) return;
+                const btns = Array.from(wrap.querySelectorAll('.gallery-page-btn'));
+                btns.forEach(b => b.classList.remove('active'));
+                const numBtns = btns.slice(1, btns.length - 1);
+                numBtns.forEach(b => {
+                    const idx = Number(b.dataset.index);
+                    if (idx === currentSlide) b.classList.add('active');
+                });
             }
 
             // ---------- PICTURE SLIDESHOW (exhibitions) ----------
@@ -1215,7 +1318,7 @@
 
             // if gallery active on load (unlikely), but just in case
             if (document.getElementById('gallery').classList.contains('active')) {
-                window.initGallerySlideshow();
+                window.initGalleryGrid();
             }
         })();
     </script>
