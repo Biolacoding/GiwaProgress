@@ -21,9 +21,7 @@
             --gallery-light: #f5f5f5;
             --transition-smooth: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
@@ -41,6 +39,11 @@
             width: 100%;
         }
 
+        img, video {
+            max-width: 100%;
+            height: auto;
+        }
+
         h1, h2, h3, h4, h5 {
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 400;
@@ -52,6 +55,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         /* ===== SECTION VISIBILITY TOGGLE ===== 
@@ -89,6 +93,10 @@
             padding: 1rem 0;
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .section:not(#home) {
+            padding-top: 90px;
         }
 
         .nav-container {
@@ -525,8 +533,12 @@
         }
 
         .project-image {
-            height: 200px;
+            height: clamp(180px, 28vw, 280px);
             overflow: hidden;
+        }
+
+        .project-content {
+            padding: 1.25rem;
         }
 
         .project-image img {
@@ -583,6 +595,59 @@
             height: 14px;
             background: var(--ocean-blue);
             border-radius: 50%;
+        }
+
+        .media-features {
+            margin-top: 2.5rem;
+            padding: clamp(1.2rem, 2.2vw, 2rem);
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(26, 54, 93, 0.08);
+            border: 1px solid rgba(26, 54, 93, 0.08);
+        }
+
+        .media-features h3 {
+            color: var(--ocean-blue);
+            font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+            margin-bottom: 0.4rem;
+        }
+
+        .media-subtitle {
+            text-align: center;
+            color: rgba(45, 52, 54, 0.85);
+            margin-bottom: 1.4rem;
+            font-weight: 500;
+        }
+
+        .media-feature-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .media-feature-list li {
+            background: rgba(26, 54, 93, 0.06);
+            border-left: 3px solid var(--ocean-blue);
+            padding: 0.75rem 0.95rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .media-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .media-story-title {
+            margin-top: 0.5rem;
+            text-align: center;
+            color: var(--ocean-blue);
+            font-weight: 700;
+            letter-spacing: 0.4px;
         }
 
         /* picture slideshow */
@@ -730,6 +795,18 @@
             .nav-menu.active { left: 0; }
             .hero-cta { flex-direction: column; }
             .btn { white-space: normal; }
+            .container { padding: 0 16px; }
+            .method-buttons { display: flex; flex-wrap: wrap; border-radius: 16px; }
+            .method-btn { flex: 1 1 100%; justify-content: center; }
+            .main-nav { padding: 0.75rem 0; }
+            .section:not(#home) { padding-top: 82px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.05rem; }
+            .hero-content { padding: 0 10px; }
+            .slideshow-container { width: 100%; border-radius: 8px; }
+            .gallery-info { padding: 14px !important; }
         }
     </style>
 </head>
@@ -799,10 +876,25 @@
         <div class="container">
             <h2 class="section-title">Artwork Gallery</h2>
             <p class="gallery-subtitle">A visual journey through environmental art created from recycled materials.</p>
-            <div class="slideshow-container">
-                <div class="gallery-grid" id="galleryGrid"></div>
-            </div>
-            <div class="gallery-info" style="text-align:center; margin-top:30px; padding:20px; background:white; border-radius:8px;">
+                        <img src="img/20240710_082436 (1).png" alt="Environmental Consciousness" class="slide-image">
+                  
+                        <img src="img/20250711_164808.png" alt="Ocean Memories" class="slide-image">
+                
+                        <img src="img/20250711_165656.png" alt="Sustainable Visions" class="slide-image">
+                
+                        <img src="img/20250711_165912.png" alt="Marine Life" class="slide-image">
+                   
+                        <img src="img/20250711_170247.png" alt="Eco-System" class="slide-image">
+              
+                        <img src="img/20250805_175256.png" alt="Plastic Transformation" class="slide-image">
+                   
+                        <img src="img/20260201_163834.png" alt="Environmental Harmony" class="slide-image">
+                   
+                        <img src="img/20260201_165945.png" alt="Sustainable Future" class="slide-image">
+                   
+                        <img src="img/HEAL THE WORLD(P Jay) .png" alt="Waste to Luxury" class="slide-image">  
+                </div>
+                <div class="gallery-info" style="text-align:center; margin-top:30px; padding:20px; background:white; border-radius:8px;">
                 <h3>About the Collection</h3>
                 <p>Waste to luxury — each piece tells a story of marine conservation, recycled materials and hope.</p>
             </div>
@@ -817,9 +909,15 @@
                 <div class="project-card">
                     <div class="project-image">
                         <div class="picture-slide" id="projectSlide1">
-                            <img src="img1/PXL_20250603_133055348.PORTRAIT.jpg" alt="slide1" class="is-active">
-                            <img src="img1/PXL_20251031_114834762.jpg" alt="slide2">
-                            <img src="img1/PXL_20251031_124712843.PORTRAIT.jpg" alt="slide3">
+                            <img src="img1/ins_link_DBvbZRooVbl_0 (1).webp" alt="slide1" class="is-active">
+                            <img src="img1/ins_link_DBvbZRooVbl_0 (2).webp" alt="slide2">
+                            <img src="img1/ins_link_DBvbZRooVbl_0.webp" alt="slide3">
+                            <img src="img1/ins_link_DBvbZRooVbl_1.webp" alt="slide4">
+                            <img src="img1/ins_link_DBvbZRooVbl_2.webp" alt="slide5">
+                            <img src="img1/ins_link_DBvbZRooVbl_3.webp" alt="slide6">
+                            <img src="img1/PXL_20241029_145027573.MP.jpg" alt="slide7">
+                            <img src="img1/PXL_20241030_105618164.MP (1).jpg" alt="slide8">
+                            <img src="img1/PXL_20241030_105618164.MP.jpg" alt="slide9">
                             <button class="slide-nav prev-slide">‹</button>
                             <button class="slide-nav next-slide">›</button>
                             <div class="picture-slide__dots"></div>
@@ -872,14 +970,23 @@
             </div>
             <div class="media-features">
                 <h3 class="text-center">Media Features</h3>
-                <p class="text-center">• Vanguard News Feature   • Punch Newspaper 'Before Stardom'</p>
-                <div class="text-center mb-2">
+                <p class="media-subtitle">Highlights from interviews, press coverage, and climate advocacy recognition.</p>
+
+                <ul class="media-feature-list">
+                    <li>Vanguard News Feature</li>
+                    <li>Punch Newspaper: “Before Stardom”</li>
+                    <li>Office of the Special Adviser on Climate Change and Circular Economy</li>
+                </ul>
+
+                <div class="media-actions">
                     <a href="https://youtu.be/yCHjwD5YoUU?si=Jl2c0HQQN85NyyLC" target="_blank" class="btn">Watch Interview</a>
-                    <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Article</a>
+                    <a href="https://punchng.com/before-stardom-with-progress-jesutomiwa-giwa/" target="_blank" class="btn">Read Punch Article</a>
                 </div>
-                <p class="text-center">• OFFICE OF SPECIAL  ADVISER ON CLIMATE CHANGE AND CIRCULAR ECONOMY. </p>
-                <p>PROGRESS GIWA: RETHINKING WASTE WITH SUSTAINABLE ART.</p>
-                <a href="https://www.linkedin.com/pulse/progress-giwa-rethinking-waste-sustainable-bu70f?utm_source=share&utm_medium=member_android&utm_campaign=share_via" target="_blank" class="btn">Read Article</a>
+
+                <p class="media-story-title">Progress Giwa: Rethinking Waste with Sustainable Art</p>
+                <div class="media-actions">
+                    <a href="https://www.linkedin.com/pulse/progress-giwa-rethinking-waste-sustainable-bu70f?utm_source=share&utm_medium=member_android&utm_campaign=share_via" target="_blank" class="btn">Read Climate Story</a>
+                </div>
 
                 <!-- Picture slideshow inside exhibitions -->
                 <div class="picture-slide" id="pictureSlide">
@@ -994,6 +1101,34 @@
         (function() {
             "use strict";
 
+            // ---------- GALLERY SLIDESHOW ----------
+            let currentGallerySlide = 0;
+            let gallerySlides = [];
+            let totalGallerySlides = 0;
+
+            function updateGallerySlide() {
+                if (!totalGallerySlides) return;
+                gallerySlides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentGallerySlide);
+                });
+                const counter = document.getElementById('slideCounter');
+                if (counter) {
+                    counter.textContent = `${currentGallerySlide + 1} / ${totalGallerySlides}`;
+                }
+            }
+
+            window.nextGallerySlide = function() {
+                if (!totalGallerySlides) return;
+                currentGallerySlide = (currentGallerySlide + 1) % totalGallerySlides;
+                updateGallerySlide();
+            };
+
+            window.prevGallerySlide = function() {
+                if (!totalGallerySlides) return;
+                currentGallerySlide = (currentGallerySlide - 1 + totalGallerySlides) % totalGallerySlides;
+                updateGallerySlide();
+            };
+
             // ---------- GLOBAL SECTION CONTROLLER ----------
             window.showOnlySection = function(sectionId) {
                 // remove 'active' from all sections
@@ -1006,10 +1141,7 @@
                     target.classList.add('active');
                     // small delay to allow slideshow init if gallery becomes active
                     if (sectionId === 'gallery') {
-                        setTimeout(() => { if (typeof initGalleryGrid === 'function') initGalleryGrid(); }, 30);
-                    }
-                    if (sectionId === 'exhibitions' || sectionId === 'projects') {
-                        setTimeout(() => { if (typeof initPictureSlide === 'function') initPictureSlide(); }, 30);
+                        // Gallery is now static HTML, no init needed
                     }
                 }
 
@@ -1043,213 +1175,7 @@
                 });
             }
 
-            // ---------- GALLERY DATA & SLIDESHOW ----------
-            const galleryData = [
-                { src: "img/20240710_082436 (1).png", title: "Environmental Consciousness", desc: "2025 | Mixed Media | Recycled Plastic" },
-                { src: "img/20250711_164808.png", title: "Ocean Memories", desc: "2025 | Mixed Media" },
-                { src: "img/20250711_165656.png", title: "Sustainable Visions", desc: "2025 | Mixed Media" },
-                { src: "img/20250711_165912.png", title: "Marine Life", desc: "2025 | Recycled Materials" },
-                { src: "img/20250711_170247.png", title: "Eco-System", desc: "2025 | Mixed Media" },
-                { src: "img/20250805_175256.png", title: "Plastic Transformation", desc: "2025" },
-                { src: "img/20260201_163834.png", title: "Environmental Harmony", desc: "2025" },
-                { src: "img/20260201_165945.png", title: "Sustainable Future", desc: "2025" },
-                { src: "img/HEAL THE WORLD(P Jay) .png", title: "Waste to Luxury", desc: "2025 Solo Exhibition" },
-            ];
-
-            let currentSlide = 0;
-            let autoInterval;
-            let isPlaying = true;
-
-            window.initGallerySlideshow = function() {
-                const slidesEl = document.getElementById('slideshow');
-                const dotsEl = document.getElementById('slideshowDots');
-                const thumbEl = document.getElementById('thumbnailContainer');
-                if (!slidesEl) return;
-                // prevent re-building if already built and visible
-                if (slidesEl.children.length === galleryData.length) {
-                    // already built, just ensure active
-                    return;
-                }
-                slidesEl.innerHTML = '';
-                if (dotsEl) dotsEl.innerHTML = '';
-                if (thumbEl) thumbEl.innerHTML = '';
-
-                galleryData.forEach((item, idx) => {
-                    const slide = document.createElement('div');
-                    slide.className = `slide ${idx === 0 ? 'active' : ''}`;
-                    slide.innerHTML = `<img src="${item.src}" alt="${item.title}" class="slide-image" loading="lazy">
-                                       <div class="slide-content"><h3>${item.title}</h3><p>${item.desc}</p></div>`;
-                    slidesEl.appendChild(slide);
-
-                    const dot = document.createElement('div');
-                    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
-                    dot.addEventListener('click', () => goToSlide(idx));
-                    if (dotsEl) dotsEl.appendChild(dot);
-
-                    const thumb = document.createElement('div');
-                    thumb.className = `thumbnail ${idx === 0 ? 'active' : ''}`;
-                    thumb.innerHTML = `<img src="${item.src}" alt="thumb" loading="lazy">`;
-                    thumb.addEventListener('click', () => goToSlide(idx));
-                    thumbEl.appendChild(thumb);
-                });
-                document.getElementById('slideNumber').innerText = `1 / ${galleryData.length}`;
-                currentSlide = 0;
-
-                // Disable automatic sliding; use numeric pagination (Previous 1 2 3 Next)
-                renderPagination();
-                bindGalleryControls();
-            };
-
-            function goToSlide(index) {
-                const slides = document.querySelectorAll('.slide');
-                const dots = document.querySelectorAll('.dot');
-                const thumbs = document.querySelectorAll('.thumbnail');
-                if (!slides.length) return;
-                slides.forEach(s => s.classList.remove('active'));
-                dots.forEach(d => d.classList.remove('active'));
-                thumbs.forEach(t => t.classList.remove('active'));
-
-                slides[index]?.classList.add('active');
-                dots[index]?.classList.add('active');
-                thumbs[index]?.classList.add('active');
-                currentSlide = index;
-                document.getElementById('slideNumber').innerText = `${index+1} / ${galleryData.length}`;
-            }
-
-            function nextSlide() { goToSlide((currentSlide + 1) % galleryData.length); }
-            function prevSlide() { goToSlide((currentSlide - 1 + galleryData.length) % galleryData.length); }
-
-            function startAuto() {
-                if (autoInterval) clearInterval(autoInterval);
-                autoInterval = setInterval(nextSlide, 4000);
-                isPlaying = true;
-                const btn = document.getElementById('playPauseBtn');
-                if (btn) btn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-            }
-            function pauseAuto() {
-                clearInterval(autoInterval);
-                isPlaying = false;
-                const btn = document.getElementById('playPauseBtn');
-                if (btn) btn.innerHTML = '<i class="fas fa-play"></i> Play';
-            }
-
-            // gallery event listeners
-            function bindGalleryControls() {
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-                const playBtn = document.getElementById('playPauseBtn');
-                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); updatePagination(); });
-                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); updatePagination(); });
-                if (playBtn) playBtn.addEventListener('click', function() { isPlaying ? pauseAuto() : startAuto(); });
-                // delegate numeric pagination clicks
-                const pagination = document.getElementById('galleryPagination');
-                if (pagination) pagination.addEventListener('click', (e) => {
-                    const btn = e.target.closest('.gallery-page-btn');
-                    if (!btn) return;
-                    const idx = Number(btn.dataset.index);
-                    if (!Number.isNaN(idx)) {
-                        goToSlide(idx);
-                        updatePagination();
-                    }
-                });
-            }
-
-            // Render simple numeric pagination showing up to 3 page buttons
-            function renderPagination() {
-                const wrap = document.getElementById('galleryPagination');
-                if (!wrap) return;
-                wrap.innerHTML = '';
-                const prev = document.createElement('button');
-                prev.className = 'gallery-page-btn';
-                prev.innerText = 'Previous';
-                prev.addEventListener('click', () => { prevSlide(); updatePagination(); });
-                wrap.appendChild(prev);
-
-                const pageCount = Math.min(galleryData.length, 3);
-                for (let i = 0; i < pageCount; i++) {
-                    const btn = document.createElement('button');
-                    btn.className = `gallery-page-btn ${i === 0 ? 'active' : ''}`;
-                    btn.dataset.index = i;
-                    btn.innerText = String(i + 1);
-                    wrap.appendChild(btn);
-                }
-
-                const next = document.createElement('button');
-                next.className = 'gallery-page-btn';
-                next.innerText = 'Next';
-                next.addEventListener('click', () => { nextSlide(); updatePagination(); });
-                wrap.appendChild(next);
-            }
-
-            // ---------- GALLERY GRID (show all images in a grid) ----------
-            window.initGalleryGrid = function() {
-                const grid = document.getElementById('galleryGrid');
-                if (!grid) return;
-                // avoid rebuilding
-                if (grid.children.length === galleryData.length) return;
-                grid.innerHTML = '';
-                galleryData.forEach((item, idx) => {
-                    const cell = document.createElement('div');
-                    cell.className = 'gallery-item';
-                    cell.innerHTML = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
-                    grid.appendChild(cell);
-                });
-            };
-
-            function updatePagination() {
-                const wrap = document.getElementById('galleryPagination');
-                if (!wrap) return;
-                const btns = Array.from(wrap.querySelectorAll('.gallery-page-btn'));
-                btns.forEach(b => b.classList.remove('active'));
-                const numBtns = btns.slice(1, btns.length - 1);
-                numBtns.forEach(b => {
-                    const idx = Number(b.dataset.index);
-                    if (idx === currentSlide) b.classList.add('active');
-                });
-            }
-
-            // ---------- PICTURE SLIDESHOW (exhibitions) ----------
-            window.initPictureSlide = function() {
-                const pictureSlides = Array.from(document.querySelectorAll('.picture-slide'));
-                if (!pictureSlides.length) return;
-
-                pictureSlides.forEach(pictureSlide => {
-                    const imgs = Array.from(pictureSlide.querySelectorAll('img'));
-                    const dotsWrap = pictureSlide.querySelector('.picture-slide__dots');
-                    const prev = pictureSlide.querySelector('.prev-slide');
-                    const nxt = pictureSlide.querySelector('.next-slide');
-                    if (!imgs.length || !dotsWrap) return;
-
-                    // avoid rebuilding if already initialized
-                    if (pictureSlide.dataset.initialized === 'true') return;
-
-                    // clear and rebuild dots to avoid duplicates
-                    dotsWrap.innerHTML = '';
-                    let currentPic = 0;
-                    const dots = imgs.map((_, i) => {
-                        const dot = document.createElement('button');
-                        dot.className = 'picture-slide__dot';
-                        dotsWrap.appendChild(dot);
-                        return dot;
-                    });
-                    function showPic(idx) {
-                        idx = (idx + imgs.length) % imgs.length;
-                        imgs.forEach((img, i) => img.classList.toggle('is-active', i === idx));
-                        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
-                        currentPic = idx;
-                    }
-                    showPic(0);
-                    let picInterval = setInterval(() => showPic(currentPic+1), 4000);
-                    const resetInterval = () => { clearInterval(picInterval); picInterval = setInterval(() => showPic(currentPic+1), 4000); };
-                    pictureSlide.addEventListener('mouseenter', () => clearInterval(picInterval));
-                    pictureSlide.addEventListener('mouseleave', resetInterval);
-                    if (prev) prev.addEventListener('click', () => { showPic(currentPic-1); clearInterval(picInterval); resetInterval(); });
-                    if (nxt) nxt.addEventListener('click', () => { showPic(currentPic+1); clearInterval(picInterval); resetInterval(); });
-                    dots.forEach((dot, i) => dot.addEventListener('click', () => { showPic(i); clearInterval(picInterval); resetInterval(); }));
-
-                    pictureSlide.dataset.initialized = 'true';
-                });
-            };
+            // Gallery is now static HTML – no JS generation needed
 
             // ---------- CONTACT METHOD ----------
             function initContact() {
@@ -1308,18 +1234,13 @@
             // ---------- LOAD & INIT ----------
             window.addEventListener('DOMContentLoaded', function() {
                 // home is active by default (hero only)
-                bindGalleryControls();
+                gallerySlides = Array.from(document.querySelectorAll('#galleryShowcase .slide'));
+                totalGallerySlides = gallerySlides.length;
+                updateGallerySlide();
                 initContact();
-                // pre-init picture slide (but it will init properly when exhibitions becomes active)
-                setTimeout(() => { 
-                    if (document.getElementById('exhibitions').classList.contains('active')) initPictureSlide(); 
-                }, 50);
             });
 
-            // if gallery active on load (unlikely), but just in case
-            if (document.getElementById('gallery').classList.contains('active')) {
-                window.initGalleryGrid();
-            }
+            // Gallery is static HTML – no JS init needed on load
         })();
     </script>
 </body>
