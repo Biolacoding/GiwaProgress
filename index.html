@@ -1241,6 +1241,79 @@
             });
 
             // Gallery is static HTML – no JS init needed on load
+
+            // ---------- PICTURE SLIDESHOW (for project cards & exhibitions) ----------
+            function initPictureSlides() {
+                const pictureSlides = document.querySelectorAll('.picture-slide');
+                
+                pictureSlides.forEach(slide => {
+                    const images = slide.querySelectorAll('img:not(.slide)');
+                    const dotsContainer = slide.querySelector('.picture-slide__dots');
+                    const prevBtn = slide.querySelector('.prev-slide');
+                    const nextBtn = slide.querySelector('.next-slide');
+                    let currentSlide = 0;
+                    let autoPlayInterval;
+
+                    // Don't process if no images or undefined handler
+                    if (!images.length) return;
+
+                    // Create dots if container exists
+                    if (dotsContainer) {
+                        dotsContainer.innerHTML = '';
+                        images.forEach((_, index) => {
+                            const dot = document.createElement('div');
+                            dot.className = `picture-slide__dot ${index === 0 ? 'is-active' : ''}`;
+                            dot.addEventListener('click', () => showSlide(index));
+                            dotsContainer.appendChild(dot);
+                        });
+                    }
+
+                    function showSlide(n) {
+                        images.forEach(img => img.classList.remove('is-active'));
+                        const dots = dotsContainer?.querySelectorAll('.picture-slide__dot');
+                        dots?.forEach(dot => dot.classList.remove('is-active'));
+
+                        currentSlide = (n + images.length) % images.length;
+                        images[currentSlide].classList.add('is-active');
+                        if (dots) dots[currentSlide].classList.add('is-active');
+                    }
+
+                    function autoAdvance() {
+                        showSlide(currentSlide + 1);
+                    }
+
+                    // Start auto-play (every 5 seconds)
+                    autoPlayInterval = setInterval(autoAdvance, 5000);
+
+                    // Attach Button Handlers
+                    if (prevBtn) {
+                        prevBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            clearInterval(autoPlayInterval);
+                            showSlide(currentSlide - 1);
+                            autoPlayInterval = setInterval(autoAdvance, 5000);
+                        });
+                    }
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            clearInterval(autoPlayInterval);
+                            showSlide(currentSlide + 1);
+                            autoPlayInterval = setInterval(autoAdvance, 5000);
+                        });
+                    }
+                });
+            }
+
+            // Init picture slides on DOM load
+            window.addEventListener('DOMContentLoaded', function() {
+                // home is active by default (hero only)
+                gallerySlides = Array.from(document.querySelectorAll('#galleryShowcase .slide'));
+                totalGallerySlides = gallerySlides.length;
+                updateGallerySlide();
+                initContact();
+                initPictureSlides();
+            });
         })();
     </script>
 </body>
